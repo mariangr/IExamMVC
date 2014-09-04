@@ -68,7 +68,15 @@ namespace IExam.Controllers
         public void DeleteVideo(int id)
         {
             Video video = db.Videos.Find(id);
+            VideoCommentsEntities commentsDB = new VideoCommentsEntities();
+            var commentsOfVideo = commentsDB.Comments.Where(c => c.link == video.link);
+            foreach (var item in commentsOfVideo)
+            {
+                commentsDB.Comments.Remove(item);
+            }
+
             db.Videos.Remove(video);
+            commentsDB.SaveChanges();
             db.SaveChanges();
         }
 

@@ -4,20 +4,19 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="IExamDBModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="IExamDBModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Comments">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" Nullable="false" />
-          <Property Name="message" Type="text" Nullable="false" />
+          <Property Name="message" Type="varchar(max)" Nullable="false" />
           <Property Name="link" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityContainer Name="IExamDBModel1StoreContainer">
           <EntitySet Name="Comments" EntityType="Self.Comments" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="IExamDBModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -36,20 +35,19 @@
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="IExamDBModel1StoreContainer" CdmEntityContainer="VideoCommentsEntities">
-          <EntitySetMapping Name="Comments">
-            <EntityTypeMapping TypeName="IExamDBModel1.Comment">
-              <MappingFragment StoreEntitySet="Comments">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="message" ColumnName="message" />
-                <ScalarProperty Name="link" ColumnName="link" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-        </EntityContainerMapping>
-      </Mapping>
-    </edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="IExamDBModel1StoreContainer" CdmEntityContainer="VideoCommentsEntities">
+    <EntitySetMapping Name="Comments">
+      <EntityTypeMapping TypeName="IsTypeOf(IExamDBModel1.Comment)">
+        <MappingFragment StoreEntitySet="Comments">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="message" ColumnName="message" />
+          <ScalarProperty Name="link" ColumnName="link" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
   <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
@@ -63,7 +61,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>

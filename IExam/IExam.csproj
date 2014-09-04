@@ -140,6 +140,7 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Videos.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <Content Include="Models\VideoComments.edmx.sql" />
     <Content Include="Models\Videos.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Videos.edmx</DependentUpon>
@@ -148,6 +149,7 @@
     <Content Include="Models\Videos.edmx.diagram">
       <DependentUpon>Videos.edmx</DependentUpon>
     </Content>
+    <Content Include="Models\Videos.edmx.sql" />
     <Content Include="Models\Videos.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Videos.edmx</DependentUpon>
@@ -171,6 +173,7 @@
       <LastGenOutput>VideoComments.cs</LastGenOutput>
     </Content>
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
+    <Content Include="Read Me.txt" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\iExamPageScript.js" />

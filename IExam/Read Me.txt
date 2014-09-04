@@ -1,0 +1,7 @@
+To run this project first you have to make your database connection.
+
+To do this simply create a new database and execute the sql files from the Models folder on your database.
+
+For more information see Code First on msdn:
+
+http://msdn.microsoft.com/en-us/library/vstudio/dd456815(v=vs.100).aspx

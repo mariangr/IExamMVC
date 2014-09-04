@@ -1,0 +1,8 @@
+﻿@model IExam.Models.Video
+
+@if (Model != null) { 
+    <iframe width="400" height="300" src="//www.youtube.com/embed/@Model.link" frameborder="0" allowfullscreen></iframe>
+    <input type="hidden" value="@Model.ID" id="selectedVideoInPlayerID">
+    <input type="hidden" value="@Model.link" id="selectedVideoInPlayerLink">
+    
+}

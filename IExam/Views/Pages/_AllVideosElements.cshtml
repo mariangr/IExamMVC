@@ -1,0 +1,14 @@
+﻿@model IEnumerable<IExam.Models.Video>
+
+<tbody class="col-md-12">
+@foreach (var item in Model)
+{
+    <tr class="col-md-12">
+        <td class="col-md-12">
+            <input style="width: 80%" class="btn btn-info col-md-11 videoHeader" value="@item.name" type="button" onclick="LoadVideo(@item.ID)" />
+            <input style="width: 20%" class="btn btn-danger videoDelete" value="Delete" type="button" onclick="DeleteVideo(@item.ID)">
+        </td>
+    </tr>
+}
+    
+</tbody>

@@ -12,5 +12,11 @@ namespace IExam.Controllers
         {
             return View();
         }
+
+        public ActionResult ReturnPartialView(string pageName)
+        {
+            return PartialView(pageName);
+        }
+
 	}
 }

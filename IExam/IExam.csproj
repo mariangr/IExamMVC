@@ -194,8 +194,6 @@
     <Compile Include="App_Start\BootstrapBundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\PagesController.cs" />
-    <Compile Include="Controllers\VideoCommentsController.cs" />
     <Compile Include="Controllers\VideoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -242,21 +240,11 @@
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
     <Content Include="Views\Shared\_Navigation.cshtml" />
-    <Content Include="Views\Pages\_Home.cshtml" />
-    <Content Include="Views\Video\Create.cshtml" />
-    <Content Include="Views\Video\Delete.cshtml" />
-    <Content Include="Views\Video\Details.cshtml" />
-    <Content Include="Views\Video\Edit.cshtml" />
+    <Content Include="Views\Home\_Home.cshtml" />
     <Content Include="Views\Video\Index.cshtml" />
-    <Content Include="Views\Pages\_Video.cshtml" />
-    <Content Include="Views\Pages\_AllVideosElements.cshtml" />
-    <Content Include="Views\Pages\_VideoPlayer.cshtml" />
-    <Content Include="Views\Pages\_VideoComments.cshtml" />
-    <Content Include="Views\VideoComments\Create.cshtml" />
-    <Content Include="Views\VideoComments\Delete.cshtml" />
-    <Content Include="Views\VideoComments\Details.cshtml" />
-    <Content Include="Views\VideoComments\Edit.cshtml" />
-    <Content Include="Views\VideoComments\Index.cshtml" />
+    <Content Include="Views\Video\_AllVideosElements.cshtml" />
+    <Content Include="Views\Video\_VideoPlayer.cshtml" />
+    <Content Include="Views\Video\_VideoComments.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

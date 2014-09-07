@@ -1,12 +1,9 @@
-﻿using System;
+﻿using IExam.Models;
+using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
 using System.Linq;
-using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using IExam.Models;
 
 namespace IExam.Controllers
 {
@@ -14,114 +11,105 @@ namespace IExam.Controllers
     {
         private VideosDBEntities db = new VideosDBEntities();
 
-        // GET: /Video/
         public ActionResult Index()
-        {
-            return View(db.Videos.ToList());
-        }
-
-        // GET: /Video/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Video video = db.Videos.Find(id);
-            if (video == null)
-            {
-                return HttpNotFound();
-            }
-            return View(video);
-        }
-
-        // GET: /Video/Create
-        public ActionResult Create()
         {
             return View();
         }
 
-        // POST: /Video/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="ID,name,link")] Video video)
+        public string CreateVideo(Video newVideo)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Videos.Add(video);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                int countOfDublicateVideo = db.Videos.Where(v => v.link == newVideo.link).Count();
+                if (countOfDublicateVideo == 0)
+                {
+                    int id;
+                    try
+                    {
+                        id = (int)(db.Videos.Max(v => v.ID) + 1);
+                    }
+                    catch (System.InvalidOperationException)
+                    {
+                        id = 0;
+                    }
+                    newVideo.ID = id;
+                    db.Videos.Add(newVideo);
+                    db.SaveChanges();
+                    return "videoAddedSuccessfully";
+                }
+                else
+                {
+                    return "videoExists";
+                }
             }
-
-            return View(video);
+            catch (System.Exception)
+            {
+                return "unknownExeption";
+            }
         }
 
-        // GET: /Video/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult GetVideoElements()
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Video video = db.Videos.Find(id);
-            if (video == null)
-            {
-                return HttpNotFound();
-            }
-            return View(video);
+            return PartialView("_AllVideosElements", db.Videos.ToArray());
         }
 
-        // POST: /Video/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="ID,name,link")] Video video)
+        public ActionResult GetVideoPlayer(int id)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Entry(video).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                Video wantedVideo = db.Videos.Where(v => v.ID == id).ToArray()[0];
+                return PartialView("_VideoPlayer", wantedVideo);
             }
-            return View(video);
+            catch (System.IndexOutOfRangeException)
+            {
+                return PartialView("_VideoPlayer", null);
+            }
         }
 
-        // GET: /Video/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Video video = db.Videos.Find(id);
-            if (video == null)
-            {
-                return HttpNotFound();
-            }
-            return View(video);
-        }
-
-        // POST: /Video/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public void DeleteVideo(int id)
         {
             Video video = db.Videos.Find(id);
+            VideoCommentsEntities commentsDB = new VideoCommentsEntities();
+            var commentsOfVideo = commentsDB.Comments.Where(c => c.link == video.link);
+            foreach (var item in commentsOfVideo)
+            {
+                commentsDB.Comments.Remove(item);
+            }
+
             db.Videos.Remove(video);
+            commentsDB.SaveChanges();
             db.SaveChanges();
-            return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
+        public ActionResult GetVideoComments(Video video)
         {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
+            VideoCommentsEntities commentsDB = new VideoCommentsEntities();
+            var currentComments = commentsDB.Comments.Where(c => c.link == video.link).ToArray();
+            return PartialView("_VideoComments", currentComments);
         }
-    }
+
+        public string CreateVideoComment(Comment newComment)
+        {
+            try
+            {
+                VideoCommentsEntities commentsDB = new VideoCommentsEntities();
+                try
+                {
+                    newComment.ID = (int)(commentsDB.Comments.Max(c => c.ID) + 1);
+                }
+                catch (System.InvalidOperationException)
+                {
+                    newComment.ID = 0;
+                }
+                commentsDB.Comments.Add(newComment);
+                commentsDB.SaveChanges();
+                return "CommentAddedSuccessfully";
+            }
+            catch (Exception)
+            {
+                return "UnspecifiedException";
+            }
+        }
+	}
 }

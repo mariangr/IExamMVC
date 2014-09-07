@@ -9,15 +9,19 @@
     <link rel="WWW Icon" href="~/Content/images/www_icon1.ico" />
     <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
-</head>
-<body>
-    <header>
-    </header>
-        <div style="padding-top: 1%">
-            @RenderBody()
-        </div>
     <script src="~/Scripts/jquery-2.1.1.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/Scripts/iExamPageScript.js"></script>
+</head>
+<body>
+    <header>
+        <h1 class="col-md-offset-1"><span class="glyphicon glyphicon-pencil"></span> @ViewBag.Title</h1>
+    </header>
+    <nav id="navigation" class="col-md-2" style="margin-top: 1%;">
+        @Html.Partial("~/Views/Shared/_Navigation.cshtml")
+    </nav>
+        <div style="padding-top: 1%" class="container">
+            @RenderBody()
+        </div>
 </body>
 </html>

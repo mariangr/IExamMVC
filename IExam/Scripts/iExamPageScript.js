@@ -5,14 +5,10 @@
 function loadSelectedPage(page) {
     $.ajax({
         type: 'POST',
-        url: '/Pages/ReturnPartialView/',
+        url: '/Home/ReturnPartialView/',
         data: { pageName: page },
         success: function (html) {
             $("#main_Container_Div").html(html);
-            if (page == "_Video")
-            {
-                loadVideosList();
-            }
         },
         error: function () {
             $('#main_Container_Div').html("Error");
@@ -20,6 +16,12 @@ function loadSelectedPage(page) {
     })
     return false;
 }
+
+//var VIDEO_RESPONSE = {
+//    "SUCCESS": "Video Successfully added!",
+//    "DUPLICATE": "Video already exists",
+//    "FAILURE": "Service error!"
+//}
 
 function addNewVideo() {
     var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
@@ -31,7 +33,7 @@ function addNewVideo() {
 
     $.ajax({
         type: 'POST',
-        url: '/Pages/CreateVideo/',
+        url: '/Video/CreateVideo/',
         data: { name: $('#nameForNewVideo').val(), link: link },
         success: function (result) {
             if (result == "videoAddedSuccessfully") {
@@ -43,7 +45,7 @@ function addNewVideo() {
             else if (result == "videoExists") {
                 alert("Video Already Exists")
             } else if (result == "unknownExeption") {
-                alert("Unknown Server Error")
+                alert("Unknown Server Error! Check fields.")
             }
 
         },
@@ -57,7 +59,7 @@ function addNewVideo() {
 function loadVideosList() {
     $.ajax({
         type: 'GET',
-        url: '/Pages/GetVideoElements/',
+        url: '/Video/GetVideoElements/',
         success: function (result) {
             $('#videosContainer').html(result);
 
@@ -74,7 +76,7 @@ function LoadVideo(id) {
     if (id != null) {
         $.ajax({
             type: 'GET',
-            url: '/Pages/GetVideoPlayer/',
+            url: '/Video/GetVideoPlayer/',
             data: { id: id },
             success: function (result) {
                 $('#videosPlayerContainer').html(result);
@@ -94,7 +96,7 @@ function LoadVideo(id) {
 function DeleteVideo(id) {
     $.ajax({
         type: 'GET',
-        url: '/Pages/DeleteVideo/',
+        url: '/Video/DeleteVideo/',
         data: { id: id },
         success: function (result) {
             LoadVideo(null);
@@ -114,7 +116,7 @@ function getCurrentVideoComments() {
     var link = $('#selectedVideoInPlayerLink').val();
     $.ajax({
         type: 'GET',
-        url: '/Pages/GetVideoComments/',
+        url: '/Video/GetVideoComments/',
         data: { id: id, link: link },
         success: function (result) {
             $('#videoComents').html(result);
@@ -132,7 +134,7 @@ function SendComment() {
     var message = $('#commentForVideo').val();
     $.ajax({
         type: 'GET',
-        url: '/Pages/CreateVideoComment/',
+        url: '/Video/CreateVideoComment/',
         data: { link: linkOfComment, message: message },
         success: function (result) {
             if (result == "CommentAddedSuccessfully") {

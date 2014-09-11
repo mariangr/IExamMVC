@@ -7,13 +7,7 @@
     <div class="panel panel-success">
         <div class="panel-heading">
             <h4 style="display: inline;">Videos</h4>
-        </div>
-        <div class="panel-heading">
-            <form id="newVideoAdder">
-                <label for="name">Name: <input type="text" name="name" id="nameForNewVideo"><br></label>
-                <label for="link">URL: <input type="text" name="link" id="linkForNewVideo"><br></label>
-                <label><input type="button" class="btn btn-success btn-lg" value="Create Video" onclick="addNewVideo()" /></label>
-            </form>
+            <button class="btn btn-default" type="button" onclick="location.href='@Url.Action("Create","Video")'" style="float: right"><span class="glyphicon glyphicon-plus-sign"></span>    Create</button><br><br>
         </div>
     </div>
 

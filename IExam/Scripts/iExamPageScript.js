@@ -23,37 +23,14 @@ function loadSelectedPage(page) {
 //    "FAILURE": "Service error!"
 //}
 
-function addNewVideo() {
+function manageLink() {
     var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-    var link = $('#linkForNewVideo').val();
+    var link = $('#link').val();
     var match = link.match(regExp);
     if (match && match[2].length == 11) {
         link = match[2];
     }
-
-    $.ajax({
-        type: 'POST',
-        url: '/Video/CreateVideo/',
-        data: { name: $('#nameForNewVideo').val(), link: link },
-        success: function (result) {
-            if (result == "videoAddedSuccessfully") {
-                alert("Video Successfully Added")
-                loadVideosList();
-                $('#nameForNewVideo').val("");
-                $('#linkForNewVideo').val("");
-            }
-            else if (result == "videoExists") {
-                alert("Video Already Exists")
-            } else if (result == "unknownExeption") {
-                alert("Unknown Server Error! Check fields.")
-            }
-
-        },
-        error: function () {
-            alert("Ading Video Unsuccessfull")
-        }
-    })
-    return false;
+    $('#link').val(link);
 }
 
 function loadVideosList() {

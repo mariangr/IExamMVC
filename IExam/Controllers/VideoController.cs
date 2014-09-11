@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -16,36 +17,60 @@ namespace IExam.Controllers
             return View();
         }
 
-        [HttpPost]
-        public string CreateVideo(Video newVideo)
+        public ActionResult Create()
         {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "name,link")] Video newVideo)
+        {
+            WebClient client = new WebClient();
             try
             {
-                int countOfDublicateVideo = db.Videos.Where(v => v.link == newVideo.link).Count();
-                if (countOfDublicateVideo == 0)
+                string downloadString = client.DownloadString("http://gdata.youtube.com/feeds/api/videos/" + newVideo.link);
+                if (ModelState.IsValid)
                 {
-                    int id;
                     try
                     {
-                        id = (int)(db.Videos.Max(v => v.ID) + 1);
+                        int countOfDublicateVideo = db.Videos.Where(v => v.link == newVideo.link).Count();
+                        if (countOfDublicateVideo == 0)
+                        {
+                            int id;
+                            try
+                            {
+                                id = (int)(db.Videos.Max(v => v.ID) + 1);
+                            }
+                            catch (System.InvalidOperationException)
+                            {
+                                id = 0;
+                            }
+                            newVideo.ID = id;
+                            db.Videos.Add(newVideo);
+                            db.SaveChanges();
+                            return RedirectToAction("Index");
+                        }
+                        else
+                        {
+
+                            newVideo.ID = -1;
+                            return View(newVideo);
+                        }
                     }
-                    catch (System.InvalidOperationException)
+                    catch (System.Exception)
                     {
-                        id = 0;
+                        newVideo.ID = -2;
+                        return View(newVideo);
                     }
-                    newVideo.ID = id;
-                    db.Videos.Add(newVideo);
-                    db.SaveChanges();
-                    return "videoAddedSuccessfully";
                 }
-                else
-                {
-                    return "videoExists";
-                }
+
+                return View(newVideo);
             }
-            catch (System.Exception)
+            catch (System.Net.WebException)
             {
-                return "unknownExeption";
+                newVideo.ID = -3;
+                return View(newVideo);
             }
         }
 

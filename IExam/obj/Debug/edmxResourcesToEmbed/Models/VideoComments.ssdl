@@ -5,7 +5,7 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" Nullable="false" />
-    <Property Name="message" Type="text" Nullable="false" />
+    <Property Name="message" Type="varchar(max)" Nullable="false" />
     <Property Name="link" Type="varchar" MaxLength="100" Nullable="false" />
   </EntityType>
   <EntityContainer Name="IExamDBModel1StoreContainer">

@@ -60,3 +60,34 @@ C:\Users\marian.graurov\Documents\GitHub\IExamMVC\IExam\bin\System.Web.WebPages.
 C:\Users\marian.graurov\Documents\GitHub\IExamMVC\IExam\obj\Debug\IExam.csprojResolveAssemblyReference.cache
 C:\Users\marian.graurov\Documents\GitHub\IExamMVC\IExam\obj\Debug\IExam.dll
 C:\Users\marian.graurov\Documents\GitHub\IExamMVC\IExam\obj\Debug\IExam.pdb
+C:\Users\Hueco Mundo\Documents\GitHub\IExamMVC\IExam\bin\IExam.dll.config
+C:\Users\Hueco Mundo\Documents\GitHub\IExamMVC\IExam\bin\IExam.dll
+C:\Users\Hueco Mundo\Documents\GitHub\IExamMVC\IExam\bin\IExam.pdb
+C:\Users\Hueco Mundo\Documents\GitHub\IExamMVC\IExam\bin\Antlr3.Runtime.dll
+C:\Users\Hueco Mundo\Documents\GitHub\IExamMVC\IExam\bin\EntityFramework.dll
+C:\Users\Hueco Mundo\Documents\GitHub\IExamMVC\IExam\bin\EntityFramework.SqlServer.dll
+C:\Users\Hueco Mundo\Documents\GitHub\IExamMVC\IExam\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Hueco Mundo\Documents\GitHub\IExamMVC\IExam\bin\Newtonsoft.Json.dll
+C:\Users\Hueco Mundo\Documents\GitHub\IExamMVC\IExam\bin\System.Web.Helpers.dll
+C:\Users\Hueco Mundo\Documents\GitHub\IExamMVC\IExam\bin\System.Web.Mvc.dll
+C:\Users\Hueco Mundo\Documents\GitHub\IExamMVC\IExam\bin\System.Web.Optimization.dll
+C:\Users\Hueco Mundo\Documents\GitHub\IExamMVC\IExam\bin\System.Web.Razor.dll
+C:\Users\Hueco Mundo\Documents\GitHub\IExamMVC\IExam\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Hueco Mundo\Documents\GitHub\IExamMVC\IExam\bin\System.Web.WebPages.dll
+C:\Users\Hueco Mundo\Documents\GitHub\IExamMVC\IExam\bin\System.Web.WebPages.Razor.dll
+C:\Users\Hueco Mundo\Documents\GitHub\IExamMVC\IExam\bin\WebActivatorEx.dll
+C:\Users\Hueco Mundo\Documents\GitHub\IExamMVC\IExam\bin\WebGrease.dll
+C:\Users\Hueco Mundo\Documents\GitHub\IExamMVC\IExam\bin\Antlr3.Runtime.pdb
+C:\Users\Hueco Mundo\Documents\GitHub\IExamMVC\IExam\bin\EntityFramework.xml
+C:\Users\Hueco Mundo\Documents\GitHub\IExamMVC\IExam\bin\EntityFramework.SqlServer.xml
+C:\Users\Hueco Mundo\Documents\GitHub\IExamMVC\IExam\bin\Newtonsoft.Json.xml
+C:\Users\Hueco Mundo\Documents\GitHub\IExamMVC\IExam\bin\System.Web.Helpers.xml
+C:\Users\Hueco Mundo\Documents\GitHub\IExamMVC\IExam\bin\System.Web.Mvc.xml
+C:\Users\Hueco Mundo\Documents\GitHub\IExamMVC\IExam\bin\System.Web.Optimization.xml
+C:\Users\Hueco Mundo\Documents\GitHub\IExamMVC\IExam\bin\System.Web.Razor.xml
+C:\Users\Hueco Mundo\Documents\GitHub\IExamMVC\IExam\bin\System.Web.WebPages.xml
+C:\Users\Hueco Mundo\Documents\GitHub\IExamMVC\IExam\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Hueco Mundo\Documents\GitHub\IExamMVC\IExam\bin\System.Web.WebPages.Razor.xml
+C:\Users\Hueco Mundo\Documents\GitHub\IExamMVC\IExam\obj\Debug\IExam.csprojResolveAssemblyReference.cache
+C:\Users\Hueco Mundo\Documents\GitHub\IExamMVC\IExam\obj\Debug\IExam.dll
+C:\Users\Hueco Mundo\Documents\GitHub\IExamMVC\IExam\obj\Debug\IExam.pdb

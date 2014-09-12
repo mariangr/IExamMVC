@@ -149,5 +149,14 @@ namespace IExam.Controllers
                 return "UnspecifiedException";
             }
         }
+
+        public void DeleteVideoComment(int id)
+        {
+            VideoCommentsEntities commentsDB = new VideoCommentsEntities();
+            var commentToBeDeleted = commentsDB.Comments.Find(id);
+            commentsDB.Comments.Remove(commentToBeDeleted);
+            commentsDB.SaveChanges();
+
+        }
     }
 }

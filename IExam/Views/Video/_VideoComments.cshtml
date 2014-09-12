@@ -1,19 +1,21 @@
 ﻿@model IEnumerable<IExam.Models.Comment>
 
 <div class="col-md-12" style="padding-left: 0px">
-    @if (Model.Count() > 0) { 
-    <table class="table table-condensed table-hover">
-        <tr><td style="width:100%; color:green">Comments</td></tr>
+    @if (Model.Count() > 0)
+{
+    <table class="table table-condensed table-bordered">
+        <tr style="background-image: url(../../Content/images/commentHeader.png)"><td style="width:100%; color: white !important;">Comments</td></tr>
         @foreach (var item in Model)
         {
-            <tr>
+            <tr style="background-image: url(../../Content/images/comments.png)">
                 <td style="width:100%">
                     @item.message
+                    <input type="button" onclick="DeleteComment(@item.ID)" value="detele" class="btn btn-default" style="float:right"/>
                 </td>
             </tr>
         }
     </table>
-    }
+}
     <form>
         <label class="panel-info countdown" >1000 remaining symbols</label>
         <textarea id="commentForVideo" style="resize: none; width: 100%" rows="4" name="message" type="text" class="form-control input-lg" maxlength="1000" placeholder="Comment" onkeypress="textAreaEnterEvent(event)" onkeyup="countDown()"></textarea>

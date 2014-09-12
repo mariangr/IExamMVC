@@ -62,6 +62,7 @@ function LoadVideo(id) {
                 getCurrentVideoComments();
                 $('#videoComents').width($('iframe').width());
                 $('textarea').width($('#videoComents').width());
+                $('#videosPlayerContainer').show();
             },
             error: function (result) {
                 alert(result.statusText)
@@ -83,6 +84,8 @@ function DeleteVideo(id) {
             LoadVideo(null);
             $('#videoComents').html("");
             loadVideosList();
+            $('#videosPlayerContainer').hide();
+
         },
         error: function (result) {
             alert(result.statusText)
@@ -135,6 +138,22 @@ function SendComment() {
     })
     return false;
 
+
+}
+
+function DeleteComment(id) {
+    $.ajax({
+        type: 'GET',
+        url: '/Video/DeleteVideoComment/',
+        data: { id: id },
+        success: function (result) {
+            getCurrentVideoComments();
+        },
+        error: function (result) {
+            alert(result.statusText)
+        }
+    })
+    return false;
 
 }
 

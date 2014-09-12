@@ -48,6 +48,15 @@
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Glimpse.AspNet">
+      <HintPath>..\packages\Glimpse.AspNet.1.9.1\lib\net45\Glimpse.AspNet.dll</HintPath>
+    </Reference>
+    <Reference Include="Glimpse.Core">
+      <HintPath>..\packages\Glimpse.1.8.6\lib\net45\Glimpse.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Glimpse.Mvc5">
+      <HintPath>..\packages\Glimpse.Mvc5.1.5.3\lib\net45\Glimpse.Mvc5.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
@@ -113,28 +122,50 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\HTTPStatusCodes\100.jpg" />
+    <Content Include="Content\HTTPStatusCodes\200.jpg" />
+    <Content Include="Content\HTTPStatusCodes\206.jpg" />
+    <Content Include="Content\HTTPStatusCodes\207.jpg" />
+    <Content Include="Content\HTTPStatusCodes\300.jpg" />
+    <Content Include="Content\HTTPStatusCodes\301.jpg" />
+    <Content Include="Content\HTTPStatusCodes\302.jpg" />
+    <Content Include="Content\HTTPStatusCodes\303.jpg" />
+    <Content Include="Content\HTTPStatusCodes\307.jpg" />
+    <Content Include="Content\HTTPStatusCodes\401.jpg" />
+    <Content Include="Content\HTTPStatusCodes\402.jpg" />
+    <Content Include="Content\HTTPStatusCodes\403.jpg" />
+    <Content Include="Content\HTTPStatusCodes\404.jpg" />
+    <Content Include="Content\HTTPStatusCodes\405.jpg" />
+    <Content Include="Content\HTTPStatusCodes\406.jpg" />
+    <Content Include="Content\HTTPStatusCodes\408.jpg" />
+    <Content Include="Content\HTTPStatusCodes\409.jpg" />
+    <Content Include="Content\HTTPStatusCodes\410.jpg" />
+    <Content Include="Content\HTTPStatusCodes\413.jpg" />
+    <Content Include="Content\HTTPStatusCodes\414.jpg" />
+    <Content Include="Content\HTTPStatusCodes\416.jpg" />
+    <Content Include="Content\HTTPStatusCodes\417.jpg" />
+    <Content Include="Content\HTTPStatusCodes\418.jpg" />
+    <Content Include="Content\HTTPStatusCodes\422.jpg" />
+    <Content Include="Content\HTTPStatusCodes\423.jpg" />
+    <Content Include="Content\HTTPStatusCodes\424.jpg" />
+    <Content Include="Content\HTTPStatusCodes\426.jpg" />
+    <Content Include="Content\HTTPStatusCodes\429.jpg" />
+    <Content Include="Content\HTTPStatusCodes\431.jpg" />
+    <Content Include="Content\HTTPStatusCodes\444.jpg" />
+    <Content Include="Content\HTTPStatusCodes\450.jpg" />
+    <Content Include="Content\HTTPStatusCodes\500.jpg" />
+    <Content Include="Content\HTTPStatusCodes\502.jpg" />
+    <Content Include="Content\HTTPStatusCodes\507.jpg" />
+    <Content Include="Content\HTTPStatusCodes\508.jpg" />
+    <Content Include="Content\HTTPStatusCodes\599.jpg" />
     <Content Include="Content\images\404.png" />
-    <Content Include="Content\images\background.png" />
-    <Content Include="Content\images\background2.png" />
-    <Content Include="Content\images\defaultProfile.png" />
-    <Content Include="Content\images\inputImages\badFormatNos.bmp" />
-    <Content Include="Content\images\inputImages\badHeightNos.jpg" />
-    <Content Include="Content\images\inputImages\badWidthNos.jpg" />
-    <Content Include="Content\images\inputImages\chovka.png" />
-    <Content Include="Content\images\inputImages\cveke.png" />
-    <Content Include="Content\images\inputImages\koliba.jpg" />
-    <Content Include="Content\images\inputImages\nos.jpg" />
-    <Content Include="Content\images\inputImages\test30x30.png" />
-    <Content Include="Content\images\outputImages\output.png" />
-    <Content Include="Content\images\secure.png" />
-    <Content Include="Content\images\shattered.png" />
+    <Content Include="Content\images\bodyBackGround.png" />
+    <Content Include="Content\images\commentHeader.png" />
+    <Content Include="Content\images\comments.png" />
+    <Content Include="Content\images\videoPlayerAndCommentsBackgrounf.png" />
     <Content Include="Content\images\www_icon1.ico" />
     <Content Include="Content\main.css" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <EntityDeploy Include="Models\Videos.edmx">
@@ -195,7 +226,9 @@
     <Compile Include="App_Start\BootstrapBundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\StatusCodesController.cs" />
     <Compile Include="Controllers\VideoController.cs" />
+    <Compile Include="GlimpseSecurityPolicy.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -247,6 +280,9 @@
     <Content Include="Views\Video\_VideoPlayer.cshtml" />
     <Content Include="Views\Video\_VideoComments.cshtml" />
     <Content Include="Views\Video\Create.cshtml" />
+    <Content Include="Views\StatusCodes\PageNotFound.cshtml" />
+    <Content Include="Views\StatusCodes\InternalServerError.cshtml" />
+    <Content Include="Views\StatusCodes\OK.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

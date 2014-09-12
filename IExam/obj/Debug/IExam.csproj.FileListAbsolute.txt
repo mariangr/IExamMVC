@@ -91,3 +91,6 @@ C:\Users\Hueco Mundo\Documents\GitHub\IExamMVC\IExam\bin\System.Web.WebPages.Raz
 C:\Users\Hueco Mundo\Documents\GitHub\IExamMVC\IExam\obj\Debug\IExam.csprojResolveAssemblyReference.cache
 C:\Users\Hueco Mundo\Documents\GitHub\IExamMVC\IExam\obj\Debug\IExam.dll
 C:\Users\Hueco Mundo\Documents\GitHub\IExamMVC\IExam\obj\Debug\IExam.pdb
+C:\Users\Hueco Mundo\Documents\GitHub\IExamMVC\IExam\bin\Glimpse.AspNet.dll
+C:\Users\Hueco Mundo\Documents\GitHub\IExamMVC\IExam\bin\Glimpse.Core.dll
+C:\Users\Hueco Mundo\Documents\GitHub\IExamMVC\IExam\bin\Glimpse.Mvc5.dll

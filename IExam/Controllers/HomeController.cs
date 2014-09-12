@@ -17,6 +17,5 @@ namespace IExam.Controllers
         {
             return PartialView(pageName);
         }
-
 	}
 }

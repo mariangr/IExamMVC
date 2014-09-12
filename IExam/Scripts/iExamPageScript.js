@@ -57,7 +57,11 @@ function LoadVideo(id) {
             data: { id: id },
             success: function (result) {
                 $('#videosPlayerContainer').html(result);
+                $('iframe').width($('#videosPlayerContainer').width());
+                $('iframe').height($('iframe').width() * 3 / 4);
                 getCurrentVideoComments();
+                $('#videoComents').width($('iframe').width());
+                $('textarea').width($('#videoComents').width());
             },
             error: function (result) {
                 alert(result.statusText)
@@ -117,6 +121,9 @@ function SendComment() {
             if (result == "CommentAddedSuccessfully") {
                 getCurrentVideoComments();
             }
+            else if (result == "EmptyComment") {
+                $('#commentForVideo').attr('placeholder', "Please write a comment...");
+            }
             else if (result == "UnspecifiedException") {
                 alert('Server Error');
             }
@@ -127,4 +134,20 @@ function SendComment() {
         }
     })
     return false;
+
+
+}
+
+function textAreaEnterEvent(e) {
+    
+    if (e.which == 13) {
+        SendComment();
+    }
+    else {
+        return;
+    }
+}
+
+function countDown() {
+    $('.countdown').html('1000' - $('#commentForVideo').val().length + " remaining symbols");
 }

@@ -1,8 +1,17 @@
 ﻿@model IExam.Models.Video
 
 @if (Model != null) { 
-    <iframe width="400" height="300" src="//www.youtube.com/embed/@Model.link" frameborder="0" allowfullscreen></iframe>
+    <iframe src="//www.youtube.com/embed/@Model.link" frameborder="0" allowfullscreen></iframe>
     <input type="hidden" value="@Model.ID" id="selectedVideoInPlayerID">
     <input type="hidden" value="@Model.link" id="selectedVideoInPlayerLink">
     
 }
+
+<script>
+    $(window).resize(function () {
+        $('iframe').width($('#videosPlayerContainer').width());
+        $('iframe').height($('iframe').width() * 3 / 4);
+        $('#videoComents').width($('iframe').width());
+    })
+
+</script>

@@ -2,8 +2,8 @@
 @{
     ViewBag.Title = " Video";
 }
+<div class="col-md-12">
 
-<div class="col-md-offset-2">
     <div class="panel panel-success">
         <div class="panel-heading">
             <h4 style="display: inline;">Videos</h4>
@@ -13,13 +13,13 @@
 
     <div class="container-fluid">
         <div class="row table-base">
-            <div class="col-md-6" id="videosPlayerContainer"></div>
             <div class="col-md-6" id="videosContainer"></div>
+            <div class="col-md-6" id="videosPlayerContainer"></div>
+            <div class="col-md-6 col-md-offset-6" id="videoComents"></div>
         </div>
-        <div class="col-md-6" id="videoComents" style="padding-left: 0px"></div>
     </div>
 </div>
 
 <script>
     loadVideosList();
-    </script>
+</script>

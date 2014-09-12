@@ -1,56 +1,71 @@
 ﻿@model IExam.Models.Video
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Create Video";
 }
+<div class="col-md-12">
+    <div class="col-md-12" style="text-align: center; align-content:center">
+        <div class="container">
+            <div class="alert col-md-12" id="divForMessages" style="display: none;">
+            </div>
+        </div>
+    </div>
 
-<h2>Create</h2>
-<div class="col-md-10">
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
+    <div class="col-md-12">
 
-        <div class="table">
-            <h4>Video</h4>
-            <hr />
-            @Html.ValidationSummary(true)
-            <div class="container">
-                @Html.Label("Name", new { @for = "name", @class = "col-md-12" })
-                <div class="col-md-6">
-                    @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "col-sm-12 col-md-12" }, })
-                    @Html.ValidationMessageFor(model => model.name)
-                </div>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
 
-                @Html.Label("Link", new { @for = "link", @class = "col-md-12" })
-                <div class="col-md-6">
-                    @Html.EditorFor(model => model.link, new { htmlAttributes = new { @class = "col-sm-12 col-md-12" }, })
-                    @Html.ValidationMessageFor(model => model.link)
-                </div>
-                <br>
-                <div>
+            <div class="table">
+                @Html.ValidationSummary(true)
+                <div class="row alert alert-success" style="margin: 0px;">
+                    <label for="name" class="col-md-12 text-center">Name</label>
                     <div class="col-md-12">
-                        <input type="submit" value="Create" onclick="manageLink()" class="btn btn-default" style="margin-top: 1%" />
+                        @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "col-sm-12 col-md-12 form-control" }, })
+                        @Html.ValidationMessageFor(model => model.name)
+                    </div>
+                    <br>
+                    <label for="name" class="col-md-12 text-center">Link</label>
+                    <div class="col-md-12">
+                        @Html.EditorFor(model => model.link, new { htmlAttributes = new { @class = "col-sm-12 col-md-12 form-control" }, })
+                        @Html.ValidationMessageFor(model => model.link)
+                    </div>
+                    <br>
+                    <div>
+                        <div class="col-md-12">
+                            <input type="submit" value="Create" onclick="manageLink()" class="btn btn-default" style="margin-top: 1%" />
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    }
+        }
 
-    <div>
-        @Html.ActionLink("Back to List", "Index")
+        <div>
+            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-success" })
+        </div>
     </div>
+</div>
+
 
     @if (Model != null && Model.ID == -1)
     {
-        <script>alert("Video Exists!")</script>
+        <script>
+            $('#divForMessages').addClass("alert-warning");
+            $('#divForMessages').html('<h4>Video Exists!</h4>').fadeIn(1000).fadeOut(4000, function () { $('#divForMessages').removeClass("alert-warning"); });
+        </script>
     }
     @if (Model != null && Model.ID == -2)
-{
-    <script>alert("Unknown Server Error.")</script>
-}@if (Model != null && Model.ID == -3)
     {
-        <script>alert("Video Doesn't Exist.")</script>
+        <script>
+            $('#divForMessages').addClass("alert-danger");
+            $('#divForMessages').html('<h4>Unknown Server Error.</h4>').fadeIn(1000).fadeOut(4000, function () { $('#divForMessages').removeClass("alert-danger"); });
+        </script>
     }
-    
-
-</div>
+    @if (Model != null && Model.ID == -3)
+    {
+        <script>
+            $('#divForMessages').addClass("alert-warning");
+            $('#divForMessages').html("<h4>Video Doesn't Exist.</h4>").fadeIn(1000).fadeOut(4000, function () { $('#divForMessages').removeClass("alert-warning"); });
+        </script>
+    }

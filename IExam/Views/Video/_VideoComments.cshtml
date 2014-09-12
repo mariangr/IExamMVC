@@ -1,17 +1,23 @@
 ﻿@model IEnumerable<IExam.Models.Comment>
 
-<table class="table"><tr><td style="width:100%;">Comments</td></tr>
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td style="width:100%">
-                @item.message
-            </td>
-        </tr>
-    }
+<div class="col-md-12" style="padding-left: 0px">
+    @if (Model.Count() > 0) { 
+    <table class="table table-condensed table-hover">
+        <tr><td style="width:100%; color:green">Comments</td></tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td style="width:100%">
+                    @item.message
+                </td>
+            </tr>
+        }
     </table>
-<form>
-    <textarea id="commentForVideo" style="resize: none; width:400px" rows="4" name="message" type="text" class="form-control input-lg" maxlength="1000" placeholder="Comment"></textarea>
-    <input type="hidden" id="inpForCommentLink" name="link">
-    <input type="button" name="submit" class="btn btn-success btn-lg" value="Send" onclick="SendComment()" />
-</form>
+    }
+    <form>
+        <label class="panel-info countdown" >1000 remaining symbols</label>
+        <textarea id="commentForVideo" style="resize: none; width: 100%" rows="4" name="message" type="text" class="form-control input-lg" maxlength="1000" placeholder="Comment" onkeypress="textAreaEnterEvent(event)" onkeyup="countDown()"></textarea>
+        <input type="hidden" id="inpForCommentLink" name="link">
+        <input type="button" name="submit" class="btn btn-success btn-lg" value="Send" onclick="SendComment()" />
+    </form>
+</div>

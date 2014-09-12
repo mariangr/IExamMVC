@@ -26,50 +26,55 @@ namespace IExam.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "name,link")] Video newVideo)
         {
+            int id;
             WebClient client = new WebClient();
             try
             {
                 string downloadString = client.DownloadString("http://gdata.youtube.com/feeds/api/videos/" + newVideo.link);
                 if (ModelState.IsValid)
                 {
-                    try
-                    {
-                        int countOfDublicateVideo = db.Videos.Where(v => v.link == newVideo.link).Count();
-                        if (countOfDublicateVideo == 0)
-                        {
-                            int id;
-                            try
-                            {
-                                id = (int)(db.Videos.Max(v => v.ID) + 1);
-                            }
-                            catch (System.InvalidOperationException)
-                            {
-                                id = 0;
-                            }
-                            newVideo.ID = id;
-                            db.Videos.Add(newVideo);
-                            db.SaveChanges();
-                            return RedirectToAction("Index");
-                        }
-                        else
-                        {
 
-                            newVideo.ID = -1;
-                            return View(newVideo);
-                        }
-                    }
-                    catch (System.Exception)
+                    int countOfDublicateVideo = db.Videos.Where(v => v.link == newVideo.link).Count();
+                    if (countOfDublicateVideo == 0)
                     {
-                        newVideo.ID = -2;
-                        return View(newVideo);
+                        id = (int)(db.Videos.Max(v => v.ID) + 1);
+                        newVideo.ID = id;
+                        db.Videos.Add(newVideo);
+                        db.SaveChanges();
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        throw new DuplicateWaitObjectException();
                     }
                 }
-
                 return View(newVideo);
             }
-            catch (System.Net.WebException)
+            catch (WebException)
             {
+                //When the video doesn't exist
                 newVideo.ID = -3;
+                return View(newVideo);
+            }
+            catch (DuplicateWaitObjectException)
+            {
+                //When the video is already in the db
+                newVideo.ID = -1;
+                return View(newVideo);
+            }
+            catch (InvalidOperationException)
+            {
+                //When there are no videos in the db (linq max exception)
+                id = 0;
+                newVideo.ID = id;
+                db.Videos.Add(newVideo);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            catch (Exception)
+            {
+                //for unhandled exceptions
+                newVideo.ID = -2;
                 return View(newVideo);
             }
         }
@@ -116,17 +121,25 @@ namespace IExam.Controllers
 
         public string CreateVideoComment(Comment newComment)
         {
+            VideoCommentsEntities commentsDB = new VideoCommentsEntities();
             try
             {
-                VideoCommentsEntities commentsDB = new VideoCommentsEntities();
-                try
+                if (newComment.message == null)
                 {
-                    newComment.ID = (int)(commentsDB.Comments.Max(c => c.ID) + 1);
+                    throw new ArgumentNullException();
                 }
-                catch (System.InvalidOperationException)
-                {
-                    newComment.ID = 0;
-                }
+                newComment.ID = (int)(commentsDB.Comments.Max(c => c.ID) + 1);
+                commentsDB.Comments.Add(newComment);
+                commentsDB.SaveChanges();
+                return "CommentAddedSuccessfully";
+            }
+            catch (ArgumentNullException)
+            {
+                return "EmptyComment";
+            }
+            catch (System.InvalidOperationException)
+            {
+                newComment.ID = 0;
                 commentsDB.Comments.Add(newComment);
                 commentsDB.SaveChanges();
                 return "CommentAddedSuccessfully";
@@ -136,5 +149,5 @@ namespace IExam.Controllers
                 return "UnspecifiedException";
             }
         }
-	}
+    }
 }

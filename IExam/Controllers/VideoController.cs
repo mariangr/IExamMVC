@@ -124,7 +124,14 @@ namespace IExam.Controllers
             VideoCommentsEntities commentsDB = new VideoCommentsEntities();
             try
             {
-                if (newComment.message == null)
+                while (newComment.message != null && newComment.message.Substring(0, 1) == "\n")
+                {
+                    newComment.message = newComment.message.Substring(1);
+                    if (newComment.message.Length == 0) {
+                        break;
+                    }
+                }
+                if (newComment.message == null || newComment.message == "")
                 {
                     throw new ArgumentNullException();
                 }
@@ -152,11 +159,16 @@ namespace IExam.Controllers
 
         public void DeleteVideoComment(int id)
         {
-            VideoCommentsEntities commentsDB = new VideoCommentsEntities();
-            var commentToBeDeleted = commentsDB.Comments.Find(id);
-            commentsDB.Comments.Remove(commentToBeDeleted);
-            commentsDB.SaveChanges();
-
+            try
+            {
+                VideoCommentsEntities commentsDB = new VideoCommentsEntities();
+                var commentToBeDeleted = commentsDB.Comments.Find(id);
+                commentsDB.Comments.Remove(commentToBeDeleted);
+                commentsDB.SaveChanges();
+            }
+            catch (ArgumentNullException){ 
+            
+            }
         }
     }
 }

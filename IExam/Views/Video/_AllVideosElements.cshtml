@@ -4,7 +4,7 @@
 {
         foreach (var item in Model)
         {
-    <div class="row">
+    <div class="row" style="margin-top: 2px">
         <div class="col-md-12" style="padding-bottom: 5px;">
             <div class="col-sm-8 col-md-8">
                 <div class="btn btn-info videoHeader col-sm-12 col-md-12 wordwrap" id="multilineDiv" onclick="LoadVideo(@item.ID)">@item.name</div>
@@ -22,3 +22,5 @@ else
         <p class="alert alert-danger">No Videos.</p>
     </div>
 }
+
+<br />

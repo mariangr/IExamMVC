@@ -57,12 +57,13 @@ function LoadVideo(id) {
             data: { id: id },
             success: function (result) {
                 $('#videosPlayerContainer').html(result);
-                $('iframe').width($('#videosPlayerContainer').width());
-                $('iframe').height($('iframe').width() * 3 / 4);
                 getCurrentVideoComments();
-                $('#videoComents').width($('iframe').width());
+
                 $('textarea').width($('#videoComents').width());
                 $('#videosPlayerContainer').show();
+                $('iframe').width($('#videosPlayerContainer').width());
+                $('iframe').height($('iframe').width() * 3 / 4);
+                $('#videoComents').width($('iframe').width());
             },
             error: function (result) {
                 alert(result.statusText)

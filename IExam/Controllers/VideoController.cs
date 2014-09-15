@@ -84,11 +84,12 @@ namespace IExam.Controllers
             return PartialView("_AllVideosElements", db.Videos.ToArray());
         }
 
-        public ActionResult GetVideoPlayer(int id)
+        public ActionResult GetVideoPlayer(int id, string name)
         {
             try
             {
                 Video wantedVideo = db.Videos.Where(v => v.ID == id).ToArray()[0];
+                
                 return PartialView("_VideoPlayer", wantedVideo);
             }
             catch (System.IndexOutOfRangeException)

@@ -12,6 +12,7 @@
           <Property Name="ID" Type="int" Nullable="false" />
           <Property Name="message" Type="varchar(max)" Nullable="false" />
           <Property Name="link" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="user" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <EntityContainer Name="IExamDBModel1StoreContainer">
           <EntitySet Name="Comments" EntityType="Self.Comments" Schema="dbo" store:Type="Tables" />
@@ -27,6 +28,7 @@
           <Property Name="ID" Type="Int32" Nullable="false" />
           <Property Name="message" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="link" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="user" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
         </EntityType>
         <EntityContainer Name="VideoCommentsEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Comments" EntityType="Self.Comment" />
@@ -43,6 +45,7 @@
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="message" ColumnName="message" />
           <ScalarProperty Name="link" ColumnName="link" />
+          <ScalarProperty Name="user" ColumnName="user" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

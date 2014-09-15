@@ -7,6 +7,7 @@
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="message" ColumnName="message" />
           <ScalarProperty Name="link" ColumnName="link" />
+          <ScalarProperty Name="user" ColumnName="user" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

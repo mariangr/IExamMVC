@@ -5,7 +5,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="854fa662d2ea46f0962ee9c6c3326d41" Name="Diagram1" ShowGrid="false">
-        <EntityTypeShape EntityType="IExamDBModel1.Comment" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IExamDBModel1.Comment" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

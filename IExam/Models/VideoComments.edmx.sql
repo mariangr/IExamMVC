@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 09/04/2014 22:51:18
--- Generated from EDMX file: C:\Users\Hueco Mundo\Documents\GitHub\IExamMVC\IExam\Models\VideoComments.edmx
+-- Date Created: 09/15/2014 16:56:02
+-- Generated from EDMX file: C:\Users\marian.graurov\Documents\GitHub\IExamMVC\IExam\Models\VideoComments.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -34,7 +34,8 @@ GO
 CREATE TABLE [dbo].[Comments] (
     [ID] int  NOT NULL,
     [message] varchar(max)  NOT NULL,
-    [link] varchar(100)  NOT NULL
+    [link] varchar(100)  NOT NULL,
+    [user] nvarchar(max)  NOT NULL
 );
 GO
 

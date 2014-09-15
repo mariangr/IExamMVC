@@ -17,5 +17,6 @@ namespace IExam.Models
         public int ID { get; set; }
         public string message { get; set; }
         public string link { get; set; }
+        public string user { get; set; }
     }
 }

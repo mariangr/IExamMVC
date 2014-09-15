@@ -116,10 +116,11 @@ function getCurrentVideoComments() {
 function SendComment() {
     var linkOfComment = $('#selectedVideoInPlayerLink').val();
     var message = $('#commentForVideo').val();
+    var user = $('#currentUser').val();
     $.ajax({
         type: 'GET',
         url: '/Video/CreateVideoComment/',
-        data: { link: linkOfComment, message: message },
+        data: { link: linkOfComment, message: message, user: user },
         success: function (result) {
             if (result == "CommentAddedSuccessfully") {
                 getCurrentVideoComments();

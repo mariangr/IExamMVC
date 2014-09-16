@@ -1,8 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="IExamDBModelStoreContainer" CdmEntityContainer="VideosDBEntities">
+  <EntityContainerMapping StorageEntityContainer="IExamDBModelStoreContainer" CdmEntityContainer="VideoEntities">
+    <EntitySetMapping Name="Comments">
+      <EntityTypeMapping TypeName="IExamDBModel.Comment">
+        <MappingFragment StoreEntitySet="Comments">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="message" ColumnName="message" />
+          <ScalarProperty Name="link" ColumnName="link" />
+          <ScalarProperty Name="user" ColumnName="user" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Videos">
-      <EntityTypeMapping TypeName="IsTypeOf(IExamDBModel.Video)">
+      <EntityTypeMapping TypeName="IExamDBModel.Video">
         <MappingFragment StoreEntitySet="Videos">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="name" ColumnName="name" />

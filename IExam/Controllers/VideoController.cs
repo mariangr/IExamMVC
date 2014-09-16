@@ -10,7 +10,7 @@ namespace IExam.Controllers
 {
     public class VideoController : Controller
     {
-        private VideosDBEntities db = new VideosDBEntities();
+        private VideoEntities db = new VideoEntities();
 
         public ActionResult Index()
         {
@@ -101,28 +101,25 @@ namespace IExam.Controllers
         public void DeleteVideo(int id)
         {
             Video video = db.Videos.Find(id);
-            VideoCommentsEntities commentsDB = new VideoCommentsEntities();
-            var commentsOfVideo = commentsDB.Comments.Where(c => c.link == video.link);
+            var commentsOfVideo = db.Comments.Where(c => c.link == video.link);
             foreach (var item in commentsOfVideo)
             {
-                commentsDB.Comments.Remove(item);
+                db.Comments.Remove(item);
             }
 
             db.Videos.Remove(video);
-            commentsDB.SaveChanges();
+            db.SaveChanges();
             db.SaveChanges();
         }
 
         public ActionResult GetVideoComments(Video video)
         {
-            VideoCommentsEntities commentsDB = new VideoCommentsEntities();
-            var currentComments = commentsDB.Comments.Where(c => c.link == video.link).ToArray();
+            var currentComments = db.Comments.Where(c => c.link == video.link).ToArray();
             return PartialView("_VideoComments", currentComments);
         }
 
         public string CreateVideoComment(Comment newComment)
         {
-            VideoCommentsEntities commentsDB = new VideoCommentsEntities();
             try
             {
                 while (newComment.message != null && newComment.message.Substring(0, 1) == "\n")
@@ -136,9 +133,9 @@ namespace IExam.Controllers
                 {
                     throw new ArgumentNullException();
                 }
-                newComment.ID = (int)(commentsDB.Comments.Max(c => c.ID) + 1);
-                commentsDB.Comments.Add(newComment);
-                commentsDB.SaveChanges();
+                newComment.ID = (int)(db.Comments.Max(c => c.ID) + 1);
+                db.Comments.Add(newComment);
+                db.SaveChanges();
                 return "CommentAddedSuccessfully";
             }
             catch (ArgumentNullException)
@@ -148,8 +145,8 @@ namespace IExam.Controllers
             catch (System.InvalidOperationException)
             {
                 newComment.ID = 0;
-                commentsDB.Comments.Add(newComment);
-                commentsDB.SaveChanges();
+                db.Comments.Add(newComment);
+                db.SaveChanges();
                 return "CommentAddedSuccessfully";
             }
             catch (Exception)
@@ -162,10 +159,9 @@ namespace IExam.Controllers
         {
             try
             {
-                VideoCommentsEntities commentsDB = new VideoCommentsEntities();
-                var commentToBeDeleted = commentsDB.Comments.Find(id);
-                commentsDB.Comments.Remove(commentToBeDeleted);
-                commentsDB.SaveChanges();
+                var commentToBeDeleted = db.Comments.Find(id);
+                db.Comments.Remove(commentToBeDeleted);
+                db.SaveChanges();
             }
             catch (ArgumentNullException){ 
             

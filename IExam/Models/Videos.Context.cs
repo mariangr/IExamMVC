@@ -13,10 +13,10 @@ namespace IExam.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class VideosDBEntities : DbContext
+    public partial class VideoEntities : DbContext
     {
-        public VideosDBEntities()
-            : base("name=VideosDBEntities")
+        public VideoEntities()
+            : base("name=VideoEntities")
         {
         }
     
@@ -25,6 +25,7 @@ namespace IExam.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Comment> Comments { get; set; }
         public virtual DbSet<Video> Videos { get; set; }
     }
 }

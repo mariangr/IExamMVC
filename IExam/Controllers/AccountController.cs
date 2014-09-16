@@ -80,8 +80,12 @@ namespace IExam.Controllers
             {
                 var user = new ApplicationUser() { UserName = model.UserName };
                 var result = await UserManager.CreateAsync(user, model.Password);
+                
                 if (result.Succeeded)
                 {
+                    
+                    var registeredUser = UserManager.FindByName(model.UserName);
+                    UserManager.AddToRole(registeredUser.Id, "Admin");
                     await SignInAsync(user, isPersistent: false);
                     return RedirectToAction("Index", "Home");
                 }

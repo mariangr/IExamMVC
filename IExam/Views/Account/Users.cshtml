@@ -1,26 +1,71 @@
-﻿@model IEnumerable<IExam.Models.ApplicationUser>
+﻿@using IExam.Models
+@using Microsoft.AspNet.Identity
+@using Microsoft.AspNet.Identity.EntityFramework
+@model IEnumerable<ApplicationUser>
+
 
 @{
     ViewBag.Title = "Users";
 }
 
-<div class="label label-danger">
-    <table class="table col-md-12">
+@{var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));}
+
+<div class="alert alert-success">
+    <table class="table table-hover">
         <thead>
             <tr>
-                <td>
+                <td style="width: 33%">
                     User name
+                </td>
+                <td style="width: 33%">
+                    Role
+                </td>
+                <td>
+                    DeleteUser
                 </td>
             </tr>
         </thead>
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>
-                        @item.UserName
-                    </td>
-                </tr>
+                if (item.UserName != User.Identity.Name)
+                {
+                    <tr>
+                        <td value="@item.Id" style="width: 33%">
+                            @item.UserName
+                        </td>
+                        <td style="width: 33%">
+                            @{
+                var roles = UserManager.GetRoles(item.Id);
+                            }
+                            @foreach (var role in roles)
+                        {
+                        <span id="userRole">
+                            @role
+                        </span>
+                        }
+                            <select class="btn btn-default dropdown-toggle pull-right selectUserRoleChange">
+                                <option value="default">
+                                    Change Role
+                                </option>
+                                <option value="Admin">
+                                    Admin
+                                </option>
+                                <option value="Moderator">
+                                    Moderator
+                                </option>
+                                <option value="User">
+                                    User
+                                </option>
+                            </select>
+                        </td>
+                        <td style="width:33%">
+                            <button type="button" class="btn btn-danger" onclick="DeleteUser(event,'@item.Id')">
+                                Delete
+                            </button>
+                        </td>
+                    </tr>
+                }
             }
         </tbody>
     </table>

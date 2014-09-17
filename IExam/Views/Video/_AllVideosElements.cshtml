@@ -10,7 +10,7 @@
                     <div class="btn btn-info videoHeader col-sm-12 col-md-12 wordwrap" id="multilineDiv" onclick="LoadVideo(@item.ID)">@item.name</div>
                 </div>
                 <div class="col-sm-3 col-md-3">
-                    @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                    @if (Request.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("Moderator")))
                     {
                         <input class="btn btn-danger videoDelete col-sm-12 col-md-12" value='Delete' type="button" onclick="DeleteVideo(@item.ID)">
                     }

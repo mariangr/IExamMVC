@@ -416,5 +416,28 @@ namespace IExam.Controllers
             var allUsers = UserManager.Users.ToArray();
             return View(allUsers);
         }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public void ChangeUserRole(string userId, string newRole)
+        {
+            var currentUser = UserManager.FindById(userId);
+            var currentUserRoles = UserManager.GetRoles(userId);
+            foreach (var role in currentUserRoles)
+            {
+                UserManager.RemoveFromRole(userId, role);
+            }
+            UserManager.AddToRole(userId,newRole);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public void DeleteUser(string userId)
+        {
+            var userToBeDeleted = UserManager.FindById(userId);
+            var userRoles = UserManager.GetRoles(userId);
+            UserManager.RemoveFromRoles(userId,userRoles.ToArray());
+            UserManager.Delete(userToBeDeleted);
+        }
     }
 }

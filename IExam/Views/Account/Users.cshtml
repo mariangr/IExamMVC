@@ -1,20 +1,27 @@
-﻿@using IExam.Models;
-@model IEnumerable<IExam.Models.ApplicationUser>
+﻿@model IEnumerable<IExam.Models.ApplicationUser>
 
 @{
     ViewBag.Title = "Users";
 }
 
-@foreach (var item in Model)
-{
-    <p>@item.UserName \\ </p>
-}
-
-@foreach (var item in Model)
-{
-    foreach(var role in item.Roles.ToArray())
-          {
-              <p>Role: @role</p>
-          }
-
-}
+<div class="label label-danger">
+    <table class="table col-md-12">
+        <thead>
+            <tr>
+                <td>
+                    User name
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.UserName
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

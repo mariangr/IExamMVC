@@ -1,0 +1,20 @@
+﻿@using IExam.Models;
+@model IEnumerable<IExam.Models.ApplicationUser>
+
+@{
+    ViewBag.Title = "Users";
+}
+
+@foreach (var item in Model)
+{
+    <p>@item.UserName \\ </p>
+}
+
+@foreach (var item in Model)
+{
+    foreach(var role in item.Roles.ToArray())
+          {
+              <p>Role: @role</p>
+          }
+
+}

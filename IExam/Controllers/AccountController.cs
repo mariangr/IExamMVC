@@ -35,7 +35,7 @@ namespace IExam.Controllers
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
-
+        #region Login and Register
         //
         // POST: /Account/Login
         [HttpPost]
@@ -85,7 +85,7 @@ namespace IExam.Controllers
                 {
                     
                     var registeredUser = UserManager.FindByName(model.UserName);
-                    UserManager.AddToRole(registeredUser.Id, "Admin");
+                    UserManager.AddToRole(registeredUser.Id, "User");
                     await SignInAsync(user, isPersistent: false);
                     return RedirectToAction("Index", "Home");
                 }
@@ -98,6 +98,7 @@ namespace IExam.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
+        #endregion
 
         //
         // POST: /Account/Disassociate
@@ -184,6 +185,15 @@ namespace IExam.Controllers
             return View(model);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult LogOff()
+        {
+            AuthenticationManager.SignOut();
+            return RedirectToAction("Index", "Home");
+        }
+
+        #region ExternalLogin
         //
         // POST: /Account/ExternalLogin
         [HttpPost]
@@ -287,16 +297,7 @@ namespace IExam.Controllers
             return View(model);
         }
 
-        //
-        // POST: /Account/LogOff
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult LogOff()
-        {
-            AuthenticationManager.SignOut();
-            return RedirectToAction("Index", "Home");
-        }
-
+        
         //
         // GET: /Account/ExternalLoginFailure
         [AllowAnonymous]
@@ -322,6 +323,7 @@ namespace IExam.Controllers
             }
             base.Dispose(disposing);
         }
+        #endregion
 
         #region Helpers
         // Used for XSRF protection when adding external logins
@@ -408,5 +410,11 @@ namespace IExam.Controllers
             }
         }
         #endregion
+
+        public ActionResult Users()
+        {
+            var allUsers = UserManager.Users.ToArray();
+            return View(allUsers);
+        }
     }
 }

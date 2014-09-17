@@ -12,8 +12,11 @@
         <button class="btn btn-default" type="button" onclick="location.href='@Url.Action("Index","Video")'"><span class="glyphicon glyphicon-film"></span>    Video</button><br><br>
         <!--<button class="btn btn-default" type="button" onclick="loadSelectedPage('_Home')"><span class="glyphicon glyphicon-edit"></span>    Create test</button><br><br>
         <button class="btn btn-default" type="button" onclick="loadSelectedPage('_Home')"><span class="glyphicon glyphicon-stats"></span>    Statistics</button><br><br>
-        <button class="btn btn-default" type="button" onclick="loadSelectedPage('_Home')"><span class="glyphicon glyphicon-list"></span>    Logged in</button><br><br>
-        <button class="btn btn-default" type="button" onclick="loadSelectedPage('_Home')"><span class="glyphicon glyphicon-user"></span>     Users</button><br><br>
-        <button class="btn btn-default" type="button" onclick="loadSelectedPage('_Home')"><span class="glyphicon glyphicon-log-out"></span>    Log out</button><br><br>-->
+        <button class="btn btn-default" type="button" onclick="loadSelectedPage('_Home')"><span class="glyphicon glyphicon-list"></span>    Logged in</button><br><br>-->
+        @if(Request.IsAuthenticated && User.IsInRole("Admin"))
+        {
+        <button class="btn btn-default" type="button" onclick="location.href = '@Url.Action("Users","Account")'"><span class="glyphicon glyphicon-user"></span>     Users</button><br><br>
+        }
+        <!--<button class="btn btn-default" type="button" onclick="loadSelectedPage('_Home')"><span class="glyphicon glyphicon-log-out"></span>    Log out</button><br><br>-->
     </div>
 </div>

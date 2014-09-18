@@ -1,24 +1,22 @@
-﻿$(document).ready(function () {
-    $('.selectUserRoleChange').on('change', function () {
-        var newRole = $(this).val();
-        var userRole = $(this).siblings();
-        var userId = $(this).parent().siblings().attr('value');
+﻿function ChangeUserRole(event, userId) {
+    var newRole = $(event.target).val();
+    var userRole = $("#RoleId" + userId);
+    var userId = userId;
 
-        if (userRole.html().trim() != newRole && newRole != "default") {
-            $.ajax({
-                type: 'POST',
-                url: '/Account/ChangeUserRole/',
-                data: { newRole: newRole, userId: userId },
-                success: function () {
-                    userRole.html(newRole);
-                },
-                error: function () {
-                    alert('error');
-                }
-            })
-        }
-    })
-})
+    if (userRole.html().trim() != newRole && newRole != "default") {
+        $.ajax({
+            type: 'POST',
+            url: '/Account/ChangeUserRole/',
+            data: { newRole: newRole, userId: userId },
+            success: function () {
+                userRole.html(newRole);
+            },
+            error: function () {
+                alert('error');
+            }
+        })
+    }
+}
 
 function DeleteUser(event, userId) {
     var UserRow = $(event.target).parent().parent();

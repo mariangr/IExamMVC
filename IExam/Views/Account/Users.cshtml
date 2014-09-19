@@ -1,4 +1,10 @@
-﻿@using IExam.Models
+﻿<header>
+    <script src="~/Scripts/knockout-3.1.0.debug.js"></script>
+    <script src="~/Scripts/iExamUsersPageScript.js"></script>
+    <script src="~/Scripts/knockout-3.1.0.js"></script>
+</header>
+
+@using IExam.Models
 @using Microsoft.AspNet.Identity
 @using Microsoft.AspNet.Identity.EntityFramework
 @model IEnumerable<ApplicationUser>
@@ -10,94 +16,93 @@
 
 @{var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));}
 
-<div class="panel panel-success">
-    <div class="container-fluid" style="margin-top:5px; border-radius: 5px">
-        <table class="table table-bordered table-responsive" style="border-radius: 5px !important;">
-            <tbody>
-                <tr>
-                    <td>
-                        Users:
-                    </td>
-                    <td class="success">@Model.Where(u => UserManager.IsInRole(u.Id, "User")).Count()</td>
-                    <td>
-                        Admin:
-                    </td>
-                    <td class="danger">@Model.Where(u => UserManager.IsInRole(u.Id, "Admin")).Count()</td>
-                    <td>
-                        Moderator:
-                    </td>
-                    <td class="info">@Model.Where(u => UserManager.IsInRole(u.Id, "Moderator")).Count()</td>
-                    <td>
-                        All:
-                    </td>
-                    <td class="info">@Model.Count()</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
-    <br>
-
-    <div class="container-fluid">
-        <div class="alert alert-success">
-            <table class="table table-hover">
-                <thead>
+<div id="main_content">
+    <div class="panel panel-success">
+        <div class="container-fluid" style="margin-top:5px; border-radius: 5px">
+            <table class="table table-bordered table-responsive" style="border-radius: 5px !important;">
+                <tbody>
                     <tr>
                         <td>
-                            User name
+                            Users:
                         </td>
+                        <td class="success" id="UsersNumber" data-bind="text: usersNumber"></td>
                         <td>
-                            Role
+                            Admin:
                         </td>
+                        <td class="danger" id="AdminNumber" data-bind="text: adminsNumber"></td>
                         <td>
-                            DeleteUser
+                            Moderator:
                         </td>
+                        <td class="info" id="ModeratorNumber" data-bind="text: moderatorsNumber"></td>
+                        <td>
+                            All:
+                        </td>
+                        <td class="info" id="AllUsersNumber" data-bind="text: allUsersNumber"></td>
                     </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model)
-                    {
-                        if (item.UserName != User.Identity.Name)
-                        {
-                            <tr>
-                                <td>
-                                    @item.UserName
-                                </td>
-                                <td>
-                                    @{
-                            var roles = UserManager.GetRoles(item.Id);
-                                    }
-                                    @foreach (var role in roles)
-                                    {
-                                        <span id="RoleId@(item.Id)">
-                                            @role
-                                        </span>
-                                    }
-                                    <select class="btn btn-default dropdown-toggle pull-right selectUserRoleChange" onchange="ChangeUserRole(event,'@item.Id')">
-                                        <option value="default">
-                                            Change Role
-                                        </option>
-                                        <option value="Admin">
-                                            Admin
-                                        </option>
-                                        <option value="Moderator">
-                                            Moderator
-                                        </option>
-                                        <option value="User">
-                                            User
-                                        </option>
-                                    </select>
-                                </td>
-                                <td style="width:33%">
-                                    <button type="button" class="btn btn-danger" onclick="DeleteUser(event,'@item.Id')">
-                                        Delete
-                                    </button>
-                                </td>
-                            </tr>
-                        }
-                    }
                 </tbody>
             </table>
+        </div>
+
+        <br>
+
+        <div class="container-fluid">
+            <div class="alert alert-success">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <td>
+                                User name
+                            </td>
+                            <td>
+                                Role
+                            </td>
+                            <td>
+                                DeleteUser
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            if (item.UserName != User.Identity.Name)
+                            {
+                                <tr>
+                                    <td>
+                                        @item.UserName
+                                    </td>
+                                    <td>
+                                        @{
+                                var roles = UserManager.GetRoles(item.Id);
+                                        }
+                                        <span id="RoleId@(item.Id)" class="hidden">
+                                            @foreach (var role in roles){@role}
+                                        </span>
+                                        <select class="btn btn-default dropdown-toggle pull-right selectUserRoleChange" onchange="IExam.PageLogic.ChangeUserRole(event,'@item.Id')">
+                                            <option value="default">
+                                                Change Role
+                                            </option>
+                                            <option value="Admin">
+                                                Admin
+                                            </option>
+                                            <option value="Moderator">
+                                                Moderator
+                                            </option>
+                                            <option value="User">
+                                                User
+                                            </option>
+                                        </select>
+                                    </td>
+                                    <td style="width:33%">
+                                        <button type="button" class="btn btn-danger" data-bind="click: DeleteUser(event,'@item.Id')">
+                                            Delete
+                                        </button>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>

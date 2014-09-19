@@ -439,5 +439,32 @@ namespace IExam.Controllers
             UserManager.RemoveFromRoles(userId,userRoles.ToArray());
             UserManager.Delete(userToBeDeleted);
         }
+
+        public JsonResult GetUserStatistics()
+        {
+            int users = 0;
+            int admins = 0;
+            int moderators = 0;
+            var DbUsers = UserManager.Users.ToArray();
+            foreach (var user in DbUsers)
+            {
+                if (UserManager.IsInRole(user.Id, "Admin"))
+                {
+                    admins++;
+                }
+                else if (UserManager.IsInRole(user.Id, "Moderator"))
+                {
+                    moderators++;
+                }
+                else if (UserManager.IsInRole(user.Id, "User"))
+                {
+                    users++;
+                }
+            }
+
+            var allUsers = UserManager.Users.Count();
+
+            return Json(new {users = users, admins = admins, moderators = moderators, allUsers = allUsers}, JsonRequestBehavior.AllowGet);
+        }
     }
 }

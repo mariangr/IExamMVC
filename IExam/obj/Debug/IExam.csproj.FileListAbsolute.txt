@@ -188,3 +188,7 @@ C:\Users\marian.graurov\Documents\GitHub\IExamMVC\IExam\bin\System.Web.WebPages.
 C:\Users\marian.graurov\Documents\GitHub\IExamMVC\IExam\obj\Debug\IExam.dll
 C:\Users\marian.graurov\Documents\GitHub\IExamMVC\IExam\obj\Debug\IExam.pdb
 C:\Users\marian.graurov\Documents\GitHub\IExamMVC\IExam\bin\IExam.dll.config
+C:\Users\marian.graurov\Documents\GitHub\IExamMVC\IExam\obj\Debug\IExam.csprojResolveAssemblyReference.cache
+C:\Users\marian.graurov\Documents\GitHub\IExamMVC\IExam\bin\DelegateDecompiler.dll
+C:\Users\marian.graurov\Documents\GitHub\IExamMVC\IExam\bin\Mono.Reflection.dll
+C:\Users\marian.graurov\Documents\GitHub\IExamMVC\IExam\bin\PerpetuumSoft.Knockout.dll

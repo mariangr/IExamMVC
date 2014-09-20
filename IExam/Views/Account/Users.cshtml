@@ -63,7 +63,7 @@
                                         @*<span data-bind="text: role"></span>*@
                                     </td>
                                     <td>
-                                        <select class="btn btn-default dropdown-toggle selectUserRoleChange" data-bind="attr: {id: id }" onchange="IExam.PageLogic.ChangeUserRole(event)">
+                                        <select class="btn btn-default dropdown-toggle selectUserRoleChange" data-bind="attr: {id: id }" onchange="IExamUsers.PageLogic.ChangeUserRole(event)">
                                             <option value="default">Change Role</option>
                                             <option value="Admin">Admin</option>
                                             <option value="Moderator">Moderator</option>
@@ -71,7 +71,7 @@
                                         </select>
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-danger" data-bind="attr: {id: id }" onclick="IExam.PageLogic.DeleteUser(event)">
+                                        <button type="button" class="btn btn-danger" data-bind="attr: {id: id }" onclick="IExamUsers.PageLogic.DeleteUser(event)">
                                             Delete
                                         </button>
                                     </td>

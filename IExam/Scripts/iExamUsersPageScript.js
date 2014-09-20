@@ -10,6 +10,8 @@ $(document).ready(function () {
 IExamUsers.UsersPageManagementModel = function () {
     var self = this;
 
+    self.usersTableVisibility = ko.observable(false);
+
     self.UserStats = {
         usersNumber: ko.observable(0),
         adminsNumber: ko.observable(0),
@@ -19,6 +21,10 @@ IExamUsers.UsersPageManagementModel = function () {
 
     self.users = ko.observableArray([]);
 
+    self.ShowHideUsersTable = function () {
+        var visibility = self.usersTableVisibility();
+        self.usersTableVisibility(!visibility);
+    }
 }
 
 IExamUsers.UserVM = function (id, name, role, firstName, lastName, identityNumber, FN ) {

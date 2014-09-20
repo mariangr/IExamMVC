@@ -35,9 +35,16 @@
             </table>
         </div>
 
-        <br>
-
         <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6">
+                    <button data-bind="click: ShowHideUsersTable()" class="btn btn-default" >Show/Hide Users Table</button>
+                </div>
+            </div>
+        </div>
+        <br />
+
+        <div class="container-fluid" data-bind="visible: usersTableVisibility">
             <div class="alert alert-success">
                 <table class="table table-hover">
                     <thead>
@@ -53,29 +60,29 @@
                         </tr>
                     </thead>
                     <tbody data-bind="foreach: users" id="usersData">
-                                <tr>
-                                    <td data-bind="text: name"></td>
-                                    <td data-bind="text: firstName"></td>
-                                    <td data-bind="text: lastName"></td>
-                                    <td data-bind="text: identityNumber"></td>
-                                    <td data-bind="text: FN"></td>
-                                    <td data-bind="text: role, attr: {id: 'RoleId' + id() }">
-                                        @*<span data-bind="text: role"></span>*@
-                                    </td>
-                                    <td>
-                                        <select class="btn btn-default dropdown-toggle selectUserRoleChange" data-bind="attr: {id: id }" onchange="IExamUsers.PageLogic.ChangeUserRole(event)">
-                                            <option value="default">Change Role</option>
-                                            <option value="Admin">Admin</option>
-                                            <option value="Moderator">Moderator</option>
-                                            <option value="User">User</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-danger" data-bind="attr: {id: id }" onclick="IExamUsers.PageLogic.DeleteUser(event)">
-                                            Delete
-                                        </button>
-                                    </td>
-                                </tr>
+                        <tr>
+                            <td data-bind="text: name"></td>
+                            <td data-bind="text: firstName"></td>
+                            <td data-bind="text: lastName"></td>
+                            <td data-bind="text: identityNumber"></td>
+                            <td data-bind="text: FN"></td>
+                            <td data-bind="text: role, attr: {id: 'RoleId' + id() }">
+                                @*<span data-bind="text: role"></span>*@
+                            </td>
+                            <td>
+                                <select class="btn btn-default dropdown-toggle selectUserRoleChange" data-bind="attr: {id: id }" onchange="IExamUsers.PageLogic.ChangeUserRole(event)">
+                                    <option value="default">Change Role</option>
+                                    <option value="Admin">Admin</option>
+                                    <option value="Moderator">Moderator</option>
+                                    <option value="User">User</option>
+                                </select>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-danger" data-bind="attr: {id: id }" onclick="IExamUsers.PageLogic.DeleteUser(event)">
+                                    Delete
+                                </button>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>

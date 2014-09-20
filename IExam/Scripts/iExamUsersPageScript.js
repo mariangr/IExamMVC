@@ -10,12 +10,15 @@ $(document).ready(function () {
 IExam.UsersPageManagementModel = function () {
     var self = this;
 
-    self.usersNumber = ko.observable(0);
-    self.adminsNumber = ko.observable(0);
-    self.moderatorsNumber = ko.observable(0);
-    self.allUsersNumber = ko.observable(0);
+    self.UserStats = {
+        usersNumber: ko.observable(0),
+        adminsNumber: ko.observable(0),
+        moderatorsNumber: ko.observable(0),
+        allUsersNumber: ko.observable(0)
+    };
 
     self.users = ko.observableArray([]);
+
 }
 
 IExam.UserVM = function (id, name, roles) {
@@ -71,10 +74,10 @@ IExam.PageLogic = function () {
             url: '/Account/GetUserStatistics/',
             data: JSON,
             success: function (statsResult) {
-                IExam.UsersPageManagement.usersNumber(statsResult.users);
-                IExam.UsersPageManagement.adminsNumber(statsResult.admins);
-                IExam.UsersPageManagement.moderatorsNumber(statsResult.moderators);
-                IExam.UsersPageManagement.allUsersNumber(statsResult.allUsers);
+                IExam.UsersPageManagement.UserStats.usersNumber(statsResult.users);
+                IExam.UsersPageManagement.UserStats.adminsNumber(statsResult.admins);
+                IExam.UsersPageManagement.UserStats.moderatorsNumber(statsResult.moderators);
+                IExam.UsersPageManagement.UserStats.allUsersNumber(statsResult.allUsers);
             },
             error: function () {
                 alert('error');
@@ -93,7 +96,7 @@ IExam.PageLogic = function () {
                     tempArray.push(new IExam.UserVM(tableResult[userI].id, tableResult[userI].name, tableResult[userI].role))
                 }
                 ko.utils.arrayPushAll(IExam.UsersPageManagement.users(), tempArray);
-                IExam.UsersPageManagement.users.valueHasMutated();  
+                IExam.UsersPageManagement.users.valueHasMutated();
             },
             error: function () {
                 alert('error');

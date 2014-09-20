@@ -17,19 +17,19 @@
                         <td>
                             Users:
                         </td>
-                        <td class="success" id="UsersNumber" data-bind="text: usersNumber"></td>
+                        <td class="success" id="UsersNumber" data-bind="text: UserStats.usersNumber"></td>
                         <td>
                             Admin:
                         </td>
-                        <td class="danger" id="AdminNumber" data-bind="text: adminsNumber"></td>
+                        <td class="danger" id="AdminNumber" data-bind="text: UserStats.adminsNumber"></td>
                         <td>
                             Moderator:
                         </td>
-                        <td class="info" id="ModeratorNumber" data-bind="text: moderatorsNumber"></td>
+                        <td class="info" id="ModeratorNumber" data-bind="text: UserStats.moderatorsNumber"></td>
                         <td>
                             All:
                         </td>
-                        <td class="info" id="AllUsersNumber" data-bind="text: allUsersNumber"></td>
+                        <td class="info" id="AllUsersNumber" data-bind="text: UserStats.allUsersNumber"></td>
                     </tr>
                 </tbody>
             </table>
@@ -56,13 +56,13 @@
                             </td>
                         </tr>
                     </thead>
-                    <tbody data-bind="foreach: users">
+                    <tbody data-bind="foreach: users" id="usersData">
                                 <tr>
                                     <td data-bind="text: name">
                                     </td>
                                     <td data-bind="text: role, attr: {id: 'RoleId' + id }">
-                                        <span data-bind="text: role, id: id">
-                                        </span>
+                                        <span data-bind="text: role"></span>
+                                        <span></span>
                                     </td>
                                     <td>
                                         <select class="btn btn-default dropdown-toggle selectUserRoleChange" data-bind="attr: {id: id }" onchange="IExam.PageLogic.ChangeUserRole(event)">

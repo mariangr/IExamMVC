@@ -413,8 +413,23 @@ namespace IExam.Controllers
 
         public ActionResult Users()
         {
+            return View();
+        }
+
+        [HttpGet]
+        public JsonResult AllUsersData()
+        {
             var allUsers = UserManager.Users.ToArray();
-            return View(allUsers);
+            List<object> users = new List<object>();
+            foreach (var user in allUsers)
+            {
+                if (User.Identity.Name != user.UserName)
+                {
+                    users.Add(new { id = user.Id, name = user.UserName, role = UserManager.GetRoles(user.Id).ToArray() });
+                }
+            }
+
+            return Json(users, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]

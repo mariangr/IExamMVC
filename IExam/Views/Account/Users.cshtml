@@ -1,20 +1,12 @@
 ﻿<header>
-    <script src="~/Scripts/knockout-3.1.0.debug.js"></script>
-    <script src="~/Scripts/iExamUsersPageScript.js"></script>
     <script src="~/Scripts/knockout-3.1.0.js"></script>
+    <script src="~/Scripts/iExamUsersPageScript.js"></script>
 </header>
-
-@using IExam.Models
-@using Microsoft.AspNet.Identity
-@using Microsoft.AspNet.Identity.EntityFramework
-@model IEnumerable<ApplicationUser>
 
 
 @{
     ViewBag.Title = "Users";
 }
-
-@{var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));}
 
 <div id="main_content">
     <div class="panel panel-success">
@@ -57,27 +49,23 @@
                                 Role
                             </td>
                             <td>
+                                Change Role
+                            </td>
+                            <td>
                                 DeleteUser
                             </td>
                         </tr>
                     </thead>
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
-                            if (item.UserName != User.Identity.Name)
-                            {
+                    <tbody data-bind="foreach: users">
                                 <tr>
-                                    <td>
-                                        @item.UserName
+                                    <td data-bind="text: name">
+                                    </td>
+                                    <td data-bind="text: role, attr: {id: 'RoleId' + id }">
+                                        <span data-bind="text: role, id: id">
+                                        </span>
                                     </td>
                                     <td>
-                                        @{
-                                var roles = UserManager.GetRoles(item.Id);
-                                        }
-                                        <span id="RoleId@(item.Id)" class="hidden">
-                                            @foreach (var role in roles){@role}
-                                        </span>
-                                        <select class="btn btn-default dropdown-toggle pull-right selectUserRoleChange" onchange="IExam.PageLogic.ChangeUserRole(event,'@item.Id')">
+                                        <select class="btn btn-default dropdown-toggle selectUserRoleChange" data-bind="attr: {id: id }" onchange="IExam.PageLogic.ChangeUserRole(event)">
                                             <option value="default">
                                                 Change Role
                                             </option>
@@ -93,13 +81,11 @@
                                         </select>
                                     </td>
                                     <td style="width:33%">
-                                        <button type="button" class="btn btn-danger" data-bind="click: DeleteUser(event,'@item.Id')">
+                                        <button type="button" class="btn btn-danger" data-bind="attr: {id: id }" onclick="IExam.PageLogic.DeleteUser(event)">
                                             Delete
                                         </button>
                                     </td>
                                 </tr>
-                            }
-                        }
                     </tbody>
                 </table>
             </div>

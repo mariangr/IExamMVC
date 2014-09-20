@@ -1,17 +1,36 @@
-﻿$(document).ready(function () {
+﻿var IExam = IExam || {};
+
+$(document).ready(function () {
+    IExam.UsersPageManagement = new IExam.UsersPageManagementModel();
     ko.applyBindings(IExam.UsersPageManagement, document.getElementById(main_content));
     IExam.PageLogic.RefreshUsersStatistics();
-    $('.selectUserRoleChange')
-
+    IExam.PageLogic.FillUsersTable();
 })
 
-var IExam = IExam || {};
+IExam.UsersPageManagementModel = function () {
+    var self = this;
+
+    self.usersNumber = ko.observable(0);
+    self.adminsNumber = ko.observable(0);
+    self.moderatorsNumber = ko.observable(0);
+    self.allUsersNumber = ko.observable(0);
+
+    self.users = ko.observableArray([]);
+}
+
+IExam.UserVM = function (id, name, roles) {
+    var self = this;
+
+    self.id = id;
+    self.name = name;
+    self.role = roles[0];
+}
 
 IExam.PageLogic = function () {
-    function ChangeUserRole(event, userId) {
+    function ChangeUserRole(event) {
         var newRole = $(event.target).val();
+        var userId = $(event.target).attr('id');
         var userRole = $("#RoleId" + userId);
-        var userId = userId;
 
         if ((userRole.html().trim() != newRole) && (newRole != "default")) {
             $.ajax({
@@ -29,7 +48,8 @@ IExam.PageLogic = function () {
         }
     }
 
-    function DeleteUser(event, userId) {
+    function DeleteUser(event) {
+        var userId = $(event.target).attr('id');
         var UserRow = $(event.target).parent().parent();
         $.ajax({
             type: 'POST',
@@ -47,36 +67,48 @@ IExam.PageLogic = function () {
 
     function RefreshUsersStatistics() {
         $.ajax({
-            type: 'Get',
+            type: 'GET',
             url: '/Account/GetUserStatistics/',
             data: JSON,
-            success: function (result) {
-                IExam.UsersPageManagement.usersNumber(result.users);
-                IExam.UsersPageManagement.adminsNumbers(result.admins);
-                IExam.UsersPageManagement.moderatorsNumber(result.moderators);
-                IExam.UsersPageManagement.allUsersNumber(result.allUsers);
+            success: function (statsResult) {
+                IExam.UsersPageManagement.usersNumber(statsResult.users);
+                IExam.UsersPageManagement.adminsNumber(statsResult.admins);
+                IExam.UsersPageManagement.moderatorsNumber(statsResult.moderators);
+                IExam.UsersPageManagement.allUsersNumber(statsResult.allUsers);
             },
             error: function () {
                 alert('error');
             }
         })
     }
+
+    function FillUsersTable() {
+        $.ajax({
+            type: 'GET',
+            url: '/Account/AllUsersData/',
+            data: JSON,
+            success: function (tableResult) {
+                var tempArray = [];
+                for (var userI in tableResult) {
+                    tempArray.push(new IExam.UserVM(tableResult[userI].id, tableResult[userI].name, tableResult[userI].role))
+                }
+                ko.utils.arrayPushAll(IExam.UsersPageManagement.users(), tempArray);
+                IExam.UsersPageManagement.users.valueHasMutated();  
+            },
+            error: function () {
+                alert('error');
+            }
+        })
+
+                
+    }
+
     return {
         RefreshUsersStatistics: RefreshUsersStatistics,
         DeleteUser: DeleteUser,
-        ChangeUserRole: ChangeUserRole
+        ChangeUserRole: ChangeUserRole,
+        FillUsersTable: FillUsersTable
     }
 }();
-
-IExam.UsersPageManagement = function () {
-    var self = this;
-
-    self.usersNumber = ko.observable(0);
-    self.adminsNumber = ko.observable(0);
-    self.moderatorsNumber = ko.observable(0);
-    self.allUsersNumber = ko.observable(0);
-}
-
-
 
 

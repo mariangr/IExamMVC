@@ -192,3 +192,6 @@ C:\Users\marian.graurov\Documents\GitHub\IExamMVC\IExam\obj\Debug\IExam.csprojRe
 C:\Users\marian.graurov\Documents\GitHub\IExamMVC\IExam\bin\DelegateDecompiler.dll
 C:\Users\marian.graurov\Documents\GitHub\IExamMVC\IExam\bin\Mono.Reflection.dll
 C:\Users\marian.graurov\Documents\GitHub\IExamMVC\IExam\bin\PerpetuumSoft.Knockout.dll
+C:\Users\Hueco Mundo\Documents\GitHub\IExamMVC\IExam\bin\DelegateDecompiler.dll
+C:\Users\Hueco Mundo\Documents\GitHub\IExamMVC\IExam\bin\Mono.Reflection.dll
+C:\Users\Hueco Mundo\Documents\GitHub\IExamMVC\IExam\bin\PerpetuumSoft.Knockout.dll

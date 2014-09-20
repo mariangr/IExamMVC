@@ -42,45 +42,35 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <td>
-                                User name
-                            </td>
-                            <td>
-                                Role
-                            </td>
-                            <td>
-                                Change Role
-                            </td>
-                            <td>
-                                DeleteUser
-                            </td>
+                            <td>User Name</td>
+                            <td>First Name</td>
+                            <td>Last Name</td>
+                            <td>Identity Number</td>
+                            <td>Faculty Number</td>
+                            <td>Role</td>
+                            <td>Change Role</td>
+                            <td>Delete User</td>
                         </tr>
                     </thead>
                     <tbody data-bind="foreach: users" id="usersData">
                                 <tr>
-                                    <td data-bind="text: name">
-                                    </td>
-                                    <td data-bind="text: role, attr: {id: 'RoleId' + id }">
-                                        <span data-bind="text: role"></span>
-                                        <span></span>
+                                    <td data-bind="text: name"></td>
+                                    <td data-bind="text: firstName"></td>
+                                    <td data-bind="text: lastName"></td>
+                                    <td data-bind="text: identityNumber"></td>
+                                    <td data-bind="text: FN"></td>
+                                    <td data-bind="text: role, attr: {id: 'RoleId' + id() }">
+                                        @*<span data-bind="text: role"></span>*@
                                     </td>
                                     <td>
                                         <select class="btn btn-default dropdown-toggle selectUserRoleChange" data-bind="attr: {id: id }" onchange="IExam.PageLogic.ChangeUserRole(event)">
-                                            <option value="default">
-                                                Change Role
-                                            </option>
-                                            <option value="Admin">
-                                                Admin
-                                            </option>
-                                            <option value="Moderator">
-                                                Moderator
-                                            </option>
-                                            <option value="User">
-                                                User
-                                            </option>
+                                            <option value="default">Change Role</option>
+                                            <option value="Admin">Admin</option>
+                                            <option value="Moderator">Moderator</option>
+                                            <option value="User">User</option>
                                         </select>
                                     </td>
-                                    <td style="width:33%">
+                                    <td>
                                         <button type="button" class="btn btn-danger" data-bind="attr: {id: id }" onclick="IExam.PageLogic.DeleteUser(event)">
                                             Delete
                                         </button>

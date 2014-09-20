@@ -181,6 +181,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Migrations\201409160857565_InitialCreate.cs" />
+    <Compile Include="Migrations\201409160857565_InitialCreate.Designer.cs">
+      <DependentUpon>201409160857565_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201409201317085_NameFNIdentity.cs" />
+    <Compile Include="Migrations\201409201317085_NameFNIdentity.Designer.cs">
+      <DependentUpon>201409201317085_NameFNIdentity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Comment.cs">
       <DependentUpon>Videos.tt</DependentUpon>
     </Compile>
@@ -371,7 +380,14 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201409160857565_InitialCreate.resx">
+      <DependentUpon>201409160857565_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201409201317085_NameFNIdentity.resx">
+      <DependentUpon>201409201317085_NameFNIdentity.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>

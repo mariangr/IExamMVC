@@ -1,13 +1,13 @@
-﻿var IExam = IExam || {};
+﻿var IExamUsers = IExamUsers || {};
 
 $(document).ready(function () {
-    IExam.UsersPageManagement = new IExam.UsersPageManagementModel();
-    ko.applyBindings(IExam.UsersPageManagement, document.getElementById(main_content));
-    IExam.PageLogic.RefreshUsersStatistics();
-    IExam.PageLogic.FillUsersTable();
+    IExamUsers.UsersPageManagement = new IExamUsers.UsersPageManagementModel();
+    ko.applyBindings(IExamUsers.UsersPageManagement, document.getElementById(main_content));
+    IExamUsers.PageLogic.RefreshUsersStatistics();
+    IExamUsers.PageLogic.FillUsersTable();
 })
 
-IExam.UsersPageManagementModel = function () {
+IExamUsers.UsersPageManagementModel = function () {
     var self = this;
 
     self.UserStats = {
@@ -21,15 +21,19 @@ IExam.UsersPageManagementModel = function () {
 
 }
 
-IExam.UserVM = function (id, name, roles) {
+IExamUsers.UserVM = function (id, name, role, firstName, lastName, identityNumber, FN ) {
     var self = this;
 
-    self.id = id;
-    self.name = name;
-    self.role = roles[0];
+    self.id = ko.observable(id);
+    self.name = ko.observable(name);
+    self.role = ko.observable(role);
+    self.firstName = ko.observable(firstName);
+    self.lastName = ko.observable(lastName);
+    self.identityNumber = ko.observable(identityNumber);
+    self.FN = ko.observable(FN);
 }
 
-IExam.PageLogic = function () {
+IExamUsers.PageLogic = function () {
     function ChangeUserRole(event) {
         var newRole = $(event.target).val();
         var userId = $(event.target).attr('id');
@@ -42,7 +46,7 @@ IExam.PageLogic = function () {
                 data: { newRole: newRole, userId: userId },
                 success: function () {
                     userRole.html(newRole);
-                    IExam.PageLogic.RefreshUsersStatistics()
+                    IExamUsers.PageLogic.RefreshUsersStatistics()
                 },
                 error: function () {
                     alert('error');
@@ -60,7 +64,7 @@ IExam.PageLogic = function () {
             data: { userId: userId },
             success: function () {
                 $(UserRow).hide();
-                IExam.PageLogic.RefreshUsersStatistics()
+                IExamUsers.PageLogic.RefreshUsersStatistics()
             },
             error: function () {
                 alert('error');
@@ -74,10 +78,10 @@ IExam.PageLogic = function () {
             url: '/Account/GetUserStatistics/',
             data: JSON,
             success: function (statsResult) {
-                IExam.UsersPageManagement.UserStats.usersNumber(statsResult.users);
-                IExam.UsersPageManagement.UserStats.adminsNumber(statsResult.admins);
-                IExam.UsersPageManagement.UserStats.moderatorsNumber(statsResult.moderators);
-                IExam.UsersPageManagement.UserStats.allUsersNumber(statsResult.allUsers);
+                IExamUsers.UsersPageManagement.UserStats.usersNumber(statsResult.users);
+                IExamUsers.UsersPageManagement.UserStats.adminsNumber(statsResult.admins);
+                IExamUsers.UsersPageManagement.UserStats.moderatorsNumber(statsResult.moderators);
+                IExamUsers.UsersPageManagement.UserStats.allUsersNumber(statsResult.allUsers);
             },
             error: function () {
                 alert('error');
@@ -93,10 +97,18 @@ IExam.PageLogic = function () {
             success: function (tableResult) {
                 var tempArray = [];
                 for (var userI in tableResult) {
-                    tempArray.push(new IExam.UserVM(tableResult[userI].id, tableResult[userI].name, tableResult[userI].role))
+                    tempArray.push(new IExamUsers.UserVM(
+                        tableResult[userI].Id,
+                        tableResult[userI].UserName,
+                        tableResult[userI].Roles[0].RoleId,
+                        tableResult[userI].FirstName,
+                        tableResult[userI].LastName,
+                        tableResult[userI].IdentityNumber,
+                        tableResult[userI].FN
+                        ))
                 }
-                ko.utils.arrayPushAll(IExam.UsersPageManagement.users(), tempArray);
-                IExam.UsersPageManagement.users.valueHasMutated();
+                ko.utils.arrayPushAll(IExamUsers.UsersPageManagement.users(), tempArray);
+                IExamUsers.UsersPageManagement.users.valueHasMutated();
             },
             error: function () {
                 alert('error');

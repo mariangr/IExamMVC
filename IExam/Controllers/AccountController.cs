@@ -12,6 +12,24 @@ using IExam.Models;
 
 namespace IExam.Controllers
 {
+    public static class UserManagerStatic
+    {
+        public static readonly UserManager<ApplicationUser> UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+
+        public static string GetFullName(string userName){
+            var currentUser = UserManager.FindByName(userName);
+            var fullName = currentUser.FirstName + " " + currentUser.LastName;
+            if (fullName.Length > 1)
+            {
+                return fullName;
+            }
+            else
+            {
+                return currentUser.UserName;
+            }
+        }
+    }
+
     [Authorize]
     public class AccountController : Controller
     {
@@ -78,7 +96,12 @@ namespace IExam.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser() { UserName = model.UserName };
+                var user = new ApplicationUser() { UserName = model.UserName, 
+                    FirstName = model.FirstName, 
+                    LastName = model.LastName, 
+                    FN = model.FN, 
+                    IdentityNumber = model.IdentityNumber
+                };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 
                 if (result.Succeeded)
@@ -420,16 +443,7 @@ namespace IExam.Controllers
         public JsonResult AllUsersData()
         {
             var allUsers = UserManager.Users.ToArray();
-            List<object> users = new List<object>();
-            foreach (var user in allUsers)
-            {
-                if (User.Identity.Name != user.UserName)
-                {
-                    users.Add(new { id = user.Id, name = user.UserName, role = UserManager.GetRoles(user.Id).ToArray() });
-                }
-            }
-
-            return Json(users, JsonRequestBehavior.AllowGet);
+            return Json(allUsers, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]

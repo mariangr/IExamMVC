@@ -11,6 +11,18 @@ namespace IExam.Models
 
     public class ManageUserViewModel
     {
+        [Display(Name = "First Name")]
+        public string FirstName { set; get; }
+
+        [Display(Name = "Last Name")]
+        public string LastName { set; get; }
+
+        [Display(Name = "Faculty Number")]
+        public string FN { set; get; }
+
+        [Display(Name = "Identity Number")]
+        public string IdentityNumber { set; get; }
+
         [Required]
         [DataType(DataType.Password)]
         [Display(Name = "Current password")]
@@ -45,6 +57,18 @@ namespace IExam.Models
 
     public class RegisterViewModel
     {
+        [Display(Name = "First Name")]
+        public string FirstName { set; get; }
+
+        [Display(Name = "Last Name")]
+        public string LastName { set; get; }
+
+        [Display(Name = "Faculty Number")]
+        public string FN { set; get; }
+
+        [Display(Name = "Identity Number")]
+        public string IdentityNumber { set; get; }
+
         [Required]
         [Display(Name = "User name")]
         public string UserName { get; set; }

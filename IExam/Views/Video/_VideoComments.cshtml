@@ -22,7 +22,7 @@
                         @item.message
                         @if (Request.IsAuthenticated)
                         {
-                            if (User.Identity.Name == item.user)
+                            if (User.Identity.Name == item.user || User.IsInRole("Admin"))
                             {
                                 <a href="#" class="btn btn-default btn-mini" onclick="DeleteComment(@item.ID)" style="float:right"><i class="glyphicon glyphicon-remove-sign"></i> Delete</a>
                             }

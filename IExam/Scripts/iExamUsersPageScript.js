@@ -70,6 +70,7 @@ IExamUsers.PageLogic = function () {
             data: { userId: userId },
             success: function () {
                 $(UserRow).hide();
+                //IExamUsers.PageLogic.FillUsersTable()
                 IExamUsers.PageLogic.RefreshUsersStatistics()
             },
             error: function () {
@@ -113,6 +114,7 @@ IExamUsers.PageLogic = function () {
                         tableResult[userI].FN
                         ))
                 }
+                IExamUsers.UsersPageManagement.users.removeAll();
                 ko.utils.arrayPushAll(IExamUsers.UsersPageManagement.users(), tempArray);
                 IExamUsers.UsersPageManagement.users.valueHasMutated();
             },

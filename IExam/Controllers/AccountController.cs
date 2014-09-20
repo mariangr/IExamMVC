@@ -12,23 +12,7 @@ using IExam.Models;
 
 namespace IExam.Controllers
 {
-    public static class UserManagerStatic
-    {
-        public static readonly UserManager<ApplicationUser> UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
-
-        public static string GetFullName(string userName){
-            var currentUser = UserManager.FindByName(userName);
-            var fullName = currentUser.FirstName + " " + currentUser.LastName;
-            if (fullName.Length > 1)
-            {
-                return fullName;
-            }
-            else
-            {
-                return currentUser.UserName;
-            }
-        }
-    }
+    
 
     [Authorize]
     public class AccountController : Controller

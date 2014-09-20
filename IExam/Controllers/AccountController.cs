@@ -154,7 +154,16 @@ namespace IExam.Controllers
                 : "";
             ViewBag.HasLocalPassword = HasPassword();
             ViewBag.ReturnUrl = Url.Action("Manage");
-            return View();
+
+            var user = UserManager.FindById(User.Identity.GetUserId());
+
+            ManageUserViewModel model = new ManageUserViewModel();
+            model.FN = user.FN;
+            model.FirstName = user.FirstName;
+            model.LastName = user.LastName;
+            model.IdentityNumber = user.IdentityNumber;
+
+            return View(model);
         }
 
         //
@@ -170,14 +179,32 @@ namespace IExam.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    var id = User.Identity.GetUserId();
+                    var user = UserManager.Users.First(u => u.Id == id);
+                    user.FirstName = model.FirstName;
+                    user.LastName = model.LastName;
+                    user.IdentityNumber = model.IdentityNumber;
+                    user.FN = model.FN;
+
+
+                    IdentityResult resultUpdate = await UserManager.UpdateAsync(user);
+
                     IdentityResult result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
-                    if (result.Succeeded)
+                    if (result.Succeeded && resultUpdate.Succeeded)
                     {
                         return RedirectToAction("Manage", new { Message = ManageMessageId.ChangePasswordSuccess });
                     }
                     else
                     {
-                        AddErrors(result);
+                        if (result.Succeeded)
+                        {
+                            AddErrors(resultUpdate);
+                        }
+                        else
+                        {
+                            AddErrors(result);
+                        }
+                        
                     }
                 }
             }
@@ -434,6 +461,7 @@ namespace IExam.Controllers
         }
         #endregion
 
+        #region UsersPageLogic
         public ActionResult Users()
         {
             return View();
@@ -495,5 +523,6 @@ namespace IExam.Controllers
 
             return Json(new {users = users, admins = admins, moderators = moderators, allUsers = allUsers}, JsonRequestBehavior.AllowGet);
         }
+        #endregion
     }
 }

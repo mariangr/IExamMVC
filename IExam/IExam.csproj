@@ -181,6 +181,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\TestsController.cs" />
     <Compile Include="Helpers\ImageConverter.cs" />
     <Compile Include="Helpers\UserManagerStatic.cs" />
     <Compile Include="Migrations\201409160857565_InitialCreate.cs" />
@@ -195,6 +196,7 @@
     <Compile Include="Models\Comment.cs">
       <DependentUpon>Videos.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\TestsModel.cs" />
     <Compile Include="Models\Video.cs">
       <DependentUpon>Videos.tt</DependentUpon>
     </Compile>
@@ -270,7 +272,10 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Content Include="Scripts\IExamIndexPageScript.js" />
+    <Content Include="Scripts\IExamTestsIndexPageScript.js" />
     <Content Include="Scripts\iExamUsersPageScript.js" />
+    <Content Include="Scripts\IExamVideoCreatePageScript.js" />
     <Content Include="Scripts\knockout-3.1.0.debug.js" />
     <Content Include="Scripts\knockout-3.1.0.js" />
     <Content Include="Scripts\knockout.mapping-latest.debug.js" />
@@ -308,6 +313,12 @@
       <LastGenOutput>Videos.cs</LastGenOutput>
     </Content>
     <Content Include="Views\Account\Users.cshtml" />
+    <Content Include="Views\Tests\Index.cshtml" />
+    <Content Include="Views\Tests2\Create.cshtml" />
+    <Content Include="Views\Tests2\Delete.cshtml" />
+    <Content Include="Views\Tests2\Details.cshtml" />
+    <Content Include="Views\Tests2\Edit.cshtml" />
+    <Content Include="Views\Tests2\Index.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />

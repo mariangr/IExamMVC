@@ -1,0 +1,42 @@
+﻿@model IExam.Models.Test
+<header>
+    <script src="~/Scripts/IExamTestsIndexPageScript.js"></script>
+</header>
+@{
+    ViewBag.Title = "Tests";
+}
+
+<div class="alert alert-danger container-fluid" >
+    <div class="row">
+        <div class="col-md-12">
+            <h4>Create Test:</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <label for="testName">Test name: </label>
+            <input type="text" id="testName"/>
+            <input type="button" value="Create Test" onclick="IExamIndex.PageLogic.CreateTest()"/>
+            <label id="requirmentName">Name Field Is Required</label>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid alert alert-success">
+    <table class="table table-hover" id="test_data">
+        <tr>
+            <th>Test Name</th>
+            <th>Delete Test</th>
+        </tr>
+        <tbody data-bind="foreach: tests">
+            <tr>
+                <td data-bind="text: name"></td>
+                <td>
+                    <button type="button" class="btn btn-danger" data-bind="attr: { id: id }" onclick="IExamIndex.PageLogic.DeleteTest(event)">
+                        Delete
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

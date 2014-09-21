@@ -2,6 +2,10 @@
 @{
     ViewBag.Title = " Video";
 }
+<header>
+    <script src="~/Scripts/iExamVideoPageScript.js"></script>
+</header>
+
 <div class="col-md-12">
 
     <div class="panel panel-success">
@@ -23,5 +27,5 @@
 </div>
 
 <script>
-    loadVideosList();
+    IExamVideo.PageLogic.loadVideosList();
 </script>

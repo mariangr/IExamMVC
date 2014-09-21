@@ -181,6 +181,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers\ImageConverter.cs" />
+    <Compile Include="Helpers\UserManagerStatic.cs" />
     <Compile Include="Migrations\201409160857565_InitialCreate.cs" />
     <Compile Include="Migrations\201409160857565_InitialCreate.Designer.cs">
       <DependentUpon>201409160857565_InitialCreate.cs</DependentUpon>

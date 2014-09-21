@@ -7,12 +7,12 @@
         <div class="row" style="margin-top: 2px">
             <div class="col-md-12" style="padding-bottom: 5px;">
                 <div class="col-sm-8 col-md-8">
-                    <div class="btn btn-info videoHeader col-sm-12 col-md-12 wordwrap" id="multilineDiv" onclick="LoadVideo(@item.ID)">@item.name</div>
+                    <div class="btn btn-info videoHeader col-sm-12 col-md-12 wordwrap" id="multilineDiv" onclick="IExamVideo.PageLogic.LoadVideo(@item.ID)">@item.name</div>
                 </div>
                 <div class="col-sm-3 col-md-3">
                     @if (Request.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("Moderator")))
                     {
-                        <input class="btn btn-danger videoDelete col-sm-12 col-md-12" value='Delete' type="button" onclick="DeleteVideo(@item.ID)">
+                        <input class="btn btn-danger videoDelete col-sm-12 col-md-12" value='Delete' type="button" onclick="IExamVideo.PageLogic.DeleteVideo(@item.ID)">
                     }
                 </div>
             </div>

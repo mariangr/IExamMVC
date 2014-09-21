@@ -24,7 +24,7 @@
                         {
                             if (User.Identity.Name == item.user || User.IsInRole("Admin"))
                             {
-                                <a href="#" class="btn btn-default btn-mini" onclick="DeleteComment(@item.ID)" style="float:right"><i class="glyphicon glyphicon-remove-sign"></i> Delete</a>
+                                <a href="#" class="btn btn-default btn-mini" onclick="IExamVideo.PageLogic.deleteComment(@item.ID)" style="float:right"><i class="glyphicon glyphicon-remove-sign"></i> Delete</a>
                             }
                         }
                     </td>
@@ -36,10 +36,10 @@
     {
         <form>
             <label class="panel-info countdown">1000 remaining symbols</label>
-            <textarea id="commentForVideo" style="resize: none; width: 100%" rows="4" name="message" type="text" class="form-control input-lg" maxlength="1000" placeholder="Comment" onkeydown="textAreaEnterEvent(event)" onkeyup="countDown()"></textarea>
+            <textarea id="commentForVideo" style="resize: none; width: 100%" rows="4" name="message" type="text" class="form-control input-lg" maxlength="1000" placeholder="Comment" onkeydown="IExamVideo.PageLogic.textAreaEnterEvent(event)" onkeyup="    IExamVideo.PageLogic.countDown()"></textarea>
             <input type="hidden" id="inpForCommentLink" name="link">
             <input type="hidden" id="currentUser" name="User" value="@User.Identity.Name" />
-            <input type="button" name="submit" class="btn btn-success btn-lg" value="Send" onclick="SendComment()" style="float:right; margin-top:1%" />
+            <input type="button" name="submit" class="btn btn-success btn-lg" value="Send" onclick="IExamVideo.PageLogic.sendComment()" style="float:right; margin-top:1%" />
         </form>
     }
 </div>

@@ -1,5 +1,4 @@
 ﻿<header>
-    <script src="~/Scripts/knockout-3.1.0.js"></script>
     <script src="~/Scripts/iExamUsersPageScript.js"></script>
 </header>
 
@@ -67,7 +66,6 @@
                             <td data-bind="text: identityNumber"></td>
                             <td data-bind="text: FN"></td>
                             <td data-bind="text: role, attr: {id: 'RoleId' + id() }">
-                                @*<span data-bind="text: role"></span>*@
                             </td>
                             <td>
                                 <select class="btn btn-default dropdown-toggle selectUserRoleChange" data-bind="attr: {id: id }" onchange="IExamUsers.PageLogic.ChangeUserRole(event)">

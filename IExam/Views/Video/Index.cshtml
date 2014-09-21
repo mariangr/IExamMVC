@@ -20,12 +20,32 @@
 
     <div class="container-fluid">
         <div class="row table-base">
-            <div class="col-md-6" id="videosContainer"></div>
+            <div class="col-md-6" id="videosContainer">
+                <div data-bind="visible: videoListIsVisible()">
+                    <div data-bind="foreach: videos">
+                        <div class="row" style="margin-top: 2px">
+                            <div class="col-md-12" style="padding-bottom: 5px;">
+                                <div class="col-sm-8 col-md-8">
+                                    <div class="btn btn-info videoHeader col-sm-12 col-md-12 wordwrap" id="multilineDiv" onclick="IExamVideo.PageLogic.LoadVideo(event)" data-bind="text: name, attr: {id: id }"></div>
+                                </div>
+                                <div class="col-sm-3 col-md-3">
+                                    @if (Request.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("Moderator")))
+                                    {
+                                        <input class="btn btn-danger videoDelete col-sm-12 col-md-12" value='Delete' type="button" data-bind="attr: {id: id }" onclick="IExamVideo.PageLogic.DeleteVideo(event)">
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div data-bind="visible: !videoListIsVisible()">
+                    <div class="col-md-12">
+                        <p class="alert alert-danger">No Videos.</p>
+                    </div>
+                </div>
+
+            </div>
             <div class="col-md-6" id="videosPlayerContainer" style="padding: 10px; background-image: url(../../Content/images/videoPlayerAndCommentsBackgrounf.png); webkit-border-radius: 20px; -moz-border-radius: 20px; border-radius: 20px; margin: 0 auto; overflow: hidden; display: none"></div>
         </div>
     </div>
 </div>
-
-<script>
-    IExamVideo.PageLogic.loadVideosList();
-</script>

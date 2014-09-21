@@ -1,23 +1,48 @@
 ﻿var IExamVideo = IExamVideo || {};
 
-IExamVideo.PageLogic = function () {
+$(document).ready(function () {
+    IExamVideo.VideoList = new IExamVideo.VideoListModel();
+    ko.applyBindings(IExamVideo.VideoList, document.getElementById(videosContainer))
+    IExamVideo.PageLogic.loadVideosList();
+})
 
-    var manageLink = function() {
-        var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-        var link = $('#link').val();
-        var match = link.match(regExp);
-        if (match && match[2].length == 11) {
-            link = match[2];
-        }
-        $('#link').val(link);
-    }
+IExamVideo.VideoListModel = function () {
+    var self = this;
+
+    self.videos = ko.observableArray([]).extend({notify: 'always'});
+    self.videoListIsVisible = ko.observable(false);
+}
+
+IExamVideo.VideoElementVM = function (id, name, link) {
+    var self = this;
+
+    self.id = ko.observable(id);
+    self.name = ko.observable(name);
+    self.link = ko.observable(link);
+}
+
+IExamVideo.PageLogic = function () {
 
     var loadVideosList = function() {
         $.ajax({
             type: 'GET',
             url: '/Video/GetVideoElements/',
             success: function (result) {
-                $('#videosContainer').html(result);
+                if (result.length > 0) {
+                    var tempArray = [];
+                    for (var video in result) {
+                        var newVideo = new IExamVideo.VideoElementVM(result[video].ID, result[video].name, result[video].link);
+                        tempArray.push(newVideo);
+                    }
+                    IExamVideo.VideoList.videos.removeAll();
+                    ko.utils.arrayPushAll(IExamVideo.VideoList.videos(), tempArray);
+                    IExamVideo.VideoList.videos.valueHasMutated();
+                    IExamVideo.VideoList.videoListIsVisible(true);
+                }
+                else {
+                    IExamVideo.VideoList.videoListIsVisible(false);
+                }
+                //$('#videosContainer').html(result);
 
             },
             error: function (result) {
@@ -27,7 +52,13 @@ IExamVideo.PageLogic = function () {
         return false;
     }
 
-    var LoadVideo = function(id) {
+    var LoadVideo = function (event) {
+        if (event != null) {
+            var id = $(event.target).attr('id');
+        }
+        else {
+            var id = null;
+        }
         if (id != null) {
             $.ajax({
                 type: 'GET',
@@ -54,9 +85,10 @@ IExamVideo.PageLogic = function () {
         }
     }
 
-    var DeleteVideo = function DeleteVideo(id) {
+    var DeleteVideo = function DeleteVideo(event) {
+        var id = $(event.target).attr('id');
         $.ajax({
-            type: 'GET',
+            type: 'POST',
             url: '/Video/DeleteVideo/',
             data: { id: id },
             success: function (result) {
@@ -147,7 +179,6 @@ IExamVideo.PageLogic = function () {
     }
 
     return {
-        manageLink: manageLink,
         loadVideosList: loadVideosList,
         LoadVideo: LoadVideo,
         DeleteVideo: DeleteVideo,

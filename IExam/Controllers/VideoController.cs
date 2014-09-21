@@ -79,9 +79,9 @@ namespace IExam.Controllers
             }
         }
 
-        public ActionResult GetVideoElements()
+        public JsonResult GetVideoElements()
         {
-            return PartialView("_AllVideosElements", db.Videos.ToArray());
+            return Json(db.Videos.ToArray(), JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult GetVideoPlayer(int id, string name)

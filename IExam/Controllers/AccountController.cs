@@ -454,7 +454,8 @@ namespace IExam.Controllers
         [HttpGet]
         public JsonResult AllUsersData()
         {
-            var allUsers = UserManager.Users.ToArray();
+            var id = User.Identity.GetUserId();
+            var allUsers = UserManager.Users.Where(u => u.Id != id).ToArray();
             return Json(allUsers, JsonRequestBehavior.AllowGet);
         }
 

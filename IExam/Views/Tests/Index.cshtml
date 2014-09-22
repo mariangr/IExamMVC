@@ -1,12 +1,13 @@
 ﻿@model IExam.Models.Test
 <header>
     <script src="~/Scripts/IExamTestsIndexPageScript.js"></script>
+    <script src="~/Scripts/IExamTestQuestionsPageScript.js"></script>
 </header>
 @{
     ViewBag.Title = "Tests";
 }
 
-<div class="alert alert-danger container-fluid" >
+<div class="alert alert-danger container-fluid">
     <div class="row">
         <div class="col-md-12">
             <h4>Create Test:</h4>
@@ -15,28 +16,36 @@
     <div class="row">
         <div class="col-md-12">
             <label for="testName">Test name: </label>
-            <input type="text" id="testName"/>
-            <input type="button" value="Create Test" onclick="IExamIndex.PageLogic.CreateTest()"/>
+            <input type="text" id="testName" />
+            <input type="button" value="Create Test" onclick="IExamTestIndex.PageLogic.CreateTest()" />
             <label id="requirmentName">Name Field Is Required</label>
         </div>
     </div>
 </div>
 
 <div class="container-fluid alert alert-success">
-    <table class="table table-hover" id="test_data">
-        <tr>
-            <th>Test Name</th>
-            <th>Delete Test</th>
-        </tr>
-        <tbody data-bind="foreach: tests">
-            <tr>
-                <td data-bind="text: name"></td>
-                <td>
-                    <button type="button" class="btn btn-danger" data-bind="attr: { id: id }" onclick="IExamIndex.PageLogic.DeleteTest(event)">
-                        Delete
-                    </button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="table table-hover" id="test_data">
+        <div class="row">
+            <div class="col-md-6">Test Name</div>
+            <div class="col-md-6">Delete Test</div>
+        </div>
+        <div data-bind="foreach: tests">
+            <div class="row">
+                <div data-bind="text: name" class="col-md-4"></div>
+                <div class="col-md-2"><button type="button" class="btn btn-info" data-bind="attr: { id: id }" onclick="IExamTestIndex.PageLogic.ShowQestions(event)">Questions</button></div>
+                <div class="col-md-6"><button type="button" class="btn btn-danger" data-bind="attr: { id: id }" onclick="IExamTestIndex.PageLogic.DeleteTest(event)">Delete</button></div>
+            </div>
+            <div data-bind="attr: {id: 'questionsContainer' + id()}" style="display: none">
+                <div class="row">
+                    <div data-bind="attr: {id: 'previousQuestions' + id()}"></div>
+                </div>
+                <div class="row" style="display: none">
+                    <div data-bind="attr: {id: 'newQuestions' + id()}">
+                        
+                    </div>
+                </div>
+                <button type="button" class="btn btn-default" onclick="IExamTestIndex.PageLogic.CloseQuestions(event)" data-bind="attr: {id: id }">Hide</button>
+            </div>
+        </div>
+    </div>
 </div>

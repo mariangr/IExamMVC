@@ -37,18 +37,41 @@ namespace IExam.Controllers
 
         public void CreateTest(string name) {
             Test newTest = new Test();
-            int index = 0;
+            int index;
             try
             {
                 index = (int)(testDB.Tests.Max(t => t.TestID) + 1);
             }
             catch (InvalidOperationException)
-            { 
-                
+            {
+                index = 0;
             }
+
             newTest.TestName = name;
             newTest.TestID = index;
             testDB.Tests.Add(newTest);
+            testDB.SaveChanges();
+        }
+
+        public ActionResult GetTestQuestions(int id)
+        {
+            var questions = testDB.Questions.Where(t => t.TestID == id);
+            IEnumerable<Question> tests;
+            try
+            {
+                tests = questions.ToArray();
+            }
+            catch (ArgumentNullException)
+            {
+                tests = new List<Question>() { new Question() { QuestionID = -1, TestID = id } };
+            }
+
+                return PartialView("_Questions", tests);
+        }
+
+        public void DeleteTestQuestions(int id) {
+            var questionToBeDeleted = testDB.Questions.Find(id);
+            testDB.Questions.Remove(questionToBeDeleted);
             testDB.SaveChanges();
         }
 	}

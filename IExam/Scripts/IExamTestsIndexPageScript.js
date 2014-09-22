@@ -1,27 +1,27 @@
-﻿var IExamIndex = IExamIndex || {};
+﻿var IExamTestIndex = IExamTestIndex || {};
 
 $(document).ready(function () {
-    IExamIndex.Tests = new IExamIndex.TestsModel();
-    ko.applyBindings(IExamIndex.Tests, document.getElementById(test_data))
-    IExamIndex.PageLogic.FillTestTable();
+    IExamTestIndex.Tests = new IExamTestIndex.TestsModel();
+    ko.applyBindings(IExamTestIndex.Tests, document.getElementById(test_data))
+    IExamTestIndex.PageLogic.FillTestTable();
     $('#requirmentName').hide();
 })
 
-IExamIndex.TestsModel = function () {
+IExamTestIndex.TestsModel = function () {
     var self = this;
 
     self.tests = ko.observableArray([]);
 
 }
 
-IExamIndex.TestVM = function (id, name) {
+IExamTestIndex.TestVM = function (id, name) {
     var self = this;
 
     self.id = ko.observable(id);
     self.name = ko.observable(name);
 }
 
-IExamIndex.PageLogic = function () {
+IExamTestIndex.PageLogic = function () {
     var DeleteTest = function (event) {
         var id = $(event.target).attr('id');
         $.ajax({
@@ -45,14 +45,14 @@ IExamIndex.PageLogic = function () {
             success: function (tableResult) {
                 var tempArray = [];
                 for (var userI in tableResult) {
-                    tempArray.push(new IExamIndex.TestVM(
+                    tempArray.push(new IExamTestIndex.TestVM(
                         tableResult[userI].TestID,
                         tableResult[userI].TestName
                         ))
                 }
-                IExamIndex.Tests.tests.removeAll();
-                ko.utils.arrayPushAll(IExamIndex.Tests.tests(), tempArray);
-                IExamIndex.Tests.tests.valueHasMutated();
+                IExamTestIndex.Tests.tests.removeAll();
+                ko.utils.arrayPushAll(IExamTestIndex.Tests.tests(), tempArray);
+                IExamTestIndex.Tests.tests.valueHasMutated();
             },
             error: function () {
                 alert('error');
@@ -81,10 +81,35 @@ IExamIndex.PageLogic = function () {
         }
     }
 
+    var ShowQestions = function (event, testID) {
+        var id = testID || $(event.target).attr('id');
+        $.ajax({
+            type: 'GET',
+            url: '/Tests/GetTestQuestions/',
+            data: { id: id },
+            success: function (result) {
+                $('#previousQuestions' + id).html(result);
+                $('#questionsContainer' + id).show();
+
+            },
+            error: function (result) {
+                alert(result);
+            }
+        })
+
+    }
+
+    var CloseQuestions = function (event) {
+        var id = $(event.target).attr('id');
+        $('#questionsContainer' + id).hide();
+    }
+
     return {
         DeleteTest: DeleteTest,
         FillTestTable: FillTestTable,
-        CreateTest: CreateTest
+        CreateTest: CreateTest,
+        ShowQestions: ShowQestions,
+        CloseQuestions: CloseQuestions
         
     }
 }();

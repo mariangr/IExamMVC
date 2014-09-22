@@ -16,8 +16,8 @@
     <div class="row">
         <div class="col-md-12">
             <label for="testName">Test name: </label>
-            <input type="text" id="testName" />
-            <input type="button" value="Create Test" onclick="IExamTestIndex.PageLogic.CreateTest()" />
+            <input type="text" id="testName" class="form-control" />
+            <input type="button" class="btn btn-info" value="Create Test" onclick="IExamTestIndex.PageLogic.CreateTest()" style="margin-top: 2px" />
             <label id="requirmentName">Name Field Is Required</label>
         </div>
     </div>
@@ -35,16 +35,45 @@
                 <div class="col-md-2"><button type="button" class="btn btn-info" data-bind="attr: { id: id }" onclick="IExamTestIndex.PageLogic.ShowQestions(event)">Questions</button></div>
                 <div class="col-md-6"><button type="button" class="btn btn-danger" data-bind="attr: { id: id }" onclick="IExamTestIndex.PageLogic.DeleteTest(event)">Delete</button></div>
             </div>
+            <br />
             <div data-bind="attr: {id: 'questionsContainer' + id()}" style="display: none">
                 <div class="row">
                     <div data-bind="attr: {id: 'previousQuestions' + id()}"></div>
                 </div>
-                <div class="row" style="display: none">
-                    <div data-bind="attr: {id: 'newQuestions' + id()}">
-                        
+                <div class="container-fluid">
+                    <div class="row alert alert-danger">
+                        <div data-bind="attr: {id: 'newQuestions' + id()}">
+                            <div class="col-md-12">
+                                <label for="newTestQuestion">Question</label>
+                                <input type="text" data-bind="attr: {id: 'newTestQuestion' + id()}" class="form-control" />
+
+                                <label>First Answer</label>
+                                <input type="text" data-bind="attr: {id: 'newTestFirstAnswer' + id()}" class="form-control" />
+
+                                <label>Second Answer</label>
+                                <input type="text" data-bind="attr: {id: 'newTestSecondAnswer' + id()}" class="form-control" />
+
+                                <label>Third Answer</label>
+                                <input type="text" data-bind="attr: {id: 'newTestThirdAnswer' + id()}" class="form-control" />
+
+                                <label>Fourth Answer</label>
+                                <input type="text" data-bind="attr: {id: 'newTestFourthAnswer' + id()}" class="form-control" />
+
+                                <label>True Answer</label>
+                                <select class="btn btn-default dropdown-toggle" data-bind="attr: {id: 'newTestAnswer' + id()}">
+                                    <option value="1" selected="selected">First</option>
+                                    <option value="2">Second</option>
+                                    <option value="3">Third</option>
+                                    <option value="4">Fourth</option>
+                                </select>
+                                <br />
+                                <button class="btn btn-warning" data-bind="attr: { id: id }" onclick="IExamTestQuestion.PageLogic.AddQuestion(event)">Add</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <button type="button" class="btn btn-default" onclick="IExamTestIndex.PageLogic.CloseQuestions(event)" data-bind="attr: {id: id }">Hide</button>
+                <br />
             </div>
         </div>
     </div>

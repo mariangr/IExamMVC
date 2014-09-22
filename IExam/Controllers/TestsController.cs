@@ -74,5 +74,11 @@ namespace IExam.Controllers
             testDB.Questions.Remove(questionToBeDeleted);
             testDB.SaveChanges();
         }
+
+        public void AddTestQuestions(Question newQuestion)
+        {
+            testDB.Questions.Add(newQuestion);
+            testDB.SaveChanges();
+        }
 	}
 }

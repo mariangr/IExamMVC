@@ -26,7 +26,7 @@
                         <div class="row" style="margin-top: 2px">
                             <div class="col-md-12" style="padding-bottom: 5px;">
                                 <div class="col-sm-8 col-md-8">
-                                    <div class="btn btn-info videoHeader col-sm-12 col-md-12 wordwrap" id="multilineDiv" onclick="IExamVideo.PageLogic.LoadVideo(event)" data-bind="text: name, attr: {id: id }"></div>
+                                    <div class="btn btn-info videoHeader col-sm-12 col-md-12 multilineDiv" id="multilineDiv" onclick="IExamVideo.PageLogic.LoadVideo(event)" data-bind="text: name, attr: {id: id }" style="text-wrap"></div>
                                 </div>
                                 <div class="col-sm-3 col-md-3">
                                     @if (Request.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("Moderator")))

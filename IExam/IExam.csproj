@@ -315,11 +315,6 @@
     </Content>
     <Content Include="Views\Account\Users.cshtml" />
     <Content Include="Views\Tests\Index.cshtml" />
-    <Content Include="Views\Tests2\Create.cshtml" />
-    <Content Include="Views\Tests2\Delete.cshtml" />
-    <Content Include="Views\Tests2\Details.cshtml" />
-    <Content Include="Views\Tests2\Edit.cshtml" />
-    <Content Include="Views\Tests2\Index.cshtml" />
     <Content Include="Views\Tests\_Questions.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
@@ -381,7 +376,6 @@
     <Content Include="Views\Shared\_Navigation.cshtml" />
     <Content Include="Views\Home\_Home.cshtml" />
     <Content Include="Views\Video\Index.cshtml" />
-    <Content Include="Views\Video\_AllVideosElements.cshtml" />
     <Content Include="Views\Video\_VideoPlayer.cshtml" />
     <Content Include="Views\Video\_VideoComments.cshtml" />
     <Content Include="Views\Video\Create.cshtml" />

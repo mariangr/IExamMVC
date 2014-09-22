@@ -13,10 +13,11 @@ namespace IExam.Helpers
 {
     public static class UserManagerStatic
     {
-        public static readonly UserManager<ApplicationUser> UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+        public static UserManager<ApplicationUser> UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
 
         public static string GetFullName(string userName)
         {
+            UserManager<ApplicationUser> UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
             var currentUser = UserManager.FindByName(userName);
             var fullName = currentUser.FirstName + " " + currentUser.LastName;
             if (fullName.Length > 1)

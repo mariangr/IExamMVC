@@ -52,7 +52,8 @@ IExamUsers.PageLogic = function () {
                 data: { newRole: newRole, userId: userId },
                 success: function () {
                     userRole.html(newRole);
-                    IExamUsers.PageLogic.RefreshUsersStatistics()
+                    IExamUsers.PageLogic.RefreshUsersStatistics();
+                    $(event.target).val('default');
                 },
                 error: function () {
                     alert('error');

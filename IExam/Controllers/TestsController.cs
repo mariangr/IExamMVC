@@ -80,5 +80,17 @@ namespace IExam.Controllers
             testDB.Questions.Add(newQuestion);
             testDB.SaveChanges();
         }
+
+        public ActionResult Tests()
+        {
+            return View();
+        }
+
+        public ActionResult TestQuestions(int testId)
+        {
+            var testQuestions = testDB.Questions.Where(q => q.TestID == testId);
+            ViewBag.TestName = testDB.Tests.Where(t => t.TestID == testId).First().TestName;
+            return View(testQuestions.ToArray());
+        }
 	}
 }

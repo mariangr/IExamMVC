@@ -8,10 +8,12 @@ using System.Web.Mvc;
 
 namespace IExam.Controllers
 {
+    [Authorize]
     public class VideoController : Controller
     {
         private VideoEntities db = new VideoEntities();
 
+        [AllowAnonymous]
         public ActionResult Index()
         {
             return View();
@@ -79,11 +81,13 @@ namespace IExam.Controllers
             }
         }
 
+        [AllowAnonymous]
         public JsonResult GetVideoElements()
         {
             return Json(db.Videos.ToArray(), JsonRequestBehavior.AllowGet);
         }
 
+        [AllowAnonymous]
         public ActionResult GetVideoPlayer(int id, string name)
         {
             try
@@ -112,6 +116,7 @@ namespace IExam.Controllers
             db.SaveChanges();
         }
 
+        [AllowAnonymous]
         public ActionResult GetVideoComments(Video video)
         {
             var currentComments = db.Comments.Where(c => c.link == video.link).ToArray();

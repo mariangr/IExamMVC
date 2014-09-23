@@ -275,6 +275,7 @@
     <Content Include="Scripts\IExamIndexPageScript.js" />
     <Content Include="Scripts\IExamTestQuestionsPageScript.js" />
     <Content Include="Scripts\IExamTestsIndexPageScript.js" />
+    <Content Include="Scripts\IExamTestsPageScript.js" />
     <Content Include="Scripts\iExamUsersPageScript.js" />
     <Content Include="Scripts\IExamVideoCreatePageScript.js" />
     <Content Include="Scripts\knockout-3.1.0.debug.js" />
@@ -316,6 +317,8 @@
     <Content Include="Views\Account\Users.cshtml" />
     <Content Include="Views\Tests\Index.cshtml" />
     <Content Include="Views\Tests\_Questions.cshtml" />
+    <Content Include="Views\Tests\Tests.cshtml" />
+    <Content Include="Views\Tests\TestQuestions.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />

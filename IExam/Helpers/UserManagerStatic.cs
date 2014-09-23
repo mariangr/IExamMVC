@@ -17,7 +17,7 @@ namespace IExam.Helpers
 
         public static string GetFullName(string userName)
         {
-            UserManager<ApplicationUser> UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+            UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
             var currentUser = UserManager.FindByName(userName);
             var fullName = currentUser.FirstName + " " + currentUser.LastName;
             if (fullName.Length > 1)

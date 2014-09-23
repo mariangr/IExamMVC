@@ -1,4 +1,5 @@
 ﻿var IExamUsers = IExamUsers || {};
+IExamUsers.UsersPageManagement = null;
 
 $(document).ready(function () {
     IExamUsers.UsersPageManagement = new IExamUsers.UsersPageManagementModel();

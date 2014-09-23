@@ -1,4 +1,5 @@
 ﻿var IExamVideo = IExamVideo || {};
+IExamVideo.VideoList = null;
 
 $(document).ready(function () {
     IExamVideo.VideoList = new IExamVideo.VideoListModel();

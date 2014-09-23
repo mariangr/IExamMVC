@@ -37,7 +37,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-6">
-                    <button data-bind="click: ShowHideUsersTable()" class="btn btn-default" >Show/Hide Users Table</button>
+                    <button data-bind="click: ShowHideUsersTable()" class="btn btn-default">Show/Hide Users Table</button>
                 </div>
             </div>
         </div>
@@ -65,20 +65,33 @@
                             <td data-bind="text: lastName"></td>
                             <td data-bind="text: identityNumber"></td>
                             <td data-bind="text: FN"></td>
-                            <td data-bind="text: role, attr: {id: 'RoleId' + id() }">
+                            <td data-bind="text: role, attr: {id: 'RoleId' + id() }"></td>
+                            <td>
+                                @if (User.IsInRole("Admin"))
+                                {
+                                    <select class="btn btn-default dropdown-toggle selectUserRoleChange" data-bind="attr: {id: id }" onchange="IExamUsers.PageLogic.ChangeUserRole(event)">
+                                        <option value="default">Change Role</option>
+                                        <option value="Admin">Admin</option>
+                                        <option value="Moderator">Moderator</option>
+                                        <option value="User">User</option>
+                                    </select>
+                                }
+                                else
+                                {
+                                    <p>Only For Admins</p>
+                                }
                             </td>
                             <td>
-                                <select class="btn btn-default dropdown-toggle selectUserRoleChange" data-bind="attr: {id: id }" onchange="IExamUsers.PageLogic.ChangeUserRole(event)">
-                                    <option value="default">Change Role</option>
-                                    <option value="Admin">Admin</option>
-                                    <option value="Moderator">Moderator</option>
-                                    <option value="User">User</option>
-                                </select>
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-danger" data-bind="attr: {id: id }" onclick="IExamUsers.PageLogic.DeleteUser(event)">
-                                    Delete
-                                </button>
+                                @if (User.IsInRole("Admin"))
+                                {
+                                    <button type="button" class="btn btn-danger" data-bind="attr: {id: id }" onclick="IExamUsers.PageLogic.DeleteUser(event)">
+                                        Delete
+                                    </button>
+                                }
+                                else
+                                {
+                                    <p>Only For Admins</p>
+                                }
                             </td>
                         </tr>
                     </tbody>

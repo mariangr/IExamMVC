@@ -1,4 +1,5 @@
 ﻿var IExamTestIndex = IExamTestIndex || {};
+IExamTestIndex.Tests = null;
 
 $(document).ready(function () {
     IExamTestIndex.Tests = new IExamTestIndex.TestsModel();

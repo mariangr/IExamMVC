@@ -1,20 +1,19 @@
 <div class="panel panel-default">
     <div class="panel-body ">
         <button class="btn btn-info" type="button" onclick="location.href='@Url.Action("Index","Home")'"><span class="glyphicon glyphicon-home"></span>    Home Page</button><br><br>
+        <button class="btn btn-info" type="button" onclick="location.href='@Url.Action("Index","Video")'"><span class="glyphicon glyphicon-film"></span>    Video</button><br><br>
         @if (Request.IsAuthenticated)
         {
+            <button class="btn btn-info" type="button" onclick="location.href = '@Url.Action("Tests", "Tests")'"><span class="glyphicon glyphicon-list-alt"></span>    Tests</button><br><br>
             <button class="btn btn-warning" type="button" onclick="location.href='@Url.Action("Manage", "Account")'"><span class="glyphicon glyphicon-user"></span>    Profile</button><br><br>
-            <button class="btn btn-default" type="button" onclick="location.href = '@Url.Action("Tests", "Tests")'"><span class="glyphicon glyphicon-list-alt"></span>    Tests</button><br><br>
         }
         @if(Request.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("Moderator")))
         {
         <button class="btn btn-danger" type="button" onclick="location.href = '@Url.Action("Users","Account")'"><span class="glyphicon glyphicon-user"></span><span class="glyphicon glyphicon-user"></span>     Users</button><br><br>
         <button class="btn btn-danger" type="button" onclick="location.href = '@Url.Action("Index","Tests")'"><span class="glyphicon glyphicon-edit"></span>    All Tests</button><br><br>
         }
-        <button class="btn btn-info" type="button" onclick="location.href='@Url.Action("Index","Video")'"><span class="glyphicon glyphicon-film"></span>    Video</button><br><br>
         <!--<button class="btn btn-default" type="button" onclick="loadSelectedPage('_Home')"><span class="glyphicon glyphicon-list-alt"></span>    Test Interactive</button><br><br>
         <button class="btn btn-default" type="button" onclick="loadSelectedPage('_Home')"><span class="glyphicon glyphicon-envelope"></span>    Mail</button><br><br>
-        <button class="btn btn-default" type="button" onclick="loadSelectedPage('_Home')"><span class="glyphicon glyphicon-picture"></span>    Images</button><br><br>
         <button class="btn btn-default" type="button" onclick="loadSelectedPage('_Home')"><span class="glyphicon glyphicon-stats"></span>    Statistics</button><br><br>
         <button class="btn btn-default" type="button" onclick="loadSelectedPage('_Home')"><span class="glyphicon glyphicon-list"></span>    Logged in</button><br><br>-->
         <!--<button class="btn btn-default" type="button" onclick="loadSelectedPage('_Home')"><span class="glyphicon glyphicon-log-out"></span>    Log out</button><br><br>-->

@@ -56,17 +56,17 @@ namespace IExam.Controllers
         public ActionResult GetTestQuestions(int id)
         {
             var questions = testDB.Questions.Where(t => t.TestID == id);
-            IEnumerable<Question> tests;
+            IEnumerable<Question> testsQuestions;
             try
             {
-                tests = questions.ToArray();
+                testsQuestions = questions.ToArray();
             }
             catch (ArgumentNullException)
             {
-                tests = new List<Question>() { new Question() { QuestionID = -1, TestID = id } };
+                testsQuestions = new List<Question>() { new Question() { QuestionID = -1, TestID = id } };
             }
 
-                return PartialView("_Questions", tests);
+            return PartialView("_Questions", testsQuestions);
         }
 
         public void DeleteTestQuestions(int id) {
@@ -88,9 +88,18 @@ namespace IExam.Controllers
 
         public ActionResult TestQuestions(int testId)
         {
-            var testQuestions = testDB.Questions.Where(q => q.TestID == testId);
+            var questions = testDB.Questions.Where(q => q.TestID == testId);
+            IEnumerable<Question> testQuestions;
+            if (questions.Count() > 0)
+            { 
+                testQuestions = questions.ToArray();
+            }
+            else
+            {
+                testQuestions = null;
+            }
             ViewBag.TestName = testDB.Tests.Where(t => t.TestID == testId).First().TestName;
-            return View(testQuestions.ToArray());
+            return View(testQuestions);
         }
 	}
 }

@@ -17,7 +17,7 @@ namespace IExam.Controllers
     [Authorize]
     public class TestsController : Controller
     {
-        private TestsDBContext testDB = new TestsDBContext();
+        private IExamDBContext IExamDB = new IExamDBContext();
         //
         // GET: /Tests/
         public ActionResult Index()
@@ -27,19 +27,19 @@ namespace IExam.Controllers
 
         public JsonResult GetTestData()
         {
-            return Json(testDB.Tests.ToArray(), JsonRequestBehavior.AllowGet);
+            return Json(IExamDB.Tests.ToArray(), JsonRequestBehavior.AllowGet);
         }
 
         public void DeleteTest(int id)
         {
-            Test test = testDB.Tests.Find(id);
-            var TestQuestions = testDB.Questions.Where(q => q.TestID == id);
+            Test test = IExamDB.Tests.Find(id);
+            var TestQuestions = IExamDB.Questions.Where(q => q.TestID == id);
             foreach(var question in TestQuestions)
             {
-                testDB.Questions.Remove(question);
+                IExamDB.Questions.Remove(question);
             }
-            testDB.Tests.Remove(test);
-            testDB.SaveChanges();
+            IExamDB.Tests.Remove(test);
+            IExamDB.SaveChanges();
         }
 
         public void CreateTest(string name) {
@@ -47,7 +47,7 @@ namespace IExam.Controllers
             int index;
             try
             {
-                index = (int)(testDB.Tests.Max(t => t.TestID) + 1);
+                index = (int)(IExamDB.Tests.Max(t => t.TestID) + 1);
             }
             catch (InvalidOperationException)
             {
@@ -56,13 +56,13 @@ namespace IExam.Controllers
 
             newTest.TestName = name;
             newTest.TestID = index;
-            testDB.Tests.Add(newTest);
-            testDB.SaveChanges();
+            IExamDB.Tests.Add(newTest);
+            IExamDB.SaveChanges();
         }
 
         public ActionResult GetTestQuestions(int id)
         {
-            var questions = testDB.Questions.Where(t => t.TestID == id);
+            var questions = IExamDB.Questions.Where(t => t.TestID == id);
             IEnumerable<Question> testsQuestions;
             try
             {
@@ -77,15 +77,15 @@ namespace IExam.Controllers
         }
 
         public void DeleteTestQuestions(int id) {
-            var questionToBeDeleted = testDB.Questions.Find(id);
-            testDB.Questions.Remove(questionToBeDeleted);
-            testDB.SaveChanges();
+            var questionToBeDeleted = IExamDB.Questions.Find(id);
+            IExamDB.Questions.Remove(questionToBeDeleted);
+            IExamDB.SaveChanges();
         }
 
         public void AddTestQuestions(Question newQuestion)
         {
-            testDB.Questions.Add(newQuestion);
-            testDB.SaveChanges();
+            IExamDB.Questions.Add(newQuestion);
+            IExamDB.SaveChanges();
         }
 
         public ActionResult Tests()
@@ -95,8 +95,7 @@ namespace IExam.Controllers
 
         public ActionResult TestQuestions(int testId)
         {
-            var usersTestsAnswersDB = new UsersTestAnswersDBContext();
-            var questions = testDB.Questions.Where(q => q.TestID == testId);
+            var questions = IExamDB.Questions.Where(q => q.TestID == testId);
             IEnumerable<Question> testQuestions;
             if (questions.Count() > 0)
             { 
@@ -107,19 +106,18 @@ namespace IExam.Controllers
                 testQuestions = null;
             }
             var userID = User.Identity.GetUserId();
-            ViewBag.NumberOfTimesDone = "You have done this test: " + usersTestsAnswersDB.UsersTestAnswers.Where(t => t.TestID == testId && t.UserID == userID).Count() + " times";
-            ViewBag.TestName = testDB.Tests.Where(t => t.TestID == testId).First().TestName;
+            ViewBag.NumberOfTimesDone = "You have done this test: " + IExamDB.UsersTestAnswers.Where(t => t.TestID == testId && t.UserID == userID).Count() + " times";
+            ViewBag.TestName = IExamDB.Tests.Where(t => t.TestID == testId).First().TestName;
             return View(testQuestions);
         }
 
         public JsonResult CheckAnswers(IEnumerable<TestAnswers> AllAnswers)
         {
-            var usersTestsAnswersDB = new UsersTestAnswersDBContext();
             var userId = User.Identity.GetUserId();
             var testId = AllAnswers.First().TestID;
 
             int rightQuestions = 0;
-            var questions = testDB.Questions.Where(q => q.TestID == testId);
+            var questions = IExamDB.Questions.Where(q => q.TestID == testId);
             foreach (var answer in AllAnswers)
             {
                 int currentQuestionId = answer.QuestionID;
@@ -132,10 +130,10 @@ namespace IExam.Controllers
 
                 newAnswer.TestID = testId;
                 newAnswer.UserID = userId;
-                newAnswer.TestQuestionNumber = testDB.Questions.Where(t => t.TestID == testId).Count();
+                newAnswer.TestQuestionNumber = IExamDB.Questions.Where(t => t.TestID == testId).Count();
                 newAnswer.TestRightQuestionsNumber = rightQuestions;
-                usersTestsAnswersDB.UsersTestAnswers.Add(newAnswer);
-                usersTestsAnswersDB.SaveChanges();
+                IExamDB.UsersTestAnswers.Add(newAnswer);
+                IExamDB.SaveChanges();
 
 
             return Json(newAnswer);

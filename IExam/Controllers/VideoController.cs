@@ -11,7 +11,7 @@ namespace IExam.Controllers
     [Authorize]
     public class VideoController : Controller
     {
-        private VideoEntities db = new VideoEntities();
+        private IExamDBContext db = new IExamDBContext();
 
         [AllowAnonymous]
         public ActionResult Index()
@@ -19,6 +19,7 @@ namespace IExam.Controllers
             return View();
         }
 
+        [AllowAnonymous]
         public ActionResult Create()
         {
             return View();
@@ -26,6 +27,7 @@ namespace IExam.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AllowAnonymous]
         public ActionResult Create([Bind(Include = "name,link")] Video newVideo)
         {
             int id;
@@ -39,8 +41,8 @@ namespace IExam.Controllers
                     int countOfDublicateVideo = db.Videos.Where(v => v.link == newVideo.link).Count();
                     if (countOfDublicateVideo == 0)
                     {
-                        id = (int)(db.Videos.Max(v => v.ID) + 1);
-                        newVideo.ID = id;
+                        id = (int)(db.Videos.Max(v => v.VideoID) + 1);
+                        newVideo.VideoID = id;
                         db.Videos.Add(newVideo);
                         db.SaveChanges();
                         return RedirectToAction("Index");
@@ -55,20 +57,20 @@ namespace IExam.Controllers
             catch (WebException)
             {
                 //When the video doesn't exist
-                newVideo.ID = -3;
+                newVideo.VideoID = -3;
                 return View(newVideo);
             }
             catch (DuplicateWaitObjectException)
             {
                 //When the video is already in the db
-                newVideo.ID = -1;
+                newVideo.VideoID = -1;
                 return View(newVideo);
             }
             catch (InvalidOperationException)
             {
                 //When there are no videos in the db (linq max exception)
                 id = 0;
-                newVideo.ID = id;
+                newVideo.VideoID = id;
                 db.Videos.Add(newVideo);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -76,7 +78,7 @@ namespace IExam.Controllers
             catch (Exception)
             {
                 //for unhandled exceptions
-                newVideo.ID = -2;
+                newVideo.VideoID = -2;
                 return View(newVideo);
             }
         }
@@ -92,7 +94,7 @@ namespace IExam.Controllers
         {
             try
             {
-                Video wantedVideo = db.Videos.Where(v => v.ID == id).ToArray()[0];
+                Video wantedVideo = db.Videos.Where(v => v.VideoID == id).ToArray()[0];
                 
                 return PartialView("_VideoPlayer", wantedVideo);
             }
@@ -138,7 +140,7 @@ namespace IExam.Controllers
                 {
                     throw new ArgumentNullException();
                 }
-                newComment.ID = (int)(db.Comments.Max(c => c.ID) + 1);
+                newComment.CommentID = (int)(db.Comments.Max(c => c.CommentID) + 1);
                 db.Comments.Add(newComment);
                 db.SaveChanges();
                 return "CommentAddedSuccessfully";
@@ -149,7 +151,7 @@ namespace IExam.Controllers
             }
             catch (System.InvalidOperationException)
             {
-                newComment.ID = 0;
+                newComment.CommentID = 0;
                 db.Comments.Add(newComment);
                 db.SaveChanges();
                 return "CommentAddedSuccessfully";

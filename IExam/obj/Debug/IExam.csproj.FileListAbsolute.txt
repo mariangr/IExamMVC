@@ -200,4 +200,3 @@ C:\Users\marian.graurov\Documents\GitHub\IExamMVC\IExam\obj\Debug\IExam.csproj.G
 C:\Users\marian.graurov\Documents\GitHub\IExamMVC\IExam\obj\Debug\IExam.dll
 C:\Users\marian.graurov\Documents\GitHub\IExamMVC\IExam\obj\Debug\IExam.pdb
 C:\Users\marian.graurov\Documents\GitHub\IExamMVC\IExam\obj\Debug\IExam.csprojResolveAssemblyReference.cache
-C:\Users\marian.graurov\Documents\GitHub\IExamMVC\IExam\bin\IExam.dll.config

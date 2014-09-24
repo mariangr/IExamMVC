@@ -193,33 +193,11 @@
       <DependentUpon>201409201317085_NameFNIdentity.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\Comment.cs">
-      <DependentUpon>Videos.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TestsModel.cs" />
-    <Compile Include="Models\UsersTestAnswersModel.cs" />
-    <Compile Include="Models\Video.cs">
-      <DependentUpon>Videos.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Videos.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Videos.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Videos.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Videos.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Videos.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Videos.edmx</DependentUpon>
-    </Compile>
+    <Compile Include="Models\IExamDBModel.cs" />
     <Compile Include="Startup.cs" />
-    <Content Include="App_Data\IExamDB.mdf" />
-    <Content Include="App_Data\IExamDB_log.ldf">
-      <DependentUpon>IExamDB.mdf</DependentUpon>
+    <Content Include="App_Data\IExamProjectDataBase.mdf" />
+    <Content Include="App_Data\IExamProjectDataBase_log.ldf">
+      <DependentUpon>IExamProjectDataBase.mdf</DependentUpon>
     </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -299,23 +277,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="ClassDiagram1.cd" />
-    <EntityDeploy Include="Models\Videos.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Videos.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Videos.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Videos.edmx</DependentUpon>
-      <LastGenOutput>Videos.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\Videos.edmx.diagram">
-      <DependentUpon>Videos.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\Videos.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Videos.edmx</DependentUpon>
-      <LastGenOutput>Videos.cs</LastGenOutput>
-    </Content>
     <Content Include="Views\Account\Users.cshtml" />
     <Content Include="Views\Tests\Index.cshtml" />
     <Content Include="Views\Tests\_Questions.cshtml" />
@@ -376,7 +337,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\web.config" />
+    <Content Include="Views\web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="packages.config" />
     <Content Include="Views\Shared\_Navigation.cshtml" />
     <Content Include="Views\Home\_Home.cshtml" />
@@ -405,6 +368,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

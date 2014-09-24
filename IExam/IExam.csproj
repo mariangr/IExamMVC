@@ -197,6 +197,7 @@
       <DependentUpon>Videos.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TestsModel.cs" />
+    <Compile Include="Models\UsersTestAnswersModel.cs" />
     <Compile Include="Models\Video.cs">
       <DependentUpon>Videos.tt</DependentUpon>
     </Compile>
@@ -273,6 +274,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Content Include="Scripts\IExamIndexPageScript.js" />
+    <Content Include="Scripts\IExamSelectedPageScript.js" />
     <Content Include="Scripts\IExamTestQuestionsPageScript.js" />
     <Content Include="Scripts\IExamTestsIndexPageScript.js" />
     <Content Include="Scripts\IExamTestsPageScript.js" />

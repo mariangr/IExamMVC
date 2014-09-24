@@ -2,28 +2,32 @@
 @{
     ViewBag.Title = ViewBag.TestName;
 }
+<header>
+    <script src="~/Scripts/IExamSelectedPageScript.js"></script>
+</header>
+
 
 @if(Model != null)
 { 
 <div class="alert alert-info container-fluid">
-    <label>Test: @ViewBag.TestName</label>
-
+    <label>Test: @ViewBag.TestName</label><br>
+    <label>@ViewBag.NumberOfTimesDone</label>
     <br>
 
     <div class="col-md-12">
         @foreach (var question in Model)
         {
-            <form id="@("question" + question.QuestionID)">
+            <form id="@question.QuestionID" class="questionForm">
                 <label>@question.QuestionDescription</label><br>
 
-                <input type="radio" id="@("answer" + question.QuestionID)" name="@("answer" + question.QuestionID)" value="1">@question.FirstAnswer<br>
-                <input type="radio" id="@("answer" + question.QuestionID)" name="@("answer" + question.QuestionID)" value="2">@question.SecondAnswer<br>
-                <input type="radio" id="@("answer" + question.QuestionID)" name="@("answer" + question.QuestionID)" value="3">@question.ThirdAnswer<br>
-                <input type="radio" id="@("answer" + question.QuestionID)" name="@("answer" + question.QuestionID)" value="4">@question.FourthAnswer<br>
+                <input type="radio" name="@("answer" + question.QuestionID)" value="1">@question.FirstAnswer<br>
+                <input type="radio" name="@("answer" + question.QuestionID)" value="2">@question.SecondAnswer<br>
+                <input type="radio" name="@("answer" + question.QuestionID)" value="3">@question.ThirdAnswer<br>
+                <input type="radio" name="@("answer" + question.QuestionID)" value="4">@question.FourthAnswer<br>
             </form>
             <br>
         }
-        <input type="button" id="@Model.First().TestID" class="btn btn-info" onclick="" value="Submit" />
+        <input type="button" id="@Model.First().TestID" class="btn btn-info" onclick="IExamSelectedTest.PageLogic.sendAnswers(event)" value="Submit" />
     </div>
 </div>
 }

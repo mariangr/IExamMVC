@@ -115,7 +115,6 @@ C:\Users\Hueco Mundo\Documents\GitHub\IExamMVC\IExam\bin\PerpetuumSoft.Knockout.
 C:\Users\Hueco Mundo\Documents\GitHub\IExamMVC\IExam\obj\Debug\IExam.Migrations.InitialCreate.resources
 C:\Users\Hueco Mundo\Documents\GitHub\IExamMVC\IExam\obj\Debug\IExam.csproj.GenerateResource.Cache
 C:\Users\Hueco Mundo\Documents\GitHub\IExamMVC\IExam\obj\Debug\IExam.Migrations.NameFNIdentity.resources
-C:\Users\marian.graurov\Documents\GitHub\IExamMVC\IExam\bin\IExam.dll.config
 C:\Users\marian.graurov\Documents\GitHub\IExamMVC\IExam\bin\IExam.dll
 C:\Users\marian.graurov\Documents\GitHub\IExamMVC\IExam\bin\IExam.pdb
 C:\Users\marian.graurov\Documents\GitHub\IExamMVC\IExam\bin\x86\sqlcese40.dll
@@ -195,9 +194,10 @@ C:\Users\marian.graurov\Documents\GitHub\IExamMVC\IExam\bin\System.Web.Razor.xml
 C:\Users\marian.graurov\Documents\GitHub\IExamMVC\IExam\bin\System.Web.WebPages.xml
 C:\Users\marian.graurov\Documents\GitHub\IExamMVC\IExam\bin\System.Web.WebPages.Deployment.xml
 C:\Users\marian.graurov\Documents\GitHub\IExamMVC\IExam\bin\System.Web.WebPages.Razor.xml
-C:\Users\marian.graurov\Documents\GitHub\IExamMVC\IExam\obj\Debug\IExam.csprojResolveAssemblyReference.cache
 C:\Users\marian.graurov\Documents\GitHub\IExamMVC\IExam\obj\Debug\IExam.Migrations.InitialCreate.resources
 C:\Users\marian.graurov\Documents\GitHub\IExamMVC\IExam\obj\Debug\IExam.Migrations.NameFNIdentity.resources
 C:\Users\marian.graurov\Documents\GitHub\IExamMVC\IExam\obj\Debug\IExam.csproj.GenerateResource.Cache
 C:\Users\marian.graurov\Documents\GitHub\IExamMVC\IExam\obj\Debug\IExam.dll
 C:\Users\marian.graurov\Documents\GitHub\IExamMVC\IExam\obj\Debug\IExam.pdb
+C:\Users\marian.graurov\Documents\GitHub\IExamMVC\IExam\obj\Debug\IExam.csprojResolveAssemblyReference.cache
+C:\Users\marian.graurov\Documents\GitHub\IExamMVC\IExam\bin\IExam.dll.config

@@ -2,7 +2,7 @@
 
 @if (Model != null) { 
     <iframe src="//www.youtube.com/embed/@Model.link" frameborder="0" allowfullscreen></iframe>
-    <input type="hidden" value="@Model.ID" id="selectedVideoInPlayerID">
+    <input type="hidden" value="@Model.VideoID" id="selectedVideoInPlayerID">
     <input type="hidden" value="@Model.link" id="selectedVideoInPlayerLink">
 }
 

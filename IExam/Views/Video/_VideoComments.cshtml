@@ -24,7 +24,7 @@
                         {
                             if (User.Identity.Name == item.user || User.IsInRole("Admin"))
                             {
-                                <a href="#" class="btn btn-default btn-mini" onclick="IExamVideo.PageLogic.deleteComment(@item.ID)" style="float:right"><i class="glyphicon glyphicon-remove-sign"></i> Delete</a>
+                                <a href="#" class="btn btn-default btn-mini" onclick="IExamVideo.PageLogic.deleteComment(@item.CommentID)" style="float:right"><i class="glyphicon glyphicon-remove-sign"></i> Delete</a>
                             }
                         }
                     </td>

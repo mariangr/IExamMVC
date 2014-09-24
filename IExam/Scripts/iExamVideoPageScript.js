@@ -32,7 +32,7 @@ IExamVideo.PageLogic = function () {
                 if (result.length > 0) {
                     var tempArray = [];
                     for (var video in result) {
-                        var newVideo = new IExamVideo.VideoElementVM(result[video].ID, result[video].name, result[video].link);
+                        var newVideo = new IExamVideo.VideoElementVM(result[video].VideoID, result[video].name, result[video].link);
                         tempArray.push(newVideo);
                     }
                     IExamVideo.VideoList.videos.removeAll();
@@ -142,10 +142,11 @@ IExamVideo.PageLogic = function () {
         var linkOfComment = $('#selectedVideoInPlayerLink').val();
         var message = $('#commentForVideo').val();
         var user = $('#currentUser').val();
+        var videoID = $('#selectedVideoInPlayerID').val();
         $.ajax({
             type: 'GET',
             url: '/Video/CreateVideoComment/',
-            data: { link: linkOfComment, message: message, user: user },
+            data: { link: linkOfComment, message: message, user: user, VideoID: videoID },
             success: function (result) {
                 if (result == "CommentAddedSuccessfully") {
                     getCurrentVideoComments();

@@ -19,7 +19,6 @@ namespace IExam.Controllers
             return View();
         }
 
-        [AllowAnonymous]
         public ActionResult Create()
         {
             return View();
@@ -27,7 +26,6 @@ namespace IExam.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [AllowAnonymous]
         public ActionResult Create([Bind(Include = "name,link")] Video newVideo)
         {
             int id;

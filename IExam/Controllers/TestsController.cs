@@ -96,7 +96,6 @@ namespace IExam.Controllers
                 testQuestions = null;
             }
             var userID = User.Identity.GetUserId();
-            ViewBag.NumberOfTimesDone = "You have done this test: " + IExamDB.UsersTestAnswers.Where(t => t.TestID == testId && t.ApplicationUserID == userID).Count() + " times";
             ViewBag.TestName = IExamDB.Tests.Where(t => t.TestID == testId).First().TestName;
             return View(testQuestions);
         }
@@ -127,6 +126,13 @@ namespace IExam.Controllers
 
 
             return Json(newAnswer);
+        }
+
+        public JsonResult GetNumberOfTimesTestDone(int testID)
+        {
+            var NumberOfTimesDone = "You have done this test: " + IExamDB.UsersTestAnswers.Where(t => t.TestID == testId && t.ApplicationUserID == userID).Count() + " times";
+            return Json(new { NumberOfTimesDone = NumberOfTimesDone });
+
         }
 
 	}

@@ -57,7 +57,32 @@ IExamSelectedTest.PageLogic = function () {
         })
     }
 
+    var GetNumberOfTimesTestIsDone = function () {
+
+        $.ajax({
+            type: 'GET',
+            url: '/Tests/GetNumberOfTimesTestDone/',
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            data: ,
+            success: function (result) {
+                alert('You have: ' + result.TestRightQuestionsNumber + "/" + result.TestQuestionNumber + " right answers");
+            },
+            error: function (result) {
+                alert(result);
+            }
+        })
+
+    }
+
     return {
         sendAnswers: sendAnswers,
     }
 }();
+
+IExamSelectedTest.SelectedTestModel = function () {
+    var self = this;
+
+    self.numberOfTimesTestIsDone = ko.observable("You have done this test: 0 times");
+
+}

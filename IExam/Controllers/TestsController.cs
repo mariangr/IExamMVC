@@ -44,19 +44,8 @@ namespace IExam.Controllers
 
         public void CreateTest(string name) {
             Test newTest = new Test();
-            int index;
-            try
-            {
-                index = (int)(IExamDB.Tests.Max(t => t.TestID) + 1);
-            }
-            catch (InvalidOperationException)
-            {
-                index = 0;
-            }
-
             newTest.ApplicationUserID = User.Identity.GetUserId();
             newTest.TestName = name;
-            newTest.TestID = index;
             IExamDB.Tests.Add(newTest);
             IExamDB.SaveChanges();
         }

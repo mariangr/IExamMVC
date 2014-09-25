@@ -54,6 +54,7 @@ namespace IExam.Controllers
                 index = 0;
             }
 
+            newTest.ApplicationUserID = User.Identity.GetUserId();
             newTest.TestName = name;
             newTest.TestID = index;
             IExamDB.Tests.Add(newTest);
@@ -106,7 +107,7 @@ namespace IExam.Controllers
                 testQuestions = null;
             }
             var userID = User.Identity.GetUserId();
-            ViewBag.NumberOfTimesDone = "You have done this test: " + IExamDB.UsersTestAnswers.Where(t => t.TestID == testId && t.UserID == userID).Count() + " times";
+            ViewBag.NumberOfTimesDone = "You have done this test: " + IExamDB.UsersTestAnswers.Where(t => t.TestID == testId && t.ApplicationUserID == userID).Count() + " times";
             ViewBag.TestName = IExamDB.Tests.Where(t => t.TestID == testId).First().TestName;
             return View(testQuestions);
         }
@@ -129,7 +130,7 @@ namespace IExam.Controllers
                 var newAnswer = new UsersTestAnswers();
 
                 newAnswer.TestID = testId;
-                newAnswer.UserID = userId;
+                newAnswer.ApplicationUserID = userId;
                 newAnswer.TestQuestionNumber = IExamDB.Questions.Where(t => t.TestID == testId).Count();
                 newAnswer.TestRightQuestionsNumber = rightQuestions;
                 IExamDB.UsersTestAnswers.Add(newAnswer);

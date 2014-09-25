@@ -29,6 +29,9 @@ namespace IExam.Models
         [Required]
         public string TestName { get; set; }
 
+        [Required]
+        public string ApplicationUserID { set; get; }
+
         public ICollection<Question> Questions { get; set; }
         public ICollection<UsersTestAnswers> UsersTestAnswers { get; set; }
     }
@@ -69,7 +72,7 @@ namespace IExam.Models
         public int TestID { set; get; }
 
         [Required]
-        public string UserID { set; get; }
+        public string ApplicationUserID { set; get; }
 
         [Required]
         public int TestQuestionNumber { set; get; }
@@ -85,6 +88,9 @@ namespace IExam.Models
 
         [Required]
         public int VideoID { set; get; }
+
+        [Required]
+        public string ApplicationUserID { set; get; }
 
         [Required]
         public string message { get; set; }
@@ -106,6 +112,9 @@ namespace IExam.Models
 
         [Required]
         public string link { get; set; }
+
+        [Required]
+        public string ApplicationUserID { set; get; }
 
         public ICollection<Comment> Comments { set; get; }
     }

@@ -5,6 +5,9 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.Owin;
+using Microsoft.AspNet;
+using Microsoft.AspNet.Identity;
 
 namespace IExam.Controllers
 {
@@ -26,31 +29,24 @@ namespace IExam.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "name,link")] Video newVideo)
+        public ActionResult Create([Bind(Include = "name,link,ApplicationUserID")] Video newVideo)
         {
-            int id;
             WebClient client = new WebClient();
+            newVideo.ApplicationUserID = User.Identity.GetUserId();
             try
             {
                 string downloadString = client.DownloadString("http://gdata.youtube.com/feeds/api/videos/" + newVideo.link);
-                if (ModelState.IsValid)
+                int countOfDublicateVideo = db.Videos.Where(v => v.link == newVideo.link).Count();
+                if (countOfDublicateVideo == 0)
                 {
-
-                    int countOfDublicateVideo = db.Videos.Where(v => v.link == newVideo.link).Count();
-                    if (countOfDublicateVideo == 0)
-                    {
-                        id = (int)(db.Videos.Max(v => v.VideoID) + 1);
-                        newVideo.VideoID = id;
-                        db.Videos.Add(newVideo);
-                        db.SaveChanges();
-                        return RedirectToAction("Index");
-                    }
-                    else
-                    {
-                        throw new DuplicateWaitObjectException();
-                    }
+                    db.Videos.Add(newVideo);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
                 }
-                return View(newVideo);
+                else
+                {
+                    throw new DuplicateWaitObjectException();
+                }
             }
             catch (WebException)
             {
@@ -63,15 +59,6 @@ namespace IExam.Controllers
                 //When the video is already in the db
                 newVideo.VideoID = -1;
                 return View(newVideo);
-            }
-            catch (InvalidOperationException)
-            {
-                //When there are no videos in the db (linq max exception)
-                id = 0;
-                newVideo.VideoID = id;
-                db.Videos.Add(newVideo);
-                db.SaveChanges();
-                return RedirectToAction("Index");
             }
             catch (Exception)
             {
@@ -93,7 +80,7 @@ namespace IExam.Controllers
             try
             {
                 Video wantedVideo = db.Videos.Where(v => v.VideoID == id).ToArray()[0];
-                
+
                 return PartialView("_VideoPlayer", wantedVideo);
             }
             catch (System.IndexOutOfRangeException)
@@ -130,7 +117,8 @@ namespace IExam.Controllers
                 while (newComment.message != null && newComment.message.Substring(0, 1) == "\n")
                 {
                     newComment.message = newComment.message.Substring(1);
-                    if (newComment.message.Length == 0) {
+                    if (newComment.message.Length == 0)
+                    {
                         break;
                     }
                 }
@@ -138,7 +126,7 @@ namespace IExam.Controllers
                 {
                     throw new ArgumentNullException();
                 }
-                newComment.CommentID = (int)(db.Comments.Max(c => c.CommentID) + 1);
+                newComment.ApplicationUserID = User.Identity.GetUserId();
                 db.Comments.Add(newComment);
                 db.SaveChanges();
                 return "CommentAddedSuccessfully";
@@ -146,13 +134,6 @@ namespace IExam.Controllers
             catch (ArgumentNullException)
             {
                 return "EmptyComment";
-            }
-            catch (System.InvalidOperationException)
-            {
-                newComment.CommentID = 0;
-                db.Comments.Add(newComment);
-                db.SaveChanges();
-                return "CommentAddedSuccessfully";
             }
             catch (Exception)
             {
@@ -168,8 +149,9 @@ namespace IExam.Controllers
                 db.Comments.Remove(commentToBeDeleted);
                 db.SaveChanges();
             }
-            catch (ArgumentNullException){ 
-            
+            catch (ArgumentNullException)
+            {
+
             }
         }
     }

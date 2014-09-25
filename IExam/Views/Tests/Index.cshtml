@@ -23,7 +23,7 @@
     </div>
 </div>
 
-<div class="container-fluid alert alert-success">
+<div class="container-fluid alert alert-success" data-bind="visible: testsTableIsVisible">
     <div class="table table-hover" id="test_data">
         <div class="row">
             <div class="col-md-6">Test Name</div>
@@ -75,6 +75,14 @@
                 <button type="button" class="btn btn-default" onclick="IExamTestIndex.PageLogic.CloseQuestions(event)" data-bind="attr: {id: id }">Hide</button>
                 <br />
             </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid" data-bind="visible: !testsTableIsVisible()">
+    <div class="col-md-12">
+        <div class="alert alert-danger">
+            No Tests Yet
         </div>
     </div>
 </div>

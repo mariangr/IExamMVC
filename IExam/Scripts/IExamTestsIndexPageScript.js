@@ -11,6 +11,7 @@ $(document).ready(function () {
 IExamTestIndex.TestsModel = function () {
     var self = this;
 
+    self.testsTableIsVisible = ko.observable(false);
     self.tests = ko.observableArray([]);
 
 }
@@ -54,6 +55,12 @@ IExamTestIndex.PageLogic = function () {
                 IExamTestIndex.Tests.tests.removeAll();
                 ko.utils.arrayPushAll(IExamTestIndex.Tests.tests(), tempArray);
                 IExamTestIndex.Tests.tests.valueHasMutated();
+                if (tempArray.length > 0) {
+                    IExamTestIndex.Tests.testsTableIsVisible(true);
+                }
+                else {
+                    IExamTestIndex.Tests.testsTableIsVisible(false);
+                }
             },
             error: function () {
                 alert('error');

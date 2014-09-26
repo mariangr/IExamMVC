@@ -1,8 +1,10 @@
 ﻿var IExamSelectedTest = IExamSelectedTest || {};
+IExamSelectedTest.SelectedTestVM = null;
 
 $(document).ready(function () {
-
-
+    IExamSelectedTest.SelectedTestVM = new IExamSelectedTest.SelectedTestModel();
+    ko.applyBindings(IExamSelectedTest.SelectedTestVM, document.getElementById(selected_test_content));
+    IExamSelectedTest.PageLogic.GetNumberOfTimesTestIsDone();
 })
 
 IExamSelectedTest.TestAnswersVM = function (testID, questionID, selectedAnswer) {
@@ -49,6 +51,7 @@ IExamSelectedTest.PageLogic = function () {
             dataType: 'json',
             data: '{ "AllAnswers":' + JSON.stringify(AllAnswers) + '}',
             success: function (result) {
+                GetNumberOfTimesTestIsDone();
                 alert('You have: ' + result.TestRightQuestionsNumber + "/" + result.TestQuestionNumber + " right answers");
             },
             error: function (result) {
@@ -58,18 +61,17 @@ IExamSelectedTest.PageLogic = function () {
     }
 
     var GetNumberOfTimesTestIsDone = function () {
-
+        var testID = $('#hiddenForTestId').val();
         $.ajax({
             type: 'GET',
             url: '/Tests/GetNumberOfTimesTestDone/',
             contentType: 'application/json; charset=utf-8',
             dataType: 'json',
-            data: ,
+            data: { testID: testID},
             success: function (result) {
-                alert('You have: ' + result.TestRightQuestionsNumber + "/" + result.TestQuestionNumber + " right answers");
+                IExamSelectedTest.SelectedTestVM.numberOfTimesTestIsDone(result.NumberOfTimesDone);
             },
             error: function (result) {
-                alert(result);
             }
         })
 
@@ -77,6 +79,7 @@ IExamSelectedTest.PageLogic = function () {
 
     return {
         sendAnswers: sendAnswers,
+        GetNumberOfTimesTestIsDone: GetNumberOfTimesTestIsDone
     }
 }();
 

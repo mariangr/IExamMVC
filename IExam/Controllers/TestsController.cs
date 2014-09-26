@@ -86,17 +86,15 @@ namespace IExam.Controllers
         public ActionResult TestQuestions(int testId)
         {
             var questions = IExamDB.Questions.Where(q => q.TestID == testId);
-            IEnumerable<Question> testQuestions;
+            IEnumerable<Question> testQuestions = new List<Question>();
             if (questions.Count() > 0)
             { 
                 testQuestions = questions.ToArray();
-            }
-            else
-            {
-                testQuestions = null;
+                ViewBag.TestID = testQuestions.First().TestID;
             }
             var userID = User.Identity.GetUserId();
-            ViewBag.TestName = IExamDB.Tests.Where(t => t.TestID == testId).First().TestName;
+            var testName = IExamDB.Tests.Find(testId).TestName;
+            ViewBag.TestName = testName;
             return View(testQuestions);
         }
 
@@ -130,8 +128,9 @@ namespace IExam.Controllers
 
         public JsonResult GetNumberOfTimesTestDone(int testID)
         {
-            var NumberOfTimesDone = "You have done this test: " + IExamDB.UsersTestAnswers.Where(t => t.TestID == testId && t.ApplicationUserID == userID).Count() + " times";
-            return Json(new { NumberOfTimesDone = NumberOfTimesDone });
+            var userID = User.Identity.GetUserId();
+            var NumberOfTimesDone = "You have done this test: " + IExamDB.UsersTestAnswers.Where(t => t.TestID == testID && t.ApplicationUserID == userID).Count() + " times";
+            return Json(new { NumberOfTimesDone = NumberOfTimesDone }, JsonRequestBehavior.AllowGet);
 
         }
 

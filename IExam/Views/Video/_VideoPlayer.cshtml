@@ -2,23 +2,23 @@
 
 @if (Model != null)
 {
-    <object width="640" height="360" id="movie_player">
+    @*<object width="640" height="360" id="movie_player">
         <param name="movie" value="@Model.link" />
         <param name="allowFullScreen" value="true" />
         <param name="allowscriptaccess" value="always" />
         <embed width="640" height="360" src="@Model.link" class="youtube-player" type="text/html" allowscriptaccess="always" allowfullscreen="true" />
-    </object>
-    @*<iframe src="//www.youtube.com/embed/@Model.link" id="movie_player"></iframe>*@
+    </object>*@
+    <iframe src="//www.youtube.com/embed/@Model.link" id="movie_player"></iframe>
     <input type="hidden" value="@Model.VideoID" id="selectedVideoInPlayerID">
     <input type="hidden" value="@Model.link" id="selectedVideoInPlayerLink">
 }
 
 <div id="videoComents"></div>
 
-@*<script>
+<script>
     $(window).resize(function () {
         $('iframe').width($('#videosPlayerContainer').width());
         $('iframe').height($('iframe').width() * 3 / 4);
         $('#videoComents').width($('iframe').width());
     })
-</script>*@
+</script>

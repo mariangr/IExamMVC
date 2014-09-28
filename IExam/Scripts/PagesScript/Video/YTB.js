@@ -1,3 +1,5 @@
+var ytState;
+
 startIconRotation = function () {
     console.log("test test sure check");
 
@@ -108,9 +110,6 @@ startIconRotation = function () {
 
         if (ytplayer) {
 
-            ytState = ytplayer.getPlayerState();
-
-
             if (ytState == 1) {//video is playing
                 var time = Math.floor(ytplayer.getCurrentTime());
                 var dura = Math.floor(ytplayer.getDuration());
@@ -145,4 +144,31 @@ startIconRotation = function () {
     var ytplayer = document.getElementById("movie_player");
     var loop = setInterval(function () { eachSec() }, 1000);
 
+}
+
+function getVideoID() {
+    var videoIframe = $('iframe');
+    var videoURL = videoIframe.attr('src');
+    var id = videoURL.split("/")[4].split("?")[0];
+    videoIframe.after('<div id="player"></div>');
+    videoIframe.remove();
+    return (id);
+}
+
+var player;
+function onYouTubeIframeAPIReady() {
+    var videoID = getVideoID();
+    player = new YT.Player('player', {
+        height: '195',
+        width: '320',
+        videoId: videoID,
+        events: {
+            'onStateChange': onPlayerStateChange
+        }
+    });
+
+    function onPlayerStateChange(event) {
+        var state = event.target.getPlayerState();
+        ytState = state;
+    }
 }

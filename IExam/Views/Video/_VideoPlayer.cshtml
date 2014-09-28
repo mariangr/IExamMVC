@@ -1,5 +1,7 @@
 ﻿@model IExam.Models.Video
 
+@*<script type="text/javascript" src="https://www.youtube.com/iframe_api"></script>*@
+
 @if (Model != null)
 {
     @*<object width="640" height="360" id="movie_player">
@@ -8,7 +10,9 @@
         <param name="allowscriptaccess" value="always" />
         <embed width="640" height="360" src="@Model.link" class="youtube-player" type="text/html" allowscriptaccess="always" allowfullscreen="true" />
     </object>*@
-    <iframe src="//www.youtube.com/embed/@Model.link" id="movie_player"></iframe>
+    @*<iframe src="//www.youtube.com/embed/@Model.link" id="movie_player"></iframe>*@
+    <iframe src="@Model.link" id="movie_player"></iframe>
+    @*<iframe id="movie_player" type="text/html" src="@Model.link" frameborder="0"></iframe>*@
     <input type="hidden" value="@Model.VideoID" id="selectedVideoInPlayerID">
     <input type="hidden" value="@Model.link" id="selectedVideoInPlayerLink">
 }

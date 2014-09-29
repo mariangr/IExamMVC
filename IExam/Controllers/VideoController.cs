@@ -39,7 +39,6 @@ namespace IExam.Controllers
                 int countOfDublicateVideo = db.Videos.Where(v => v.link == newVideo.link).Count();
                 if (countOfDublicateVideo == 0)
                 {
-                    newVideo.link = "http://www.youtube.com/embed/" + newVideo.link + "?enablejsapi=1";
                     db.Videos.Add(newVideo);
                     db.SaveChanges();
                     return RedirectToAction("Index");

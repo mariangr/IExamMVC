@@ -1,4 +1,6 @@
-﻿<header>
+﻿@using IExam.Models;
+@using Microsoft.AspNet.Identity;
+<header>
     <script src="~/Scripts/PagesScript/Account/iExamUsersPageScript.js"></script>
 </header>
 
@@ -47,7 +49,7 @@
             <div class="alert alert-success">
                 <table class="table table-hover">
                     <thead>
-                        <tr>
+                        <tr onclick="">
                             <td>User Name</td>
                             <td>First Name</td>
                             <td>Last Name</td>
@@ -59,7 +61,7 @@
                         </tr>
                     </thead>
                     <tbody data-bind="foreach: users" id="usersData">
-                        <tr>
+                        <tr onclick="IExamUsers.PageLogic.ChangeUserData(event)" data-bind="attr: {id: id}">
                             <td data-bind="text: name"></td>
                             <td data-bind="text: firstName"></td>
                             <td data-bind="text: lastName"></td>
@@ -69,7 +71,7 @@
                             <td>
                                 @if (User.IsInRole("Admin"))
                                 {
-                                    <select class="btn btn-default dropdown-toggle selectUserRoleChange" data-bind="attr: {id: id }" onchange="IExamUsers.PageLogic.ChangeUserRole(event)">
+                                    <select class="btn btn-default dropdown-toggle selectUserRoleChange" data-bind="attr: {id: id }" onclick="IExamUsers.PageLogic.stopPropagations(event)" onchange="IExamUsers.PageLogic.ChangeUserRole(event); return false;">
                                         <option value="default">Change Role</option>
                                         <option value="Admin">Admin</option>
                                         <option value="Moderator">Moderator</option>
@@ -96,6 +98,34 @@
                         </tr>
                     </tbody>
                 </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="user_update_data_popup">
+    <div class="modal-dialog">
+        <div class="modal-dialog" style="background-color: white; border-radius: 5px;">
+            <div class=" modal-header">
+                <label id="username"></label>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <input type="hidden" id="userID" />
+                    <label>User First Name:</label>
+                    <input type="text" id="userFirstName" class="form-control" />
+                    <label>User Last Name:</label>
+                    <input type="text" id="userLastName" class="form-control" />
+                    <label>User Faculty Number:</label>
+                    <input type="text" id="userFN" class="form-control" />
+                    <label>User Identity Number:</label>
+                    <input type="text" id="userIdentityNumber" class="form-control" />
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <input type="button" onclick="IExamUsers.PageLogic.UpdateUser(event)" value="Save" class="btn btn-default" />
             </div>
         </div>
     </div>

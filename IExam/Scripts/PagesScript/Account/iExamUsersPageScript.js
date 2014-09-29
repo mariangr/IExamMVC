@@ -6,6 +6,10 @@ $(document).ready(function () {
     ko.applyBindings(IExamUsers.UsersPageManagement, document.getElementById(main_content));
     IExamUsers.PageLogic.RefreshUsersStatistics();
     IExamUsers.PageLogic.FillUsersTable();
+
+    $('#user_update_data_popup').on('shown.bs.modal', function () {
+        $('#userFirstName').focus();
+    })
 })
 
 IExamUsers.UsersPageManagementModel = function () {
@@ -41,7 +45,20 @@ IExamUsers.UserVM = function (id, name, role, firstName, lastName, identityNumbe
 }
 
 IExamUsers.PageLogic = function () {
+    function stopPropagations(event) {
+        if (event.stopPropagation) {
+            event.stopPropagation()
+        }
+        else if (event.cancelBubble) {
+            event.cancelBubble = true;
+        }
+        else {
+            window.event.cancelBubble = true;
+        }
+    }
+
     function ChangeUserRole(event) {
+        IExamUsers.PageLogic.stopPropagations(event);
         var newRole = $(event.target).val();
         var userId = $(event.target).attr('id');
         var userRole = $("#RoleId" + userId);
@@ -64,6 +81,7 @@ IExamUsers.PageLogic = function () {
     }
 
     function DeleteUser(event) {
+        IExamUsers.PageLogic.stopPropagations(event);
         var userId = $(event.target).attr('id');
         var UserRow = $(event.target).parent().parent();
         $.ajax({
@@ -124,15 +142,59 @@ IExamUsers.PageLogic = function () {
                 alert('error');
             }
         })
+    }
 
-                
+    function ChangeUserData(event) {
+        var row = $(event.target).parents();
+        var tr = null;
+        for (var rowI in row) {
+            if ($(row[rowI])[0].nodeName == "TR") {
+                tr = row[rowI];
+                break;
+            }
+        }
+        var id = $(tr).attr('id');
+        $('#userID').val(id);
+        $('#username').html($(tr)[0].childNodes['1'].innerHTML);
+        $('#userFirstName').val($(tr)[0].childNodes['3'].innerHTML);
+        $('#userLastName').val($(tr)[0].childNodes['5'].innerHTML);
+        $('#userIdentityNumber').val($(tr)[0].childNodes['7'].innerHTML);
+        $('#userFN').val($(tr)[0].childNodes['9'].innerHTML);
+
+        $('#user_update_data_popup').modal();
+    }
+
+    function UpdateUser() {
+        var userID = $('#userID').val();
+        var UserName = $('#username').html();
+        var UserFName = $('#userFirstName').val();
+        var userLName = $('#userLastName').val();
+        var userIdentityNumber = $('#userIdentityNumber').val();
+        var userFN = $('#userFN').val();
+
+        $.ajax({
+            type: 'POST',
+            url: '/Account/UpdateUser/',
+            data: { Id: userID, FirstName: UserFName, LastName: userLName, FN: userFN, IdentityNumber: userIdentityNumber },
+            success: function (result) {
+                IExamUsers.PageLogic.FillUsersTable();
+                $('#user_update_data_popup').modal('hide');
+            },
+            error: function () {
+                alert('error');
+            }
+        })
+
     }
 
     return {
         RefreshUsersStatistics: RefreshUsersStatistics,
         DeleteUser: DeleteUser,
         ChangeUserRole: ChangeUserRole,
-        FillUsersTable: FillUsersTable
+        FillUsersTable: FillUsersTable,
+        ChangeUserData: ChangeUserData,
+        UpdateUser: UpdateUser,
+        stopPropagations: stopPropagations
     }
 }();
 

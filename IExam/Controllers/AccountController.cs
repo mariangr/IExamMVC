@@ -508,6 +508,17 @@ namespace IExam.Controllers
 
             return Json(new {users = users, admins = admins, moderators = moderators, allUsers = allUsers}, JsonRequestBehavior.AllowGet);
         }
+
+        public void UpdateUser(ApplicationUser appUser)
+        {
+            var user = UserManager.FindById(appUser.Id);
+            user.FirstName = appUser.FirstName;
+            user.LastName = appUser.LastName;
+            user.FN = appUser.FN;
+            user.IdentityNumber = appUser.IdentityNumber;
+
+            var result = UserManager.Update(user);
+        }
         #endregion
     }
 }

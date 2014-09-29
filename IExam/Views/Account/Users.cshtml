@@ -45,6 +45,8 @@
         </div>
         <br />
 
+        <input class="form-control" data-bind="value: querySearch, valueUpdate: 'afterkeydown', event: { 'keyup': search }" />
+
         <div class="container-fluid" data-bind="visible: usersTableVisibility">
             <div class="alert alert-success">
                 <table class="table table-hover">

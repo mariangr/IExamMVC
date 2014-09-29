@@ -26,9 +26,22 @@ IExamUsers.UsersPageManagementModel = function () {
 
     self.users = ko.observableArray([]);
 
+    self.usersDublicate = ko.observableArray([]);
+
+    self.querySearch = ko.observable('');
+
     self.ShowHideUsersTable = function () {
         var visibility = self.usersTableVisibility();
         self.usersTableVisibility(!visibility);
+    }
+
+    self.search = function () {
+        self.users = self.usersDublicate;
+        for (var x in self.users) {
+            if (self.users[x]().name().toLowerCase().indexOf(self.querySearch().toLowerCase()) < 0) {
+                IExamUsers.UsersPageManagement.users.remove(beers[x]);
+            }
+        }
     }
 }
 
@@ -135,7 +148,9 @@ IExamUsers.PageLogic = function () {
                         ))
                 }
                 IExamUsers.UsersPageManagement.users.removeAll();
+                IExamUsers.UsersPageManagement.usersDublicate.removeAll();
                 ko.utils.arrayPushAll(IExamUsers.UsersPageManagement.users(), tempArray);
+                ko.utils.arrayPushAll(IExamUsers.UsersPageManagement.usersDublicate(), tempArray);
                 IExamUsers.UsersPageManagement.users.valueHasMutated();
             },
             error: function () {

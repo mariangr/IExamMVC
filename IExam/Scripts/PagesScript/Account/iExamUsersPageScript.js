@@ -26,7 +26,7 @@ IExamUsers.UsersPageManagementModel = function () {
 
     self.users = ko.observableArray([]);
 
-    self.usersDublicate = ko.observableArray([]);
+    self.usersDublicate = [];
 
     self.querySearch = ko.observable('');
 
@@ -36,12 +36,15 @@ IExamUsers.UsersPageManagementModel = function () {
     }
 
     self.search = function () {
-        self.users = self.usersDublicate;
-        for (var x in self.users) {
-            if (self.users[x]().name().toLowerCase().indexOf(self.querySearch().toLowerCase()) < 0) {
-                IExamUsers.UsersPageManagement.users.remove(beers[x]);
+        self.users.removeAll();
+        var tempArray = [];
+        for (var x in self.usersDublicate) {
+            if (self.usersDublicate[x].name().toLowerCase().indexOf(self.querySearch().toLowerCase()) >= 0) {
+                tempArray.push(self.usersDublicate[x]);
             }
         }
+        ko.utils.arrayPushAll(IExamUsers.UsersPageManagement.users(), tempArray);
+        self.users.valueHasMutated();
     }
 }
 
@@ -148,10 +151,11 @@ IExamUsers.PageLogic = function () {
                         ))
                 }
                 IExamUsers.UsersPageManagement.users.removeAll();
-                IExamUsers.UsersPageManagement.usersDublicate.removeAll();
+                IExamUsers.UsersPageManagement.usersDublicate = [];
                 ko.utils.arrayPushAll(IExamUsers.UsersPageManagement.users(), tempArray);
-                ko.utils.arrayPushAll(IExamUsers.UsersPageManagement.usersDublicate(), tempArray);
+                IExamUsers.UsersPageManagement.usersDublicate = tempArray;
                 IExamUsers.UsersPageManagement.users.valueHasMutated();
+                IExamUsers.UsersPageManagement.search();
             },
             error: function () {
                 alert('error');

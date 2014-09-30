@@ -5,6 +5,10 @@ $(document).ready(function () {
     IExamSelectedTest.SelectedTestVM = new IExamSelectedTest.SelectedTestModel();
     ko.applyBindings(IExamSelectedTest.SelectedTestVM, document.getElementById(selected_test_content));
     IExamSelectedTest.PageLogic.GetNumberOfTimesTestIsDone();
+
+    $('#results_popup').on('hidden.bs.modal', function () {
+        IExamSelectedTest.PageLogic.GetNumberOfTimesTestIsDone();
+    })
 })
 
 IExamSelectedTest.TestAnswersVM = function (testID, questionID, selectedAnswer) {
@@ -51,8 +55,8 @@ IExamSelectedTest.PageLogic = function () {
             dataType: 'json',
             data: '{ "AllAnswers":' + JSON.stringify(AllAnswers) + '}',
             success: function (result) {
-                GetNumberOfTimesTestIsDone();
-                alert('You have: ' + result.TestRightQuestionsNumber + "/" + result.TestQuestionNumber + " right answers");
+                $('#test_results').html('You have: ' + result.TestRightQuestionsNumber + "/" + result.TestQuestionNumber + " right answers");
+                $('#results_popup').modal();
             },
             error: function (result) {
                 alert(result);

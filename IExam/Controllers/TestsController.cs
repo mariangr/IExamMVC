@@ -42,6 +42,7 @@ namespace IExam.Controllers
             IExamDB.SaveChanges();
         }
 
+        [Authorize(Roles = "Admin, Moderator")]
         public void CreateTest(string name) {
             Test newTest = new Test();
             newTest.ApplicationUserID = User.Identity.GetUserId();
@@ -66,6 +67,7 @@ namespace IExam.Controllers
             return PartialView("_Questions", testsQuestions);
         }
 
+        [Authorize(Roles = "Admin, Moderator")]
         public void DeleteTestQuestions(int id) {
             var questionToBeDeleted = IExamDB.Questions.Find(id);
             IExamDB.Questions.Remove(questionToBeDeleted);

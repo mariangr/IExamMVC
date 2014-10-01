@@ -446,12 +446,14 @@ namespace IExam.Controllers
         #endregion
 
         #region UsersPageLogic
+        [Authorize(Roles = "Admin, Moderator")]
         public ActionResult Users()
         {
             return View();
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin, Moderator")]
         public JsonResult AllUsersData()
         {
             var id = User.Identity.GetUserId();
@@ -482,6 +484,7 @@ namespace IExam.Controllers
             UserManager.Delete(userToBeDeleted);
         }
 
+        [Authorize(Roles = "Admin, Moderator")]
         public JsonResult GetUserStatistics()
         {
             int users = 0;
@@ -508,7 +511,7 @@ namespace IExam.Controllers
 
             return Json(new {users = users, admins = admins, moderators = moderators, allUsers = allUsers}, JsonRequestBehavior.AllowGet);
         }
-
+        [Authorize(Roles = "Admin, Moderator")]
         public void UpdateUser(ApplicationUser appUser)
         {
             var user = UserManager.FindById(appUser.Id);

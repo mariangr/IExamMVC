@@ -29,6 +29,7 @@ namespace IExam.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin, Moderator")]
         public ActionResult Create([Bind(Include = "name,link,ApplicationUserID")] Video newVideo)
         {
             WebClient client = new WebClient();
@@ -89,6 +90,7 @@ namespace IExam.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin, Moderator")]
         public void DeleteVideo(int id)
         {
             Video video = db.Videos.Find(id);

@@ -522,6 +522,11 @@ namespace IExam.Controllers
 
             var result = UserManager.Update(user);
         }
+
+        public ActionResult Profile()
+        {
+            return View();
+        }
         #endregion
     }
 }

@@ -243,6 +243,7 @@
     <Content Include="Content\images\bodyBackGround.png" />
     <Content Include="Content\images\commentHeader.png" />
     <Content Include="Content\images\comments.png" />
+    <Content Include="Content\images\exam-icon.gif" />
     <Content Include="Content\images\videoPlayerAndCommentsBackgrounf.png" />
     <Content Include="Content\images\www_icon1.ico" />
     <Content Include="Content\main.css" />

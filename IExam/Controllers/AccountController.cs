@@ -525,7 +525,9 @@ namespace IExam.Controllers
 
         public ActionResult Profile()
         {
-            return View();
+            var userID = User.Identity.GetUserId();
+            var user = UserManager.Users.First(u => u.Id == userID);
+            return View(user);
         }
         #endregion
     }

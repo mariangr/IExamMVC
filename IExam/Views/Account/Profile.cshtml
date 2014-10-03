@@ -1,8 +1,39 @@
-﻿@{
+﻿@using IExam.Helpers
+@model IExam.Models.ApplicationUser
+@{
     ViewBag.Title = "Profile";
 }
 
-<div class="alert alert-info">
+<div class="alert alert-info container-fluid">
+    <div class="col-md-12 alert alert-danger" >
+        <label>Profile:</label>
+    </div>
+    @{var properties = ObjPropertyGetter.GetProperties(Model);
+    foreach (var prop in properties)
+    {
+        if (prop.Name == "FirstName" ||
+                prop.Name == "LastName" ||
+                prop.Name == "FN" ||
+                prop.Name == "IdentityNumber" ||
+                prop.Name == "UserName")
+        {
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="">
+                        @prop.Name : 
+                    </label>
+                </div>
+                <div class="col-md-6">
+                    @prop.GetValue(Model, null)
+                </div>
+                <br>
+            </div>
+            <hr>
+        </div>
+        }
+    }
+    }
 
-    @Html.ActionLink("Edit Profile", "Manage", routeValues: null, htmlAttributes: new { @class="btn btn-danger pull-right"})
-</div> 
+    @Html.ActionLink("Edit Profile", "Manage", routeValues: null, htmlAttributes: new { @class = "btn btn-danger pull-right" })
+</div>

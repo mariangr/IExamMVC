@@ -43,21 +43,23 @@
                 <div class="container-fluid">
                     <div class="row alert alert-danger">
                         <div data-bind="attr: {id: 'newQuestions' + id()}">
-                            <div class="col-md-12">
-                                <label for="newTestQuestion">Question</label>
-                                <input type="text" data-bind="attr: {id: 'newTestQuestion' + id()}" class="form-control" />
+                            <form class="col-md-12">
+                                <label for="newTestQuestion">Question *</label>
+                                <input type="text" required data-bind="attr: {id: 'newTestQuestion' + id()}" class="form-control" />
 
-                                <label>First Answer</label>
-                                <input type="text" data-bind="attr: {id: 'newTestFirstAnswer' + id()}" class="form-control" />
+                                <label>First Answer *</label>
+                                <input type="text" required data-bind="attr: {id: 'newTestFirstAnswer' + id()}" class="form-control" />
 
-                                <label>Second Answer</label>
-                                <input type="text" data-bind="attr: {id: 'newTestSecondAnswer' + id()}" class="form-control" />
+                                <label>Second Answer *</label>
+                                <input type="text" required data-bind="attr: {id: 'newTestSecondAnswer' + id()}" class="form-control" />
 
-                                <label>Third Answer</label>
-                                <input type="text" data-bind="attr: {id: 'newTestThirdAnswer' + id()}" class="form-control" />
+                                <label>Third Answer *</label>
+                                <input type="text" required data-bind="attr: {id: 'newTestThirdAnswer' + id()}" class="form-control" />
 
-                                <label>Fourth Answer</label>
-                                <input type="text" data-bind="attr: {id: 'newTestFourthAnswer' + id()}" class="form-control" />
+                                <label>Fourth Answer *</label>
+                                <input type="text" required data-bind="attr: {id: 'newTestFourthAnswer' + id()}" class="form-control" />
+
+                                <br />
 
                                 <label>True Answer</label>
                                 <select class="btn btn-default dropdown-toggle" data-bind="attr: {id: 'newTestAnswer' + id()}">
@@ -68,7 +70,7 @@
                                 </select>
                                 <br />
                                 <button class="btn btn-warning" data-bind="attr: { id: id }" onclick="IExamTestQuestion.PageLogic.AddQuestion(event)">Add</button>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>

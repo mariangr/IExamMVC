@@ -1,4 +1,7 @@
-﻿var IExamVideo = IExamVideo || {};
+﻿/// <reference path="../../jquery-2.1.1.min.js" />
+/// <reference path="../../knockout-3.1.0.js" />
+
+var IExamVideo = IExamVideo || {};
 IExamVideo.VideoList = null;
 
 $(document).ready(function () {

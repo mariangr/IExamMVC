@@ -1,4 +1,7 @@
-﻿var IExamUsers = IExamUsers || {};
+﻿/// <reference path="../../jquery-2.1.1.min.js" />
+/// <reference path="../../knockout-3.1.0.js" />
+
+var IExamUsers = IExamUsers || {};
 IExamUsers.UsersPageManagement = null;
 
 $(document).ready(function () {

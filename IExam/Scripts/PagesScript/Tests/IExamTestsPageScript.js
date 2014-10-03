@@ -1,4 +1,7 @@
-﻿var IExamTests = IExamTests || {};
+﻿/// <reference path="../../jquery-2.1.1.min.js" />
+/// <reference path="../../knockout-3.1.0.js" />
+
+var IExamTests = IExamTests || {};
 IExamTests.TestsVM = null;
 
 $(document).ready(function () {

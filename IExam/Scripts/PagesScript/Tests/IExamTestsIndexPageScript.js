@@ -1,4 +1,7 @@
-﻿var IExamTestIndex = IExamTestIndex || {};
+﻿/// <reference path="../../jquery-2.1.1.min.js" />
+/// <reference path="../../knockout-3.1.0.js" />
+
+var IExamTestIndex = IExamTestIndex || {};
 IExamTestIndex.Tests = null;
 
 $(document).ready(function () {

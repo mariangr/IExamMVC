@@ -1,4 +1,6 @@
-﻿var IExamIndex = IExamIndex || {};
+﻿/// <reference path="../../jquery-2.1.1.min.js" />
+
+var IExamIndex = IExamIndex || {};
 
 $(document).ready(function () {
     IExamIndex.PageLogic.loadSelectedPage('/Home/ReturnPartialView/', '_Home');

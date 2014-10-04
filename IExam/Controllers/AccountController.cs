@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using IExam.Models;
 using System.IO;
+using IExam.Helpers;
 
 namespace IExam.Controllers
 {
@@ -535,16 +536,19 @@ namespace IExam.Controllers
         [HttpPost]
         public ActionResult Profile(HttpPostedFileBase file)
         {
-            if (file != null && file.ContentLength > 0)
+            if (file != null && file.ContentLength > 0 && FileChecker.IsImage(file))
             {
                 var UserID = User.Identity.GetUserId();
+
                 var fileName = Path.GetFileName(file.FileName);
+                var path = Path.Combine(Server.MapPath("~/App_Data/Uploads/" + UserID + "/" ), fileName);
+
                 bool directoryExists = System.IO.Directory.Exists(Server.MapPath("~/App_Data/Uploads/" + UserID + "/"));
                 if (!directoryExists)
                 {
                     System.IO.Directory.CreateDirectory(Server.MapPath("~/App_Data/Uploads/" + UserID + "/"));
                 }
-                var path = Path.Combine(Server.MapPath("~/App_Data/Uploads/" + UserID + "/" ), fileName);
+
                 file.SaveAs(path);
             }
 

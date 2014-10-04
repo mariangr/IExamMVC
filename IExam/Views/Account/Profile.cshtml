@@ -4,9 +4,16 @@
     ViewBag.Title = "Profile";
 }
 
+<header>
+    <script src="~/Scripts/PagesScript/Account/IExamUserProfilePageScript.js"></script>
+</header>
+
 <div class="alert alert-info container-fluid">
     <div class="col-md-12 alert alert-danger" >
         <label>Profile:</label>
+    </div>
+    <div class="col-md-12">
+        <input type="button" onclick="IExamUserProfile.PageLogic.photoUploadModalManagement()" value="Upload Profile picture..." />
     </div>
     @{var properties = ObjPropertyGetter.GetProperties(Model);
     foreach (var prop in properties)
@@ -36,4 +43,23 @@
     }
 
     @Html.ActionLink("Edit Profile", "Manage", routeValues: null, htmlAttributes: new { @class = "btn btn-danger pull-right" })
+</div>
+
+<div class="modal fade" id="user_profile_upload_picture">
+    <div class="modal-dialog">
+        <div class="modal-dialog" style="background-color: white; border-radius: 5px;">
+            <div class=" modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    @using (Html.BeginForm("Profile", "Account", FormMethod.Post, new { enctype = "multipart/form-data", }))
+                    { 
+                        <input type="file" name="file" placeholder="Choose profile picture." class="col-md-8" />
+                        <input type="submit" value="Upload" />
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

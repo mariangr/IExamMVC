@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using IExam.Models;
+using System.IO;
 
 namespace IExam.Controllers
 {
@@ -530,5 +531,24 @@ namespace IExam.Controllers
             return View(user);
         }
         #endregion
+
+        [HttpPost]
+        public ActionResult Profile(HttpPostedFileBase file)
+        {
+            if (file != null && file.ContentLength > 0)
+            {
+                var UserID = User.Identity.GetUserId();
+                var fileName = Path.GetFileName(file.FileName);
+                bool directoryExists = System.IO.Directory.Exists(Server.MapPath("~/App_Data/Uploads/" + UserID + "/"));
+                if (!directoryExists)
+                {
+                    System.IO.Directory.CreateDirectory(Server.MapPath("~/App_Data/Uploads/" + UserID + "/"));
+                }
+                var path = Path.Combine(Server.MapPath("~/App_Data/Uploads/" + UserID + "/" ), fileName);
+                file.SaveAs(path);
+            }
+
+            return RedirectToAction("Profile");
+        }
     }
 }

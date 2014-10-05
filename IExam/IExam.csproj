@@ -194,6 +194,10 @@
     <Compile Include="Migrations\201409201317085_NameFNIdentity.Designer.cs">
       <DependentUpon>201409201317085_NameFNIdentity.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201410051114161_UserProfilePic.cs" />
+    <Compile Include="Migrations\201410051114161_UserProfilePic.Designer.cs">
+      <DependentUpon>201410051114161_UserProfilePic.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\IExamDBModel.cs" />
     <Compile Include="Startup.cs" />
@@ -201,7 +205,6 @@
     <Content Include="App_Data\IExamProjectDataBase_log.ldf">
       <DependentUpon>IExamProjectDataBase.mdf</DependentUpon>
     </Content>
-    <Content Include="App_Data\Uploads\c2c69fe4-2ff9-4ee1-8418-ca1bc6043bc3\ae3YByb_460s.jpg" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -250,6 +253,7 @@
     <Content Include="Content\images\videoPlayerAndCommentsBackgrounf.png" />
     <Content Include="Content\images\www_icon1.ico" />
     <Content Include="Content\main.css" />
+    <Content Include="Content\Uploads\c2c69fe4-2ff9-4ee1-8418-ca1bc6043bc3\ProfilePicture.jpg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\bootstrap-theme.css.map" />
@@ -369,6 +373,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201409201317085_NameFNIdentity.resx">
       <DependentUpon>201409201317085_NameFNIdentity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201410051114161_UserProfilePic.resx">
+      <DependentUpon>201410051114161_UserProfilePic.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

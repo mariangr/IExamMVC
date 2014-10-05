@@ -534,22 +534,27 @@ namespace IExam.Controllers
         #endregion
 
         [HttpPost]
-        public ActionResult Profile(HttpPostedFileBase file)
+        public ActionResult UploadProfilePicture(HttpPostedFileBase file)
         {
             if (file != null && file.ContentLength > 0 && FileChecker.IsImage(file))
             {
                 var UserID = User.Identity.GetUserId();
 
-                var fileName = Path.GetFileName(file.FileName);
-                var path = Path.Combine(Server.MapPath("~/App_Data/Uploads/" + UserID + "/" ), fileName);
+                var extention = Path.GetExtension(file.FileName);
+                var path = Path.Combine(Server.MapPath("~/Content/Uploads/" + UserID + "/"), "ProfilePicture" + extention);
 
-                bool directoryExists = System.IO.Directory.Exists(Server.MapPath("~/App_Data/Uploads/" + UserID + "/"));
+                bool directoryExists = System.IO.Directory.Exists(Server.MapPath("~/Content/Uploads/" + UserID + "/"));
                 if (!directoryExists)
                 {
-                    System.IO.Directory.CreateDirectory(Server.MapPath("~/App_Data/Uploads/" + UserID + "/"));
+                    System.IO.Directory.CreateDirectory(Server.MapPath("~/Content/Uploads/" + UserID + "/"));
                 }
 
                 file.SaveAs(path);
+
+                var pathToProfilePicture = "~/Content/Uploads/" + UserID + "/" + "ProfilePicture" + extention;
+                var user = UserManager.FindById(UserID);
+                user.ProfilePicture = pathToProfilePicture;
+                UserManager.Update(user);
             }
 
             return RedirectToAction("Profile");

@@ -7,9 +7,10 @@ IExamUserProfile.PageLogic = function () {
     var photoUploadModalManagement = function () {
         $('#user_profile_upload_picture').modal();
     }
+    
+
 
     return {
         photoUploadModalManagement: photoUploadModalManagement,
     }
-
 }()

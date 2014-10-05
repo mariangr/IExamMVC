@@ -12,12 +12,21 @@
     <div class="col-md-12 alert alert-danger" >
         <label>Profile:</label>
     </div>
-
     <div class="col-md-12">
         <div class="row">
-            <input type="button" onclick="IExamUserProfile.PageLogic.photoUploadModalManagement()" value="Upload Profile picture..." class="btn btn-default pull-right" />
+            <div class="col-md-6">
+                Profile Photo:
+            </div>
+
+            <div class="col-md-6">
+                <img src="@Url.Content(Model.ProfilePicture)" height="400" width="300" />
+                <input type="button" onclick="IExamUserProfile.PageLogic.photoUploadModalManagement()" value="Upload Profile picture..." class="btn btn-default pull-right" />
+            </div>
         </div>
+        <hr />>
     </div>
+
+
     @{var properties = ObjPropertyGetter.GetProperties(Model);
     foreach (var prop in properties)
     {
@@ -31,7 +40,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <label class="">
-                        @prop.Name : 
+                        @prop.Name: 
                     </label>
                 </div>
                 <div class="col-md-6">
@@ -57,7 +66,7 @@
             </div>
             <div class="modal-body">
                 <div>
-                    @using (Html.BeginForm("Profile", "Account", FormMethod.Post, new { enctype = "multipart/form-data", @class = ""}))
+                    @using (Ajax.BeginForm("UploadProfilePicture", "Account", new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace }, new { enctype = "multipart/form-data" }))
                     { 
                         <input type="file" name="file" placeholder="Choose profile picture." class=" form-control" />
                         <input type="submit" value="Upload" class="btn btn-default" />

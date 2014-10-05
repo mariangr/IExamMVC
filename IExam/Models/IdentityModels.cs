@@ -18,6 +18,8 @@ namespace IExam.Models
 
         [MaxLength(20)]
         public string IdentityNumber { set; get; }
+
+        public string ProfilePicture { set; get; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>

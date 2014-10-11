@@ -82,14 +82,15 @@ namespace IExam.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser() { UserName = model.UserName, 
+                var user = new ApplicationUser() { 
+                    UserName = model.UserName, 
                     FirstName = model.FirstName, 
                     LastName = model.LastName, 
                     FN = model.FN, 
-                    IdentityNumber = model.IdentityNumber
+                    IdentityNumber = model.IdentityNumber,
+                    ProfilePicture = "~/Content/images/DefaultProfilePicture.png"
                 };
                 var result = await UserManager.CreateAsync(user, model.Password);
-                
                 if (result.Succeeded)
                 {
                     

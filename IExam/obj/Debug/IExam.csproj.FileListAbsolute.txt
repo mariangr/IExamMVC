@@ -202,3 +202,7 @@ C:\Users\marian.graurov\Documents\GitHub\IExamMVC\IExam\obj\Debug\IExam.pdb
 C:\Users\marian.graurov\Documents\GitHub\IExamMVC\IExam\obj\Debug\IExam.csprojResolveAssemblyReference.cache
 C:\Users\marian.graurov\Documents\GitHub\IExamMVC\IExam\bin\IExam.dll.config
 C:\Users\Hueco Mundo\Documents\GitHub\IExamMVC\IExam\obj\Debug\IExam.Migrations.UserProfilePic.resources
+C:\Users\Hueco Mundo\Documents\GitHub\IExamMVC\IExam\bin\EcmaScript.NET.dll
+C:\Users\Hueco Mundo\Documents\GitHub\IExamMVC\IExam\bin\NodeAssets.Compilers.Minify.dll
+C:\Users\Hueco Mundo\Documents\GitHub\IExamMVC\IExam\bin\NodeAssets.Core.dll
+C:\Users\Hueco Mundo\Documents\GitHub\IExamMVC\IExam\bin\Yahoo.Yui.Compressor.dll

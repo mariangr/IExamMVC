@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>NodeAssets.Core</id>
+    <version>2.0.1</version>
+    <authors>Felix Jorkowski (jorkowski.com)</authors>
+    <owners>Felix Jorkowski (jorkowski.com)</owners>
+    <licenseUrl>http://www.opensource.org/licenses/MIT</licenseUrl>
+    <projectUrl>https://github.com/ajorkowski/NodeAssets</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>The Core lib that handles watching your files.</description>
+    <releaseNotes>Properly shows underlying exceptions when error occurs</releaseNotes>
+    <copyright>Copyright 2014</copyright>
+    <tags>Asset Manager OWIN NodeJS</tags>
+  </metadata>
+</package>

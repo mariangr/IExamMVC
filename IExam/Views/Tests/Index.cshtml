@@ -26,14 +26,14 @@
 <div class="container-fluid alert alert-success" data-bind="visible: testsTableIsVisible">
     <div class="table table-hover" id="test_data">
         <div class="row">
-            <div class="col-md-6">Test Name</div>
-            <div class="col-md-6">Delete Test</div>
+            <div class="col-xs-6 col-sm-6 col-md-6">Test Name</div>
+            <div class="col-xs-6 col-sm-6 col-md-6">Delete Test</div>
         </div>
         <div data-bind="foreach: tests">
             <div class="row">
-                <div data-bind="text: name" class="col-md-4"></div>
-                <div class="col-md-2"><button type="button" class="btn btn-info" data-bind="attr: { id: id }" onclick="IExamTestIndex.PageLogic.ShowQestions(event)">Questions</button></div>
-                <div class="col-md-6"><button type="button" class="btn btn-danger" data-bind="attr: { id: id }" onclick="IExamTestIndex.PageLogic.DeleteTest(event)">Delete</button></div>
+                <div data-bind="text: name" class="col-md-4 col-sm-4 col-xs-4"></div>
+                <div class="col-xs-2 col-sm-2 col-md-2"><button type="button" class="btn btn-info col-md-12 col-sm-12 col-xs-12" data-bind="attr: { id: id }" onclick="IExamTestIndex.PageLogic.ShowQestions(event)">Questions</button></div>
+                <div class="col-xs-6 col-sm-6 col-md-6"><button type="button" class="btn btn-danger col-md-12 col-sm-12 col-xs-12" data-bind="attr: { id: id }" onclick="IExamTestIndex.PageLogic.DeleteTest(event)">Delete</button></div>
             </div>
             <br />
             <div data-bind="attr: {id: 'questionsContainer' + id()}" style="display: none">
@@ -69,7 +69,7 @@
                                     <option value="4">Fourth</option>
                                 </select>
                                 <br />
-                                <button class="btn btn-warning" data-bind="attr: { id: id }" onclick="IExamTestQuestion.PageLogic.AddQuestion(event)">Add</button>
+                                <button type="button" class="btn btn-warning" data-bind="attr: { id: id }" onclick="IExamTestQuestion.PageLogic.AddQuestion(event)">Add</button>
                             </form>
                         </div>
                     </div>

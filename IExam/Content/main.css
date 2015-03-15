@@ -3,7 +3,7 @@
 	}
 body {
 
-	background-image:url("images/bodyBackGround.png");
+	/*background-image:url("images/bodyBackGround.png");*/
 	background-repeat:repeat;
 	background-position:center top;
 	}
@@ -88,3 +88,7 @@ padding-bottom:45px;
    padding:20px;
 }
 
+.panel {
+    border: 1px solid black;
+    border-radius: 15px;
+}

@@ -17,7 +17,7 @@ namespace IExam.Controllers
     [Authorize]
     public class TestsController : Controller
     {
-        private IExamDBContext IExamDB = new IExamDBContext();
+        //private IExamDBContext IExamDB = new IExamDBContext();
         //
         // GET: /Tests/
         public ActionResult Index()
@@ -27,57 +27,77 @@ namespace IExam.Controllers
 
         public JsonResult GetTestData()
         {
-            return Json(IExamDB.Tests.ToArray(), JsonRequestBehavior.AllowGet);
+            using (IExamDBContext IExamDB = new IExamDBContext())
+            {
+                return Json(IExamDB.Tests.ToArray(), JsonRequestBehavior.AllowGet);
+            }
         }
 
         public void DeleteTest(int id)
         {
-            Test test = IExamDB.Tests.Find(id);
-            var TestQuestions = IExamDB.Questions.Where(q => q.TestID == id);
-            foreach(var question in TestQuestions)
+            using (IExamDBContext IExamDB = new IExamDBContext())
             {
-                IExamDB.Questions.Remove(question);
+                Test test = IExamDB.Tests.Find(id);
+                var TestQuestions = IExamDB.Questions.Where(q => q.TestID == id);
+                foreach (var question in TestQuestions)
+                {
+                    IExamDB.Questions.Remove(question);
+                }
+                IExamDB.Tests.Remove(test);
+                IExamDB.SaveChanges();
             }
-            IExamDB.Tests.Remove(test);
-            IExamDB.SaveChanges();
         }
 
         [Authorize(Roles = "Admin, Moderator")]
-        public void CreateTest(string name) {
-            Test newTest = new Test();
-            newTest.ApplicationUserID = User.Identity.GetUserId();
-            newTest.TestName = name;
-            IExamDB.Tests.Add(newTest);
-            IExamDB.SaveChanges();
+        public void CreateTest(string name) 
+        {
+            using (IExamDBContext IExamDB = new IExamDBContext())
+            {
+                Test newTest = new Test();
+                newTest.ApplicationUserID = User.Identity.GetUserId();
+                newTest.TestName = name;
+                IExamDB.Tests.Add(newTest);
+                IExamDB.SaveChanges();
+            }
         }
 
         public ActionResult GetTestQuestions(int id)
         {
-            var questions = IExamDB.Questions.Where(t => t.TestID == id);
-            IEnumerable<Question> testsQuestions;
-            try
+            using (IExamDBContext IExamDB = new IExamDBContext())
             {
-                testsQuestions = questions.ToArray();
-            }
-            catch (ArgumentNullException)
-            {
-                testsQuestions = new List<Question>() { new Question() { QuestionID = -1, TestID = id } };
-            }
+                var questions = IExamDB.Questions.Where(t => t.TestID == id);
+                IEnumerable<Question> testsQuestions;
+                try
+                {
+                    testsQuestions = questions.ToArray();
+                }
+                catch (ArgumentNullException)
+                {
+                    testsQuestions = new List<Question>() { new Question() { QuestionID = -1, TestID = id } };
+                }
 
-            return PartialView("_Questions", testsQuestions);
+                return PartialView("_Questions", testsQuestions);
+            }
         }
 
         [Authorize(Roles = "Admin, Moderator")]
-        public void DeleteTestQuestions(int id) {
-            var questionToBeDeleted = IExamDB.Questions.Find(id);
-            IExamDB.Questions.Remove(questionToBeDeleted);
-            IExamDB.SaveChanges();
+        public void DeleteTestQuestions(int id) 
+        {
+            using (IExamDBContext IExamDB = new IExamDBContext())
+            {
+                var questionToBeDeleted = IExamDB.Questions.Find(id);
+                IExamDB.Questions.Remove(questionToBeDeleted);
+                IExamDB.SaveChanges();
+            }
         }
 
         public void AddTestQuestions(Question newQuestion)
         {
-            IExamDB.Questions.Add(newQuestion);
-            IExamDB.SaveChanges();
+            using (IExamDBContext IExamDB = new IExamDBContext())
+            {
+                IExamDB.Questions.Add(newQuestion);
+                IExamDB.SaveChanges();
+            }
         }
 
         public ActionResult Tests()
@@ -87,34 +107,39 @@ namespace IExam.Controllers
 
         public ActionResult TestQuestions(int testId)
         {
-            var questions = IExamDB.Questions.Where(q => q.TestID == testId);
-            IEnumerable<Question> testQuestions = new List<Question>();
-            if (questions.Count() > 0)
-            { 
-                testQuestions = questions.ToArray();
-                ViewBag.TestID = testQuestions.First().TestID;
+            using (IExamDBContext IExamDB = new IExamDBContext())
+            {
+                var questions = IExamDB.Questions.Where(q => q.TestID == testId);
+                IEnumerable<Question> testQuestions = new List<Question>();
+                if (questions.Count() > 0)
+                {
+                    testQuestions = questions.ToArray();
+                    ViewBag.TestID = testQuestions.First().TestID;
+                }
+                var userID = User.Identity.GetUserId();
+                var testName = IExamDB.Tests.Find(testId).TestName;
+                ViewBag.TestName = testName;
+                return View(testQuestions);
             }
-            var userID = User.Identity.GetUserId();
-            var testName = IExamDB.Tests.Find(testId).TestName;
-            ViewBag.TestName = testName;
-            return View(testQuestions);
         }
 
         public JsonResult CheckAnswers(IEnumerable<TestAnswers> AllAnswers)
         {
-            var userId = User.Identity.GetUserId();
-            var testId = AllAnswers.First().TestID;
-
-            int rightQuestions = 0;
-            var questions = IExamDB.Questions.Where(q => q.TestID == testId);
-            foreach (var answer in AllAnswers)
+            using (IExamDBContext IExamDB = new IExamDBContext())
             {
-                int currentQuestionId = answer.QuestionID;
-                if (answer.SelectedAnswer == questions.Where(q => q.QuestionID == currentQuestionId).First().Answer)
+                var userId = User.Identity.GetUserId();
+                var testId = AllAnswers.First().TestID;
+
+                int rightQuestions = 0;
+                var questions = IExamDB.Questions.Where(q => q.TestID == testId);
+                foreach (var answer in AllAnswers)
                 {
-                    rightQuestions++;
+                    int currentQuestionId = answer.QuestionID;
+                    if (answer.SelectedAnswer == questions.Where(q => q.QuestionID == currentQuestionId).First().Answer)
+                    {
+                        rightQuestions++;
+                    }
                 }
-            }
                 var newAnswer = new UsersTestAnswers();
 
                 newAnswer.TestID = testId;
@@ -125,15 +150,18 @@ namespace IExam.Controllers
                 IExamDB.SaveChanges();
 
 
-            return Json(newAnswer);
+                return Json(newAnswer);
+            }
         }
 
         public JsonResult GetNumberOfTimesTestDone(int testID)
         {
-            var userID = User.Identity.GetUserId();
-            var NumberOfTimesDone = "You have done this test: " + IExamDB.UsersTestAnswers.Where(t => t.TestID == testID && t.ApplicationUserID == userID).Count() + " times";
-            return Json(new { NumberOfTimesDone = NumberOfTimesDone }, JsonRequestBehavior.AllowGet);
-
+            using (IExamDBContext IExamDB = new IExamDBContext())
+            {
+                var userID = User.Identity.GetUserId();
+                var NumberOfTimesDone = "You have done this test: " + IExamDB.UsersTestAnswers.Where(t => t.TestID == testID && t.ApplicationUserID == userID).Count() + " times";
+                return Json(new { NumberOfTimesDone = NumberOfTimesDone }, JsonRequestBehavior.AllowGet);
+            }
         }
 
 	}

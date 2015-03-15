@@ -8,7 +8,7 @@
 
 <div class="col-md-12">
 
-    <div class="panel panel-success">
+    <div class="panel">
         <div class="panel-heading">
             <h4 style="display: inline;">Videos</h4>
             @if (Request.IsAuthenticated)
@@ -21,7 +21,7 @@
     <div class="container-fluid">
         <div class="row table-base">
             <div class="alert alert-info col-xs-6 col-sm-6 col-md-6" id="videosPlayerContainer" style="padding: 10px; margin: 0 auto; overflow: hidden; display: none"></div>
-            <div class="col-xs-6 col-sm-6 col-md-6" id="videosContainer">
+            <div class="col-md-offset-6 col-xs-6 col-sm-6 col-md-6" id="videosContainer">
                 <div data-bind="visible: videoListIsVisible()">
                     <div data-bind="foreach: videos">
                         <div class="row" style="margin-top: 2px">

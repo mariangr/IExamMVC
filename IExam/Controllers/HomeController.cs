@@ -9,7 +9,6 @@ namespace IExam.Controllers
 {
     public class HomeController : Controller
     {
-        private IExamDBContext db = new IExamDBContext();
         public ActionResult Index()
         {
 

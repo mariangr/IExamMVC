@@ -26,7 +26,7 @@
                 </button>
             </div>
             <div class="navbar-collapse collapse">
-                <h2 class="col-md-5" id="pageTitle" style="color: white; margin-top: 10px;"><span class="glyphicon glyphicon-pencil"></span> @ViewBag.Title</h2>
+                <h2 class="col-md-5 col-sm-5" id="pageTitle" style="color: white; margin-top: 10px;"><span class="glyphicon glyphicon-pencil"></span> @ViewBag.Title</h2>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
@@ -34,10 +34,10 @@
 
     <div class="container-fluid body-content" style="margin-top: 100px">
         <div class="row">
-            <nav id="navigation" class="col-md-2 col-sm-2 col-xs-2" style="margin-top: 1%;">
+            <nav id="navigation" class="col-md-2 col-sm-12 col-xs-12" style="margin-top: 1%;">
                 @Html.Partial("~/Views/Shared/_Navigation.cshtml")
             </nav>
-            <div style="padding-top: 1%;" class="col-md-10 col-sm-10 col-xs-10">
+            <div style="padding-top: 1%;" class="col-md-10 col-sm-12 col-xs-12">
                 @RenderBody()
             </div>
         </div>

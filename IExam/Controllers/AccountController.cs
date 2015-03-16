@@ -571,9 +571,15 @@ namespace IExam.Controllers
                 file.SaveAs(path);
 
                 var pathToProfilePicture = "~/Content/Uploads/" + UserID + "/" + "ProfilePicture" + extention;
-                var user = UserManager.FindById(UserID);
-                user.ProfilePicture = pathToProfilePicture;
-                UserManager.Update(user);
+
+                using(ApplicationDbContext db = new ApplicationDbContext()){
+
+                    db.Users.FirstOrDefault(x => x.Id == UserID).ProfilePicture = pathToProfilePicture; ;
+                    db.SaveChanges();
+                }
+                //var user = UserManager.FindById(UserID);
+                //user.ProfilePicture = pathToProfilePicture;
+                //UserManager.Update(user);
             }
 
             return RedirectToAction("Profile");

@@ -32,15 +32,15 @@
 <div class="container-fluid alert panel panel-success" data-bind="visible: testsTableIsVisible" style="padding-top: 0px">
     <div class="table table-hover panel-success" id="test_data">
         <div class="row  panel-heading">
-            <div class="col-xs-6 col-sm-6 col-md-6">Test Name</div>
-            <div class="col-xs-6 col-sm-6 col-md-6">Delete Test</div>
+            <div class="col-xs-8 col-sm-8 col-md-6">Test Name</div>
+            <div class="col-xs-4 col-sm-4 col-md-6">Delete Test</div>
         </div>
         <br />
         <div data-bind="foreach: tests">
             <div class="row">
-                <div data-bind="text: name" class="col-md-4 col-sm-4 col-xs-4"></div>
-                <div class="col-xs-2 col-sm-2 col-md-2"><button type="button" class="btn btn-info col-md-12 col-sm-12 col-xs-12" data-bind="attr: { id: id }" onclick="IExamTestIndex.PageLogic.ShowQestions(event)">Questions</button></div>
-                <div class="col-xs-6 col-sm-6 col-md-6"><button type="button" class="btn btn-danger col-md-12 col-sm-12 col-xs-12" data-bind="attr: { id: id }" onclick="IExamTestIndex.PageLogic.DeleteTest(event)">Delete</button></div>
+                <div data-bind="text: name" class="col-md-4 col-sm-3 col-xs-3"></div>
+                <div class="col-xs-5 col-sm-5 col-md-2"><button type="button" class="btn btn-info col-md-12 col-sm-12 col-xs-12" data-bind="attr: { id: id }" onclick="IExamTestIndex.PageLogic.ShowQestions(event)">Questions</button></div>
+                <div class="col-xs-4 col-sm-4 col-md-6"><button type="button" class="btn btn-danger col-md-12 col-sm-12 col-xs-12" data-bind="attr: { id: id }" onclick="IExamTestIndex.PageLogic.DeleteTest(event)">Delete</button></div>
             </div>
             <br />
             <div data-bind="attr: {id: 'questionsContainer' + id()}" style="display: none">

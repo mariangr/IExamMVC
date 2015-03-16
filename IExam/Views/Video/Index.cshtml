@@ -19,28 +19,26 @@
                 }
             }
         </div>
-        <div class="panel-body">
+        <div class="panel-body" style="margin: 0; margin-top: 15px">
             <div class="col-md-12">
-                <div class="panel panel-info col-xs-6 col-sm-6 col-md-6" id="videosPlayerContainer" style="padding: 10px; margin: 0 auto; overflow: hidden; display: none"></div>
-                <div class="col-md-offset-6 col-xs-6 col-sm-6 col-md-6" id="videosContainer">
+                <div class="col-md-6" id="videosContainer">
                     <div data-bind="visible: videoListIsVisible()">
                         <div data-bind="foreach: videos">
-                            <div class="row" style="margin-top: 2px">
-                                <div class="col-md-12" style="padding-bottom: 5px;">
-                                    <div class="col-sm-8 col-md-8">
-                                        <div class="btn btn-info videoHeader col-sm-12 col-md-12 multilineDiv" id="multilineDiv" onclick="IExamVideo.PageLogic.LoadVideo(event)" data-bind="text: name, attr: {id: id }" style="white-space: pre-wrap; /* CSS3 */ white-space: -moz-pre-wrap; /* Firefox */ white-space: -pre-wrap; /* Opera <7 */ white-space: -o-pre-wrap; /* Opera 7 */ word-wrap: break-word;"></div>
-                                    </div>
-                                    <div class="col-xs-3 col-sm-3 col-md-3">
-                                        @if (Request.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("Moderator")))
-                                        {
-                                            <input class="btn btn-danger videoDelete col-sm-12 col-md-12" value='Delete' type="button" data-bind="attr: {id: id }" onclick="IExamVideo.PageLogic.DeleteVideo(event)">
-                                        }
-                                    </div>
+                            <div style="padding-bottom: 5px;">
+                                <div class="col-md-8">
+                                    <div class="btn btn-info videoHeader col-md-12 multilineDiv" id="multilineDiv" onclick="IExamVideo.PageLogic.LoadVideo(event)" data-bind="text: name, attr: {id: id }" style="white-space: pre-wrap; /* CSS3 */ white-space: -moz-pre-wrap; /* Firefox */ white-space: -pre-wrap; /* Opera <7 */ white-space: -o-pre-wrap; /* Opera 7 */ word-wrap: break-word;"></div>
+                                </div>
+                                <div class="col-md-3">
+                                    @if (Request.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("Moderator")))
+                                    {
+                                        <input class="btn btn-danger videoDelete col-md-12" value='Delete' type="button" data-bind="attr: {id: id }" onclick="IExamVideo.PageLogic.DeleteVideo(event)">
+                                    }
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <div class="panel panel-info col-md-6" id="videosPlayerContainer" style="padding: 10px; margin: 0 auto; overflow: hidden; display: none"></div>
                 <div data-bind="visible: !videoListIsVisible()">
                     <div class="col-md-12">
                         <p class="alert panel-danger" style="background-color: white; opacity: 0.9;">No Videos.</p>

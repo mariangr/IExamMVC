@@ -80,9 +80,13 @@ namespace IExam.Controllers
         {
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
-                db.Roles.Add(new IdentityRole() { Id = "Admin", Name = "Admin" });
-                db.Roles.Add(new IdentityRole() { Id = "Moderator", Name = "Moderator" });
-                db.Roles.Add(new IdentityRole() { Id = "User", Name = "User" });
+                if (db.Roles.Count() == 0)
+                {
+                    db.Roles.Add(new IdentityRole() { Id = "Admin", Name = "Admin" });
+                    db.Roles.Add(new IdentityRole() { Id = "Moderator", Name = "Moderator" });
+                    db.Roles.Add(new IdentityRole() { Id = "User", Name = "User" });
+                    db.SaveChanges();
+                }
             }
             return View();
         }

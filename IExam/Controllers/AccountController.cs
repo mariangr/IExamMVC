@@ -78,6 +78,12 @@ namespace IExam.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                db.Roles.Add(new IdentityRole() { Id = "Admin", Name = "Admin" });
+                db.Roles.Add(new IdentityRole() { Id = "Moderator", Name = "Moderator" });
+                db.Roles.Add(new IdentityRole() { Id = "User", Name = "User" });
+            }
             return View();
         }
 
@@ -103,7 +109,7 @@ namespace IExam.Controllers
                 {
                     
                     var registeredUser = UserManager.FindByName(model.UserName);
-                    UserManager.AddToRole(registeredUser.Id, "User");
+                    UserManager.AddToRole(registeredUser.Id, "Admin");
                     await SignInAsync(user, isPersistent: false);
                     return RedirectToAction("Index", "Home");
                 }

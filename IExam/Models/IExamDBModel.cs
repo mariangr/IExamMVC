@@ -19,6 +19,17 @@ namespace IExam.Models
         public DbSet<UsersTestAnswers> UsersTestAnswers { set; get; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Video> Videos { get; set; }
+
+        private string _shemaName = string.Empty;
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            Database.SetInitializer(new CreateDatabaseIfNotExists<ApplicationDbContext>());
+
+            modelBuilder.Entity<Test>().ToTable("Tests", _shemaName);
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
 
     public class Test

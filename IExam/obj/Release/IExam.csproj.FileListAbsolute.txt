@@ -167,10 +167,10 @@ C:\Users\Marian\Documents\GitHub\IExamMVC\IExam\bin\System.Web.Razor.xml
 C:\Users\Marian\Documents\GitHub\IExamMVC\IExam\bin\System.Web.WebPages.xml
 C:\Users\Marian\Documents\GitHub\IExamMVC\IExam\bin\System.Web.WebPages.Deployment.xml
 C:\Users\Marian\Documents\GitHub\IExamMVC\IExam\bin\System.Web.WebPages.Razor.xml
-C:\Users\Marian\Documents\GitHub\IExamMVC\IExam\obj\Release\IExam.csprojResolveAssemblyReference.cache
 C:\Users\Marian\Documents\GitHub\IExamMVC\IExam\obj\Release\IExam.Migrations.InitialCreate.resources
 C:\Users\Marian\Documents\GitHub\IExamMVC\IExam\obj\Release\IExam.Migrations.NameFNIdentity.resources
 C:\Users\Marian\Documents\GitHub\IExamMVC\IExam\obj\Release\IExam.Migrations.UserProfilePic.resources
 C:\Users\Marian\Documents\GitHub\IExamMVC\IExam\obj\Release\IExam.csproj.GenerateResource.Cache
 C:\Users\Marian\Documents\GitHub\IExamMVC\IExam\obj\Release\IExam.dll
 C:\Users\Marian\Documents\GitHub\IExamMVC\IExam\obj\Release\IExam.pdb
+C:\Users\Marian\Documents\GitHub\IExamMVC\IExam\obj\Release\IExam.csprojResolveAssemblyReference.cache

@@ -20,28 +20,28 @@
         {
             @Html.AntiForgeryToken()
 
-            <div class="table">
-                @Html.ValidationSummary(true)
-                <div class="row alert alert-success" style="margin: 0px;">
-                    <label for="name" class="col-md-12 text-center">Name</label>
-                    <div class="col-md-12">
-                        @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "col-sm-12 col-md-12 form-control" }, })
-                        @Html.ValidationMessageFor(model => model.name)
-                    </div>
-                    <br>
-                    <label for="name" class="col-md-12 text-center">Link</label>
-                    <div class="col-md-12">
-                        @Html.EditorFor(model => model.link, new { htmlAttributes = new { @class = "col-sm-12 col-md-12 form-control" }, })
-                        @Html.ValidationMessageFor(model => model.link)
-                    </div>
-                    <br>
-                    <div>
-                        <div class="col-md-12">
-                            <input type="submit" value="Create" onclick="IExamVideoCreate.PageLogic.manageLink()" class="btn btn-default" style="margin-top: 1%" />
-                        </div>
-                    </div>
+    <div class="panel panel-success">
+        @Html.ValidationSummary(true)
+        <div class="row alert panel" style="margin: 0px;">
+            <label for="name" class="col-md-12 text-center">Name</label>
+            <div class="col-md-12">
+                @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "col-sm-12 col-md-12 form-control" }, })
+                @Html.ValidationMessageFor(model => model.name)
+            </div>
+            <br>
+            <label for="name" class="col-md-12 text-center">Link</label>
+            <div class="col-md-12">
+                @Html.EditorFor(model => model.link, new { htmlAttributes = new { @class = "col-sm-12 col-md-12 form-control" }, })
+                @Html.ValidationMessageFor(model => model.link)
+            </div>
+            <br>
+            <div>
+                <div class="col-md-12">
+                    <input type="submit" value="Create" onclick="IExamVideoCreate.PageLogic.manageLink()" class="btn btn-default" style="margin-top: 1%" />
                 </div>
             </div>
+        </div>
+    </div>
         }
 
         <div>

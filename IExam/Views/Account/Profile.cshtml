@@ -8,68 +8,116 @@
     <script src="~/Scripts/PagesScript/Account/IExamUserProfilePageScript.js"></script>
 </header>
 
-<div class="alert alert-info container-fluid">
-    <div class="col-md-12 alert alert-danger" >
+<div class="panel panel-success">
+    <div class="panel-heading" >
         <label>Profile:</label>
     </div>
-    <div class="col-md-12">
-        <div class="row">
+    <div class="panel-body" >
+        <div class="col-md-12">
             <div class="col-md-6">
                 Profile Photo:
             </div>
-
             <div class="col-md-6">
                 <img src="@Url.Content(Model.ProfilePicture)" height="400" width="300" />
                 <input type="button" onclick="IExamUserProfile.PageLogic.photoUploadModalManagement()" value="Upload Profile picture..." class="btn btn-default pull-right" />
             </div>
+            <br />
+            <hr />
         </div>
-        <hr />
-    </div>
-
-
-    @{var properties = ObjPropertyGetter.GetProperties(Model);
-    foreach (var prop in properties)
-    {
-        if (prop.Name == "FirstName" ||
-                prop.Name == "LastName" ||
-                prop.Name == "FN" ||
-                prop.Name == "IdentityNumber" ||
-                prop.Name == "UserName")
-        {
+        
         <div class="col-md-12">
             <div class="row">
                 <div class="col-md-6">
                     <label class="">
-                        @prop.Name: 
+                        First Name:
                     </label>
                 </div>
                 <div class="col-md-6">
-                    @prop.GetValue(Model, null)
+                    @Model.FirstName
                 </div>
                 <br>
             </div>
             <hr>
         </div>
-        }
-    }
-    }
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="">
+                        Last Name:
+                    </label>
+                </div>
+                <div class="col-md-6">
+                    @Model.LastName
+                </div>
+                <br>
+            </div>
+            <hr>
+        </div>
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="">
+                        Faculty Number:
+                    </label>
+                </div>
+                <div class="col-md-6">
+                    @Model.FN
+                </div>
+                <br>
+            </div>
+            <hr>
+        </div>
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="">
+                        Identity Number:
+                    </label>
+                </div>
+                <div class="col-md-6">
+                    @Model.IdentityNumber
+                </div>
+                <br>
+            </div>
+            <hr>
+        </div>
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="">
+                        User Name:
+                    </label>
+                </div>
+                <div class="col-md-6">
+                    @Model.UserName
+                </div>
+                <br>
+            </div>
+            <hr>
+        </div>
+        @Html.ActionLink("Edit Profile", "Manage", routeValues: null, htmlAttributes: new { @class = "btn btn-danger pull-right" })
 
-    @Html.ActionLink("Edit Profile", "Manage", routeValues: null, htmlAttributes: new { @class = "btn btn-danger pull-right" })
+        
+    </div>
 </div>
 
 <div class="modal fade" id="user_profile_upload_picture">
     <div class="modal-dialog">
-        <div class="modal-dialog" style="background-color: white; border-radius: 5px;">
-            <div class=" modal-header">
+        <div class="modal-dialog panel panel-info" style="background-color: white; border-radius: 5px; opacity: 1">
+            <div class=" modal-header panel-heading">
                 <label>Upload a profile picture.</label>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             </div>
-            <div class="modal-body">
-                <div>
+            <div class="modal-body container-fluid">
+                <div class="col-md-12">
                     @using (Ajax.BeginForm("UploadProfilePicture", "Account", new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace }, new { enctype = "multipart/form-data" }))
-                    { 
-                        <input type="file" name="file" placeholder="Choose profile picture." class=" form-control" />
-                        <input type="submit" value="Upload" class="btn btn-default" />
+                    {
+                        <div class="col-md-9">
+                            <input type="file" name="file" placeholder="Choose profile picture." class=" form-control" />
+                        </div>
+                        <div class="col-md-3">
+                            <input type="submit" value="Upload" class="btn btn-default" />
+                        </div>
                     }
                 </div>
             </div>

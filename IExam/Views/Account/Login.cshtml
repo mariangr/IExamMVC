@@ -7,7 +7,7 @@
 <div class="row">
     <div class="col-md-12">
         <section id="loginForm">
-            <div style="background-image: url(../../Content/images/videoPlayerAndCommentsBackgrounf.png); webkit-border-radius: 20px; -moz-border-radius: 20px; border-radius: 20px; ">
+            <div class="panel panel-success">
                 <div class="container-fluid">
                     @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                     {

@@ -113,7 +113,7 @@ namespace IExam.Controllers
                 {
                     
                     var registeredUser = UserManager.FindByName(model.UserName);
-                    UserManager.AddToRole(registeredUser.Id, "Admin");
+                    UserManager.AddToRole(registeredUser.Id, "User");
                     await SignInAsync(user, isPersistent: false);
                     return RedirectToAction("Index", "Home");
                 }

@@ -173,4 +173,3 @@ C:\Users\Marian\Documents\GitHub\IExamMVC\IExam\obj\Release\IExam.Migrations.Use
 C:\Users\Marian\Documents\GitHub\IExamMVC\IExam\obj\Release\IExam.csproj.GenerateResource.Cache
 C:\Users\Marian\Documents\GitHub\IExamMVC\IExam\obj\Release\IExam.dll
 C:\Users\Marian\Documents\GitHub\IExamMVC\IExam\obj\Release\IExam.pdb
-C:\Users\Marian\Documents\GitHub\IExamMVC\IExam\obj\Release\IExam.csprojResolveAssemblyReference.cache

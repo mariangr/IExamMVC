@@ -30,6 +30,13 @@
                     </td>
                 </tr>
             </tbody>
+            <tbody data-bind="visible: tests().length == 0">
+                <tr>
+                   <td colspan="2">
+                       No Tests
+                   </td> 
+                </tr>
+            </tbody>
         </table>
     </div>
 </div>

@@ -174,3 +174,7 @@ C:\Users\Marian\Documents\GitHub\IExamMVC\IExam\obj\Release\IExam.csproj.Generat
 C:\Users\Marian\Documents\GitHub\IExamMVC\IExam\obj\Release\IExam.dll
 C:\Users\Marian\Documents\GitHub\IExamMVC\IExam\obj\Release\IExam.pdb
 C:\Users\Marian\Documents\GitHub\IExamMVC\IExam\obj\Release\IExam.csprojResolveAssemblyReference.cache
+C:\Users\Marian\Documents\GitHub\IExamMVC\IExam\bin\Microsoft.AspNet.SignalR.Core.dll
+C:\Users\Marian\Documents\GitHub\IExamMVC\IExam\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+C:\Users\Marian\Documents\GitHub\IExamMVC\IExam\bin\Microsoft.AspNet.SignalR.Core.xml
+C:\Users\Marian\Documents\GitHub\IExamMVC\IExam\bin\Microsoft.AspNet.SignalR.SystemWeb.xml

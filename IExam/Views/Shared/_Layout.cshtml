@@ -13,6 +13,8 @@
     <script src="~/Scripts/jquery.backstretch.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/Scripts/knockout-3.1.0.js"></script>
+    <script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
+    <script src="~/signalr/hubs"></script>
     <script src="~/Scripts/main.js"></script>
 </head>
 <body>
@@ -39,6 +41,27 @@
             </nav>
             <div style="padding-top: 1%;" class="col-md-10 col-sm-12 col-xs-12">
                 @RenderBody()
+            </div>
+
+
+        </div>
+    </div>
+    <div id="chatContainer" class="btn-group dropup hidden-xs" style="width: 25%">
+        <button id="showChatButton" class="btn btn-info col-md-12 dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+            Show Chat <span class="caret"></span>
+        </button>
+        <div class="dropdown-menu col-md-12" role="menu">
+            <div class="alert">
+                <div class="chatMessages" style="max-height: 200px; overflow-y: auto;">
+                    <ul id="discussion" class="list-unstyled"></ul>
+                </div>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" id="message" />
+                </div>
+                <div class="col-md-2" style="padding-left: 0px;">
+                    <input type="button" id="sendmessage" class="btn btn-success" value="Send" />
+                </div>
+                <input type="hidden" id="displayname" value="@User.Identity.Name" />
             </div>
         </div>
     </div>

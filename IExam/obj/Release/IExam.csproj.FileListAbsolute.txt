@@ -24,9 +24,6 @@ C:\Users\marian.graurov\Documents\GitHub\IExamMVC\IExam\bin\DelegateDecompiler.d
 C:\Users\marian.graurov\Documents\GitHub\IExamMVC\IExam\bin\EntityFramework.dll
 C:\Users\marian.graurov\Documents\GitHub\IExamMVC\IExam\bin\EntityFramework.SqlServer.dll
 C:\Users\marian.graurov\Documents\GitHub\IExamMVC\IExam\bin\EntityFramework.SqlServerCompact.dll
-C:\Users\marian.graurov\Documents\GitHub\IExamMVC\IExam\bin\Glimpse.AspNet.dll
-C:\Users\marian.graurov\Documents\GitHub\IExamMVC\IExam\bin\Glimpse.Core.dll
-C:\Users\marian.graurov\Documents\GitHub\IExamMVC\IExam\bin\Glimpse.Mvc5.dll
 C:\Users\marian.graurov\Documents\GitHub\IExamMVC\IExam\bin\Microsoft.AspNet.Identity.Core.dll
 C:\Users\marian.graurov\Documents\GitHub\IExamMVC\IExam\bin\Microsoft.AspNet.Identity.EntityFramework.dll
 C:\Users\marian.graurov\Documents\GitHub\IExamMVC\IExam\bin\Microsoft.AspNet.Identity.Owin.dll
@@ -178,3 +175,15 @@ C:\Users\Marian\Documents\GitHub\IExamMVC\IExam\bin\Microsoft.AspNet.SignalR.Cor
 C:\Users\Marian\Documents\GitHub\IExamMVC\IExam\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
 C:\Users\Marian\Documents\GitHub\IExamMVC\IExam\bin\Microsoft.AspNet.SignalR.Core.xml
 C:\Users\Marian\Documents\GitHub\IExamMVC\IExam\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
+C:\Users\marian.graurov\Documents\GitHub\IExamMVC\IExam\bin\EcmaScript.NET.dll
+C:\Users\marian.graurov\Documents\GitHub\IExamMVC\IExam\bin\Elmah.dll
+C:\Users\marian.graurov\Documents\GitHub\IExamMVC\IExam\bin\Elmah.Mvc.dll
+C:\Users\marian.graurov\Documents\GitHub\IExamMVC\IExam\bin\Microsoft.AspNet.SignalR.Core.dll
+C:\Users\marian.graurov\Documents\GitHub\IExamMVC\IExam\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+C:\Users\marian.graurov\Documents\GitHub\IExamMVC\IExam\bin\NodeAssets.Compilers.Minify.dll
+C:\Users\marian.graurov\Documents\GitHub\IExamMVC\IExam\bin\NodeAssets.Core.dll
+C:\Users\marian.graurov\Documents\GitHub\IExamMVC\IExam\bin\Yahoo.Yui.Compressor.dll
+C:\Users\marian.graurov\Documents\GitHub\IExamMVC\IExam\bin\Microsoft.AspNet.SignalR.Core.xml
+C:\Users\marian.graurov\Documents\GitHub\IExamMVC\IExam\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
+C:\Users\marian.graurov\Documents\GitHub\IExamMVC\IExam\obj\Release\IExam.csprojResolveAssemblyReference.cache
+C:\Users\marian.graurov\Documents\GitHub\IExamMVC\IExam\obj\Release\IExam.Migrations.UserProfilePic.resources

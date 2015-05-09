@@ -11,10 +11,16 @@ namespace IExam.Models
 
     public class ManageUserViewModel
     {
-        [Display(Name = "First Name")]
+        [Required]
+        [Display(Name = "Email *")]
+        public string Email { get; set; }
+
+        [Required]
+        [Display(Name = "First Name *")]
         public string FirstName { set; get; }
 
-        [Display(Name = "Last Name")]
+        [Required]
+        [Display(Name = "Last Name *")]
         public string LastName { set; get; }
 
         [Display(Name = "Faculty Number")]
@@ -57,11 +63,17 @@ namespace IExam.Models
 
     public class RegisterViewModel
     {
-        [Display(Name = "First Name")]
+        [Required]
+        [Display(Name = "First Name *")]
         public string FirstName { set; get; }
 
-        [Display(Name = "Last Name")]
+        [Required]
+        [Display(Name = "Last Name *")]
         public string LastName { set; get; }
+
+        [Required]
+        [Display(Name = "Email *")]
+        public string Email { set; get; }
 
         [Display(Name = "Faculty Number")]
         public string FN { set; get; }

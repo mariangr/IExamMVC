@@ -102,6 +102,7 @@ namespace IExam.Controllers
             {
                 var user = new ApplicationUser() { 
                     UserName = model.UserName, 
+                    Email = model.Email,
                     FirstName = model.FirstName, 
                     LastName = model.LastName, 
                     FN = model.FN, 
@@ -115,7 +116,7 @@ namespace IExam.Controllers
                     var registeredUser = UserManager.FindByName(model.UserName);
                     UserManager.AddToRole(registeredUser.Id, "User");
                     await SignInAsync(user, isPersistent: false);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("SuccessfullyRegistered", "Home");
                 }
                 else
                 {
@@ -167,6 +168,7 @@ namespace IExam.Controllers
             model.FirstName = user.FirstName;
             model.LastName = user.LastName;
             model.IdentityNumber = user.IdentityNumber;
+            model.Email = user.Email;
 
             return View(model);
         }
@@ -190,11 +192,12 @@ namespace IExam.Controllers
                     user.LastName = model.LastName;
                     user.IdentityNumber = model.IdentityNumber;
                     user.FN = model.FN;
-
+                    user.Email = model.Email;
 
                     IdentityResult resultUpdate = await UserManager.UpdateAsync(user);
 
                     IdentityResult result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
+                    IdentityResult resultEmail = await UserManager.SetEmailAsync(id, model.Email);
                     if (result.Succeeded && resultUpdate.Succeeded)
                     {
                         return RedirectToAction("Manage", new { Message = ManageMessageId.ChangePasswordSuccess });

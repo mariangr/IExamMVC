@@ -3,6 +3,7 @@
 
 var IExamVideo = IExamVideo || {};
 IExamVideo.VideoList = null;
+IExamVideo.CurrentVideoID = -1;
 
 $(document).ready(function () {
     IExamVideo.VideoList = new IExamVideo.VideoListModel();
@@ -91,12 +92,12 @@ IExamVideo.PageLogic = function () {
         }
     }
 
-    var DeleteVideo = function DeleteVideo(event) {
-        var id = $(event.target).attr('id');
+    var DeleteVideoConfirmed = function ()
+    {
         $.ajax({
             type: 'POST',
             url: '/Video/DeleteVideo/',
-            data: { id: id },
+            data: { id: IExamVideo.CurrentVideoID },
             success: function (result) {
                 LoadVideo(null);
                 $('#videoComents').html("");
@@ -108,6 +109,16 @@ IExamVideo.PageLogic = function () {
                 alert(result.statusText)
             }
         })
+
+        $("#deleteVideoConfirmation").modal('hide');
+
+        return false;
+    }
+
+    var DeleteVideo = function DeleteVideo(event) {
+        var id = $(event.target).attr('id');
+        IExamVideo.CurrentVideoID = id;
+        $("#deleteVideoConfirmation").modal();
         return false;
     }
 
@@ -189,6 +200,7 @@ IExamVideo.PageLogic = function () {
         loadVideosList: loadVideosList,
         LoadVideo: LoadVideo,
         DeleteVideo: DeleteVideo,
+        DeleteVideoConfirmed: DeleteVideoConfirmed,
         deleteComment: deleteComment,
         sendComment: sendComment,
         textAreaEnterEvent: textAreaEnterEvent,

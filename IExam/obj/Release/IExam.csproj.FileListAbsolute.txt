@@ -107,9 +107,6 @@ C:\Users\Marian\Documents\GitHub\IExamMVC\IExam\bin\EcmaScript.NET.dll
 C:\Users\Marian\Documents\GitHub\IExamMVC\IExam\bin\EntityFramework.dll
 C:\Users\Marian\Documents\GitHub\IExamMVC\IExam\bin\EntityFramework.SqlServer.dll
 C:\Users\Marian\Documents\GitHub\IExamMVC\IExam\bin\EntityFramework.SqlServerCompact.dll
-C:\Users\Marian\Documents\GitHub\IExamMVC\IExam\bin\Glimpse.AspNet.dll
-C:\Users\Marian\Documents\GitHub\IExamMVC\IExam\bin\Glimpse.Core.dll
-C:\Users\Marian\Documents\GitHub\IExamMVC\IExam\bin\Glimpse.Mvc5.dll
 C:\Users\Marian\Documents\GitHub\IExamMVC\IExam\bin\Microsoft.AspNet.Identity.Core.dll
 C:\Users\Marian\Documents\GitHub\IExamMVC\IExam\bin\Microsoft.AspNet.Identity.EntityFramework.dll
 C:\Users\Marian\Documents\GitHub\IExamMVC\IExam\bin\Microsoft.AspNet.Identity.Owin.dll
@@ -187,3 +184,5 @@ C:\Users\marian.graurov\Documents\GitHub\IExamMVC\IExam\bin\Microsoft.AspNet.Sig
 C:\Users\marian.graurov\Documents\GitHub\IExamMVC\IExam\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
 C:\Users\marian.graurov\Documents\GitHub\IExamMVC\IExam\obj\Release\IExam.csprojResolveAssemblyReference.cache
 C:\Users\marian.graurov\Documents\GitHub\IExamMVC\IExam\obj\Release\IExam.Migrations.UserProfilePic.resources
+C:\Users\Marian\Documents\GitHub\IExamMVC\IExam\bin\Elmah.dll
+C:\Users\Marian\Documents\GitHub\IExamMVC\IExam\bin\Elmah.Mvc.dll

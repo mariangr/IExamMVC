@@ -38,7 +38,11 @@ namespace IExam.Controllers
                 newVideo.ApplicationUserID = User.Identity.GetUserId();
                 try
                 {
-                    string downloadString = client.DownloadString("http://gdata.youtube.com/feeds/api/videos/" + newVideo.link);
+                    string downloadString = client.DownloadString("https://www.youtube.com/watch?v=" + newVideo.link);
+                    if (downloadString.Contains("This video is unavailable.")) 
+                    {
+                        throw new WebException("This video is unavailable.");
+                    }
                     int countOfDublicateVideo = db.Videos.Where(v => v.link == newVideo.link).Count();
                     if (countOfDublicateVideo == 0)
                     {
@@ -51,7 +55,7 @@ namespace IExam.Controllers
                         throw new DuplicateWaitObjectException();
                     }
                 }
-                catch (WebException)
+                catch (WebException we)
                 {
                     //When the video doesn't exist
                     newVideo.VideoID = -3;

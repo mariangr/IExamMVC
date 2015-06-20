@@ -38,10 +38,9 @@ namespace IExam.Controllers
                 newVideo.ApplicationUserID = User.Identity.GetUserId();
                 try
                 {
-                    string downloadString = client.DownloadString("https://www.youtube.com/watch?v=" + newVideo.link);
-                    if (downloadString.Contains("This video is unavailable.")) 
+                    if (newVideo.link.Length != 11) 
                     {
-                        throw new WebException("This video is unavailable.");
+                        throw new WebException("This video is not valid.");
                     }
                     int countOfDublicateVideo = db.Videos.Where(v => v.link == newVideo.link).Count();
                     if (countOfDublicateVideo == 0)

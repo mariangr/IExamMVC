@@ -105,7 +105,8 @@ body {
 }
 
 div[class^='panel'], div[class*=' panel'] {
-    opacity: 0.9;
+    background: rgba(255, 255, 255, .8)
+    /*opacity: 0.9;*/
 }
 
 .navbar-fixed-top {

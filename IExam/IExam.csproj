@@ -270,11 +270,12 @@
     <Content Include="Content\images\commentHeader.png" />
     <Content Include="Content\images\comments.png" />
     <Content Include="Content\images\DefaultProfilePicture.png" />
-    <Content Include="Content\images\elina.jpg" />
+    <Content Include="Content\images\diana.png" />
+    <Content Include="Content\images\elina.png" />
     <Content Include="Content\images\exam-icon.gif" />
     <Content Include="Content\images\bg2.jpg" />
-    <Content Include="Content\images\marian.jpg" />
-    <Content Include="Content\images\svetoslav.jpg" />
+    <Content Include="Content\images\marian.png" />
+    <Content Include="Content\images\svetoslav.png" />
     <Content Include="Content\images\videoPlayerAndCommentsBackgrounf.png" />
     <Content Include="Content\images\www_icon1.ico" />
     <Content Include="Content\main.css" />

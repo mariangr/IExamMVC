@@ -78,7 +78,6 @@ IExamVideo.PageLogic = function () {
                     $('iframe').width($('#videosPlayerContainer').width());
                     $('iframe').height($('iframe').width() * 3 / 4);
                     $('#videoComents').width($('iframe').width());
-                    $('#videosContainer').removeClass('col-md-offset-6')
                 },
                 error: function (result) {
                     alert(result.statusText)
@@ -88,7 +87,6 @@ IExamVideo.PageLogic = function () {
         }
         else {
             $('#videosPlayerContainer').html("");
-            $('#videosContainer').addClass('col-md-offset-6')
         }
     }
 
